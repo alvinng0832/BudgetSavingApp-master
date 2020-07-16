@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+	<div class="login-header ion-padding">
+	  <img class="logo-icon" src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
+	</div>
+  </ion-header>
+  
+  <ion-content class="background">
+	<ion-card class="ion-card">
+	  <ion-card-header>
+	 <div class="center">
+	   <div heading-column-1r>
+		 <h1 big-heading>Registration</h1>
+	
+	   </div>
+	</div>
+	<ion-label small-heading>
+	  We Will Bring You into a Better Life 
+	</ion-label>
+	<h2><strong>Please Kindly Fill Up Your Details in Here~ </strong></h2>
+	<ion-list>
+		<ion-item transparent>
+			<img icon-small src="assets/icon/Username-512.png">
+			<ion-input placeholder="username" position="floating" type="text" [(ngModel)]="username"></ion-input>
+		  </ion-item>
+		  <ion-item transparent>
+			<img icon-small src="assets/icon/email.png">
+			<ion-input placeholder="emailaddress" position="floating" type="text" [(ngModel)]="emailaddress"></ion-input>
+		  </ion-item>
+			<ion-item transparent>
+			  <img icon-small src="assets/icon/img_398183.png">
+			  <ion-input placeholder="password" position="floating" type="password" [(ngModel)]="password"></ion-input>
+			</ion-item>
+			<ion-item transparent>
+			  <img icon-small src="assets/icon/392-3929478_confirm-new-password.png">
+			  <ion-input placeholder="confirmpassword" position="floating" type="password" [(ngModel)]="confirmpassword"></ion-input>
+			</ion-item>
+		 <div linespace></div>
+		  <ion-button size="large" expand="block" shape="round" class="ion-button-class" fill="solid" color="success" (click)="Signup()">Sign Up</ion-button>
+		  <h2>Or Sign up with</h2>
+  
+		  <ion-row class="ion-align-items-center">
+			<ion-col size="12" class="ion-text-center">
+				<ion-icon class="ion-icon"  name="logo-facebook" (click)="facebook()"></ion-icon>
+				<ion-icon class="ion-icon" name="logo-instagram" (click)="instagram()"></ion-icon>
+			</ion-col>
+		  </ion-row>
+  
+		 <ion-label class="ion-label" (click)="gotologinPage()">Already Have An Account?<span class="link-button" color="danger" > Click here to Login</span></ion-label>
+  
+		
+  
+		  
+		  
+		</ion-list>
+	  </ion-card-header>
+	  </ion-card>
+	  
+	  
+	</ion-content>
+	

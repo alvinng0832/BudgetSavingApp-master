@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fearless',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FearlessPage implements OnInit {
 
-  constructor() { }
+  slideOpts = {
+    speed: 500,
+    slidesPerView: 2,
+    spaceBetween: 30,
+   
+    };
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  
+  financialdiet(){
+    this.router.navigateByUrl('/stripe6');
+  }
+  share(){
+
   }
 
 }

@@ -8,31 +8,39 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
-
-
+import firebaseConfig from './firebase';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './user.service';
+import { AuthService } from './auth.service';
+import {Stripe} from '@ionic-native/stripe/ngx';
+import { HttpClientModule, HttpClient } from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents: [
+    
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    AngularFireModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase),  
+    AngularFirestoreModule,
+    FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    NativeStorage
+    UserService,
+    AuthService, 
+    Stripe,
+    HttpClient,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

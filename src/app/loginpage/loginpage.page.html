@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+  <div class="login-header ion-padding">
+    <img class="logo-icon" src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
+  </div>
+</ion-header>
+
+<ion-content class="background">
+  <ion-card class="ion-card">
+    <ion-card-header>
+   <div class="center">
+     <div heading-column-1r>
+       <h1 big-heading>Login</h1>
+  
+     </div>
+  </div>
+  <ion-label>
+    Using this Budget Apps can Brings You into a Better Future Outcome!
+  </ion-label>
+  <h2><strong>Please Sign in Here.</strong></h2>
+  <ion-list>
+          <ion-item transparent>
+            <img icon-small src="assets/icon/Username-512.png">
+            <ion-input placeholder="Username" position="floating" type="text" [(ngModel)]="username"></ion-input>
+          </ion-item>
+          
+          <ion-item transparent>
+            <img icon-small src="assets/icon/img_398183.png">
+            <ion-input placeholder="Password" position="floating" type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+       <ion-label  color="danger" class="forget-password" (click)="ForgetPassword()">Forget Password</ion-label>
+       <div linespace></div>
+        <ion-button size="large" expand="block" shape="round" class="ion-button-class" fill="solid" color="danger" (click)="login()">Login</ion-button>
+        <h2>Or</h2>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12" class="ion-text-center">
+            <ion-icon class="ion-icon"  name="logo-facebook" (click)="facebook()"></ion-icon>
+            <ion-icon class="ion-icon" name="logo-google" (click)="google()"></ion-icon>
+            <ion-icon class="ion-icon" name="logo-instagram" (click)="instagram()"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+       <ion-label class="ion-label" (click)="gotoRegisterPage()">Don't have An Account?<span class="link-button" color="danger" > Sign Up Here</span></ion-label>
+
+      
+
+        
+        
+      </ion-list>
+    </ion-card-header>
+    </ion-card>
+    
+    
+  </ion-content>
+  

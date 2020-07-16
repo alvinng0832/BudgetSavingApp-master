@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>welcome</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="background">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+    <img src="assets/icon/pngtree-dollar-cash-saving-png-image_1635080.jpg" />
+    <h2>Welcome to Budget Saving</h2>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/icon/pngtree-vector-dollar-bank-note-and-coin-png-image_1694697.jpg" />
+    <h2>You will save up to 50% from your expenses</h2>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/icon/pngtree-vector-money-saving-icon-png-image_950056.jpg" />
+    <h2>Enjoy~ Click here to Start!</h2>
+    <ion-button expand="full" shape="round" color="danger" (click)="navigateToLogin()">Start</ion-button>
+    </ion-slide>
+   
+    </ion-slides>
 
-<ion-content>
-
+    
 </ion-content>

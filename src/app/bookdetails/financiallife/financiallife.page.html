@@ -7,3 +7,91 @@
 <ion-content>
 
 </ion-content>
+<ion-header >
+  <ion-toolbar color="danger" >
+    <ion-title>Get a Financial Life</ion-title>
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+<h2>Beth Kobliner</h2>
+<h1><b>Get a Financial Life: Personal Finance in Your Twenties and Thirties</b></h1>
+</ion-row>
+<ion-slides class="financialdiet" pager="true">
+  <ion-slide>
+    <img src="../assets/icon/51ac5lCdtwL.jpg">
+  </ion-slide>
+  <ion-slide >
+    <img src="../assets/icon/get-a-financial-life-9781476782386_xlg-back.jpg">
+  </ion-slide>
+</ion-slides>
+<ion-row>
+<h1><b>Only 4 left in stock - Get your Order now</b></h1>
+</ion-row>
+<ion-row>
+<h2>Arrive: <b>July 22 - 24</b></h2>
+</ion-row>
+<ion-row>
+  <h2>Pricing <b>$5.99</b></h2>
+  </ion-row>
+  <ion-button expand="full" fill="outline" (click)="financialdiet()">Process Your Payment</ion-button>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button expand="full" fill="outline">
+      <ion-icon class="ion-icon" name="share" (click)="share()"></ion-icon>Share</ion-button>
+    </ion-col>
+  </ion-row>
+
+ <ion-label class="text">Customers who bought this item also bought</ion-label>
+
+ <ion-slides class="optional" [options]="slideOpts">
+   <ion-slide>
+     <ion-row>
+    <img src ="./assets/icon/Your-Money-or-Your-Life-Current-Balance-Marion-Community-Credit-Union.png" class="imgs" >
+    <ion-button fill="outline">Best Seller</ion-button>
+    <h1><b>  Personal Finance Tips for 2020: "Your Money or Your Life" by Vicki Robin</b></h1>
+    <h3>$10.29</h3>
+  </ion-row>
+   </ion-slide>
+
+   <ion-slide>
+     <ion-row>
+    <img src ="./assets/icon/women-with-money-book.jpg" class="imgs">
+    <h1><b>  Personal Finance Tips for 2020: "Women and Money" by Suze Orman </b></h1>
+    <h3>$14.99</h3>
+  </ion-row>
+   </ion-slide>
+
+   <ion-slide>
+    <ion-row>
+    <img src ="./assets/icon/e0d299a5966fc1169234cf5146529279.jpg" class="imgs">
+    <h1><b> Personal Finance Tips for 2020: "The Millioinaire Next Door" by Thomas J.Stanley </b></h1>
+    <h3>$12.99</h3>
+  </ion-row>
+   </ion-slide>
+
+   <ion-slide>
+    <ion-row>
+   <img src ="./assets/icon/1_P-TkRdeiipojG4frEsUL_A.png" class="imgs" >
+   <ion-button fill="outline">Best Seller</ion-button>
+   <h1><b> Personal Finance Tips for 2020: "The Financial Diet" by Chelsea Fegan</b></h1>
+   <h3>$10.29</h3>
+ </ion-row>
+  </ion-slide>
+
+   <ion-slide>
+    <ion-row>
+    <img src ="./assets/icon/FinanciallyFearless-thumb-500x430-11956.jpg" class="imgs">
+    <h1> <b>Personal Finance Tips fo 2020: "Financially Fearless", by Alexa Von Tobel</b></h1>
+    <h3>$18.00</h3>
+  </ion-row>
+   </ion-slide>
+ </ion-slides>
+
+   
+
+</ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-womenandmoney',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./womenandmoney.page.scss'],
 })
 export class WomenandmoneyPage implements OnInit {
-
-  constructor() { }
+  slideOpts = {
+    speed: 500,
+    slidesPerView: 2,
+    spaceBetween: 30,
+   
+    };
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  financialdiet(){
+    this.router.navigateByUrl('/stripe5');
+  }
+
+  share(){
+
+  }
 }

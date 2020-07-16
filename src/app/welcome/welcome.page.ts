@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.page.scss'],
 })
 export class WelcomePage implements OnInit {
-
-  constructor() { }
+  slideOpts = {
+    speed: 400
+    };
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  navigateToLogin() {
+  this.router.navigate(['/loginpage']);
   }
 
 }

@@ -1,29 +1,42 @@
-<ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+<ion-app >
+  <ion-menu  menuId="main-menu" contentId="main" >
+  <ion-content class="background">
+    <div class="menu-header-bg"></div>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+    <div class="header-content">
+      <img src="./assets/icon/people-customer-unknown-512.png" alt="">
+      <ion-label>
+        <h2>???</h2>
+        <p>Budget Saving</p>
+      </ion-label>
+    </div>
+   <div class="action-button" >
+     <ion-button>
+       <ion-icon slot="start" name="add"></ion-icon>Edit Profile
+     </ion-button>
+   </div>
+   <ion-list lines="">
+     <ion-item href="/home">
+       <ion-icon name="home"></ion-icon> Homepage
+     </ion-item>
+     <ion-item href="/budgets">
+      <ion-icon name="cash"></ion-icon> Budgets
+    </ion-item>
+    <ion-item href="/goals">
+      <ion-icon name="locate"></ion-icon> Goals
+    </ion-item>
+    <ion-item href="/ourstore">
+      <ion-icon name="book"></ion-icon> Our Store
+    </ion-item>
+    <ion-item href="/location">
+      <ion-icon name="navigate"></ion-icon> Location
+    </ion-item>
+    <ion-item href="/loginpage">
+      <ion-icon name="log-out"></ion-icon> Sign Out
+    </ion-item>
+   </ion-list>
+  </ion-content>
+  </ion-menu>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-millioinaire',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./millioinaire.page.scss'],
 })
 export class MillioinairePage implements OnInit {
-
-  constructor() { }
+  slideOpts = {
+    speed: 500,
+    slidesPerView: 2,
+    spaceBetween: 30,
+   
+    };
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+  financialdiet(){
+    this.router.navigateByUrl('/stripe3');
+  }
 
+  share(){
+
+  }
 }
