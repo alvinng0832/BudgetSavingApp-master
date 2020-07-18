@@ -19,7 +19,7 @@ export class FinanciallifePage implements OnInit {
   }
 
   financialdiet(){
-    this.router.navigateByUrl('/stripe2');
+    this.router.navigateByUrl('/stripe1');
   }
   share(){
 

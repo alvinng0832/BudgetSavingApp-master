@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddExpenseComponent } from './add-expense.component';
+import { StripePage } from './stripe.page';
 
-describe('AddExpenseComponent', () => {
-  let component: AddExpenseComponent;
-  let fixture: ComponentFixture<AddExpenseComponent>;
+describe('StripePage', () => {
+  let component: StripePage;
+  let fixture: ComponentFixture<StripePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddExpenseComponent ],
+      declarations: [ StripePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddExpenseComponent);
+    fixture = TestBed.createComponent(StripePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

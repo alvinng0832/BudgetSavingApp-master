@@ -30,8 +30,8 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    ReactiveFormsModule
   ],
   providers: [
     StatusBar,

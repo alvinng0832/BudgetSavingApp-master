@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-moneyorlife',
   templateUrl: './moneyorlife.page.html',
@@ -7,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoneyorlifePage implements OnInit {
 
-  constructor() { }
-
+  constructor(private router: Router) { }
+  slideOpts = {
+    speed: 500,
+    slidesPerView: 2,
+    spaceBetween: 30,
+   
+    };
   ngOnInit() {
+  }
+
+
+ 
+
+  moneyorlife(){
+    this.router.navigateByUrl('/stripe4');
+  }
+  share(){
+  }
+  google(){
+  }
+  instagram(){
   }
 
 }

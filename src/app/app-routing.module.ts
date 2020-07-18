@@ -66,6 +66,35 @@ const routes: Routes = [
   {
     path: 'registerpage',
     loadChildren: () => import('./registerpage/registerpage.module').then( m => m.RegisterpagePageModule)
+  },
+  {
+    path: 'stripe',
+    loadChildren: () => import('./stripe/stripe/stripe.module').then( m => m.StripePageModule)
+  },
+  {
+    path: 'stripe1',
+    loadChildren: () => import('./stripe/stripe1/stripe1.module').then( m => m.Stripe1PageModule)
+  },
+  {
+    path: 'stripe2',
+    loadChildren: () => import('./stripe/stripe2/stripe2.module').then( m => m.Stripe2PageModule)
+  },
+  {
+    path: 'stripe3',
+    loadChildren: () => import('./stripe/stripe3/stripe3.module').then( m => m.Stripe3PageModule)
+  },
+  {
+    path: 'stripe4',
+    loadChildren: () => import('./stripe/stripe4/stripe4.module').then( m => m.Stripe4PageModule)
+  },
+  {
+    path: 'stripe5',
+    loadChildren: () => import('./stripe/stripe5/stripe5.module').then( m => m.Stripe5PageModule)
+  },
+
+  {
+    path: 'add-expenses',
+    loadChildren: () => import('./add-expenses/add-expenses.module').then( m => m.AddExpensesPageModule)
   }
 
 ];

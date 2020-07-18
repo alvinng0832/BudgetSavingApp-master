@@ -24,7 +24,7 @@ export class LoginpagePage implements OnInit {
   async login() {
     const { username, password } = this
     try {
-      const res = await this.afAuth.auth.signInWithEmailAndPassword(username + '@aketianxiu.com.sg', password);
+      const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password);
       if(res.user) {
         this.user.setUser({
           username,

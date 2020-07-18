@@ -21,7 +21,7 @@ export class FinancialdietPage implements OnInit {
   }
 
   financialdiet(){
-    this.router.navigateByUrl('/stripe1');
+    this.router.navigateByUrl('/stripe');
   }
   share(){
 

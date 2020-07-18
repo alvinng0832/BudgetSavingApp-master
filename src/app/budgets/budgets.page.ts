@@ -1,6 +1,7 @@
-import { AddExpenseComponent } from './../add-expense/add-expense.component';
+
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular'
+import { AddExpensesPage } from '../add-expenses/add-expenses.page';
 
 @Component({
   selector: 'app-budgets',
@@ -16,7 +17,7 @@ export class BudgetsPage implements OnInit {
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: AddExpenseComponent
+      component: AddExpensesPage
     });
     return await modal.present();
   }
