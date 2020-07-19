@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, RendererFactory2, Renderer2 } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { HomePage } from './home/home.page';
+import { Storage } from "@ionic/storage";
+import { ThemeService } from './services/theme.service';
 
 
 @Component({
@@ -13,16 +15,21 @@ import { HomePage } from './home/home.page';
 })
 export class AppComponent {
   rootPage: any = HomePage;
-
+  darkMode: any
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public router: Router
+    public router: Router,
+    private storage: Storage,
+    private themeService: ThemeService,
   ) {
     this.initializeApp();
+    this.darkMode = this.themeService.darkMode;
   }
+
+  
 
   
   gotohome(){
@@ -41,11 +48,20 @@ export class AppComponent {
     this.router.navigateByUrl('/loginpage')
   }
 
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.storage.get('dark-theme').then((val) => {
+      console.log('Theme From Storage', val);
+      if (val) {
+        this.themeService.enableDark();
+      }
+    });
   }
+  
+  
+
 }

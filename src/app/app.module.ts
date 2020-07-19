@@ -5,7 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import firebaseConfig from './firebase';
@@ -17,6 +17,9 @@ import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import {Stripe} from '@ionic-native/stripe/ngx';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {Keyboard} from '@ionic-native/keyboard/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [
@@ -31,7 +34,9 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
+    IonicStorageModule.forRoot(),
     HttpClientModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     StatusBar,
@@ -39,7 +44,9 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
     UserService,
     AuthService, 
     Stripe,
+    Storage,
     HttpClient,
+    Keyboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

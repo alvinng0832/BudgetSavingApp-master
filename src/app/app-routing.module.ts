@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'goals',
     pathMatch: 'full'
   },
   {
@@ -95,6 +95,14 @@ const routes: Routes = [
   {
     path: 'add-expenses',
     loadChildren: () => import('./add-expenses/add-expenses.module').then( m => m.AddExpensesPageModule)
+  },
+  {
+    path: 'debts',
+    loadChildren: () => import('./debts/debts.module').then( m => m.DebtsPageModule)
+  },
+  {
+    path: 'newgoal',
+    loadChildren: () => import('./newgoal/newgoal.module').then( m => m.NewgoalPageModule)
   }
 
 ];

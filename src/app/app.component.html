@@ -31,9 +31,20 @@
     <ion-item href="/location">
       <ion-icon name="navigate"></ion-icon> Location
     </ion-item>
+    <ion-item href="/debts">
+      <ion-icon name="card"></ion-icon> Debts
+    </ion-item>
     <ion-item href="/loginpage">
       <ion-icon name="log-out"></ion-icon> Sign Out
     </ion-item>
+    <ion-list>
+      <ion-item (click)="themeService.themeMode()">
+        <ion-icon name='color-fill' slot="start"></ion-icon>
+        <ion-label>Dark Mode</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="darkMode"></ion-toggle>
+      </ion-item>
+    </ion-list>
+  
    </ion-list>
   </ion-content>
   </ion-menu>

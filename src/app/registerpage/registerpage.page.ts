@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-
+import {AngularFireDatabase} from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from '../user.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder , Validators} from '@angular/forms';
 @Component({
   selector: 'app-registerpage',
   templateUrl: './registerpage.page.html',
@@ -16,6 +17,7 @@ export class RegisterpagePage implements OnInit {
   username: string = ""
   password: string = ""
   confirmpassword: string = ""
+  registrationform: FormGroup
 
  constructor(
     public afAuth: AngularFireAuth,
@@ -23,9 +25,18 @@ export class RegisterpagePage implements OnInit {
     public afstore: AngularFirestore,
     public user: UserService,
     public alertController: AlertController,
-    public router: Router
-    ) { }
-
+    public router: Router,
+    private fb: FormBuilder,
+    private afDB: AngularFireDatabase
+    ) { 
+      this.registrationform = this.fb.group({
+        username: ['', [Validators.required, Validators.maxLength(50)]],
+        emailaddress: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmpassword: ['', [Validators.required, Validators.minLength(8)]],
+        
+    })
+    }
     ngOnInit() {
   }
 
@@ -48,23 +59,15 @@ export class RegisterpagePage implements OnInit {
     try {
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(emailaddress, password);
 
-      this.afstore.doc(`users/${res.user.uid}`).set({
+      this.afDB.object('users/' + res.user.uid).set({
         userId: res.user.uid,
         username,
         emailaddress,
         password
-
-
-      });
-
-      this.user.setUser({
-        username,
-        uid: res.user.uid
-      });
-
+      }).then(()=> {
       this.presentAlert('Success', 'You are registered!');
       this.router.navigate(['/loginpage']);
-
+      })
     } catch(error) {
       console.dir(error);
     }
@@ -76,6 +79,24 @@ export class RegisterpagePage implements OnInit {
   gotologinPage(){
     this.router.navigateByUrl('/loginpage')
   }
+
+  passwordCheck(control) {
+    if (control.value != null) {
+      let conPass = control.value;
+      var pass = control.root.get('password');
+      if (pass) {
+        var password = pass.value;
+        if (password !== conPass) {
+          return {
+            isError: true
+          }
+        } else {
+          return null;
+        }
+      }
+    }
+  }
+
 
 
 }
