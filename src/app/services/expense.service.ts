@@ -10,7 +10,9 @@ export class ExpenseService {
   documentRef: any;
 
   constructor(private fireStore: AngularFirestore, private userService: UserService) {
-    this.documentRef = fireStore.collection("Expenses").doc();
+   
+    // this.documentRef = fireStore.collection("Expenses").doc(); // this one wrong
+
   }
 
   addExpense(expense: Expense){

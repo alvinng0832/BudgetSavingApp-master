@@ -1,102 +1,193 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import {AngularFireDatabase} from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from '../user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController, ToastController, IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder , Validators} from '@angular/forms';
+import * as firebase from 'firebase/app';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-registerpage',
   templateUrl: './registerpage.page.html',
   styleUrls: ['./registerpage.page.scss'],
 })
 export class RegisterpagePage implements OnInit {
-  emailaddress: string = ""
-  username: string = ""
-  password: string = ""
-  confirmpassword: string = ""
-  registrationform: FormGroup
 
- constructor(
-    public afAuth: AngularFireAuth,
-    public auth: AngularFireAuth,
-    public afstore: AngularFirestore,
-    public user: UserService,
-    public alertController: AlertController,
-    public router: Router,
-    private fb: FormBuilder,
-    private afDB: AngularFireDatabase
-    ) { 
-      this.registrationform = this.fb.group({
-        username: ['', [Validators.required, Validators.maxLength(50)]],
-        emailaddress: ['', [Validators.required]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmpassword: ['', [Validators.required, Validators.minLength(8)]],
-        
-    })
-    }
-    ngOnInit() {
-  }
+  @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides; // SLIDES CONTROLLER
+  validation_form: FormGroup;
+  errorMessage: string = '';
+  successMessage: string = '';
 
-  async presentAlert(title: string, content: string) {
-    const alert = await this.alertController.create({
-      header: title,
-      message: content,
-      buttons: ['OK']
+
+  phoneNumber: ''; // DUN ERASE, TO HOLD PHONE NUMBER
+  otp: '' // THE OTP YOU TYPED IN
+
+
+  validation_messages = {
+    'username': [
+      { type: 'required', message: 'Username is required.' },
+      { type: 'pattern', message: 'Enter a valid username.' }
+    ],
+    'email': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email.' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'Password must be at least 8 characters long.' }
+    ]
+  };
+
+  verificationId: any;
+  recaptchaVerifier: any;
+
+  constructor(
+    private navCtrl: NavController,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    public toastController: ToastController,
+    public alertCtrl: AlertController,
+    private afAuth: AngularFireAuth
+
+  ) { }
+
+  ngOnInit() {
+
+    this.validation_form = this.formBuilder.group({
+      username: new FormControl('', Validators.compose([
+        // Validators.maxLength(25),
+        // Validators.minLength(5),
+        // Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        Validators.required
+      ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        // Validators.minLength(8),
+        Validators.required
+      ])),
+
     });
 
-    await alert.present();
+
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', { 'size': 'invisible' })
+
   }
 
-  async Signup(){
-    const {emailaddress, username, password, confirmpassword } = this
-    if (password !== confirmpassword) {
-      return console.error("Passwords don't match")
-    }
 
-    try {
-      const res = await this.afAuth.auth.createUserWithEmailAndPassword(emailaddress, password);
+  next() {
+    this.slideWithNav.lockSwipeToNext(false)
+    this.slideWithNav.lockSwipeToPrev(true)
+    this.slideWithNav.slideTo(1) 
+    this.slideWithNav.lockSwipeToNext(true)
+  }
 
-      this.afDB.object('users/' + res.user.uid).set({
-        userId: res.user.uid,
-        username,
-        emailaddress,
-        password
-      }).then(()=> {
-      this.presentAlert('Success', 'You are registered!');
-      this.router.navigate(['/loginpage']);
+  ionViewDidEnter() {
+    this.slideWithNav.lockSwipeToPrev(true)
+    this.slideWithNav.lockSwipeToNext(true)
+  }
+
+
+  tryRegister(value) {
+    console.log(value)
+
+    this.authService.registerUser(value)
+      .then(res => {
+        // console.log(res);
+        this.errorMessage = "";
+        this.presentToast("Your account has been created successfully.")
+
+        // AFTER REGISTER IT STRAIGHT AWAY GO IN LOGIN STATE, IN OTHER WORDS, NO NEED GO LOGIN PAGE 
+        // MANDATORY UPDATE PHONE NUMBER 
+        this.authService.loginUser(value).then(suc => {
+          this.afAuth.auth.onAuthStateChanged((user) => {
+            if (user) {
+              // UPDATE PHONE WHILE IN LOGIN STATE BEFORE ENTERING TO MAIN PAGE
+              this.next() // < GO TO NEXT SLIDE WHICH IS THE PHONE NUMBER
+            }
+          })
+        })
+      }, err => {
+        // RETURN ERROR DURING REGISTER 
+        console.log(err);
+        this.errorMessage = err.message;
+        this.successMessage = "";
       })
-    } catch(error) {
-      console.dir(error);
+  }
+
+  verify() {
+
+    var appVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container", { size: "invisible" });
+
+    console.log(this.otp)
+
+    this.afAuth.authState.subscribe(user => {
+
+      var provider = new firebase.auth.PhoneAuthProvider();
+
+      console.log(this.phoneNumber)
+      provider.verifyPhoneNumber(this.phoneNumber, appVerifier).then((verificationId) => {
+
+        this.verificationId = verificationId  // HOLD THE VERIFICATION ID AFTER IT SENT THE OTP NUMBER
+
+      })
+        .then((result) => {
+          // Phone credential now linked to current user.
+          // User now can sign in with new phone upon logging out.
+          console.log(result);
+        })
+        .catch((error) => {
+          // Error occurred.
+          console.log(error);
+        });
     }
-  }
-  instagram(){
-  }
-  facebook(){
-  }
-  gotologinPage(){
-    this.router.navigateByUrl('/loginpage')
-  }
 
-  passwordCheck(control) {
-    if (control.value != null) {
-      let conPass = control.value;
-      var pass = control.root.get('password');
-      if (pass) {
-        var password = pass.value;
-        if (password !== conPass) {
-          return {
-            isError: true
-          }
-        } else {
-          return null;
-        }
-      }
-    }
+    )
   }
+  update() {
+    this.afAuth.authState.subscribe(user => {
+
+      // THE CRED HOLDS BOTHE VERIFICATION ID (FROM PREVIOUS FUNCTION) AND THE OTP NUMBER YOU TYPED
+      let cred = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.otp);
+      // YOU CANT CONSOLE LOG CRED DUE TO SECURITY REASON AND IT WILL RETURN UNDEFINED
+
+      user.updatePhoneNumber(cred).then(success => {
+        // TADA UPDATED 
+        console.log(success)
+      }).then(success => {
+
+        this.navCtrl.navigateForward('/home');
+        console.log("Successfully updated")
 
 
+      }).catch(err => {
 
+        // DO ERROR HANDLER, TOAST, ALERT ETC
+
+      })
+    })
+  }
+
+
+  goLoginPage() {
+    this.navCtrl.navigateBack('/authlogin');
+  }
+
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  SlideDidChange(ev) {
+    console.log(ev)
+  }
 }

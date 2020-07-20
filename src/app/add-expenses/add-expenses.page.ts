@@ -22,8 +22,14 @@ export class AddExpensesPage implements OnInit {
  //   userId: null
   };
  
-  constructor(private fireStore: AngularFirestore, private fb: FormBuilder, private modalController: ModalController, private expenseService:ExpenseService, private userService: UserService) { 
-    this.documentRef = fireStore.doc("Expenses");
+  constructor(
+    // private fireStore: AngularFirestore, 
+    private fb: FormBuilder, 
+    private modalController: ModalController, 
+    private expenseService:ExpenseService, 
+    // private userService: UserService
+    ) { 
+    // this.documentRef = fireStore.doc("Expenses");
     
     this.addExpenseForm = this.fb.group({
     

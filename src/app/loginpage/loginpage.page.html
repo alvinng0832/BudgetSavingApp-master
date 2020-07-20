@@ -1,55 +1,58 @@
 <ion-header class="ion-no-border">
-  <div class="login-header ion-padding">
-    <img class="logo-icon" src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
-  </div>
-</ion-header>
-
-<ion-content class="background">
-  <ion-card class="ion-card">
-    <ion-card-header>
-   <div class="center">
-     <div heading-column-1r>
-       <h1 big-heading>Login</h1>
+  <ion-toolbar class="in-tool">
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar></ion-header>
   
-     </div>
+<ion-content [fullscreen]="true">
+
+  <div class="login">
+      <h3>Welcome to Budget Saving</h3>
+      <div class="logo">
+      <img src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
+      </div>
+     
+
+    
+    <p>Please enter your username and password</p>
+    <form class="form" [formGroup]="validation_form" (ngSubmit)="loginUser(validation_form.value)">
+    
+      <ion-item lines="none">
+      <ion-icon slot="start" name="person-outline"></ion-icon>
+      <ion-input type="text" formControlName="email" ></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message"
+          *ngIf="validation_form.get('email').hasError(validation.type) && (validation_form.get('email').dirty || validation_form.get('email').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    
+    <ion-item lines="none">
+      <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div class="error-message"
+          *ngIf="validation_form.get('password').hasError(validation.type) && (validation_form.get('password').dirty || validation_form.get('password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    
+    <ion-button shape="round" expand="block" type="submit" [disabled]="!validation_form.valid">Sign In</ion-button>
+ 
+    <label class="error-message">{{errorMessage}}</label>
+  </form>
+
+    <p class="signup">Do not have an account? <span routerLink="/registerpage">Sign Up</span></p>
   </div>
-  <ion-label>
-    Using this Budget Apps can Brings You into a Better Future Outcome!
-  </ion-label>
-  <h2><strong>Please Sign in Here.</strong></h2>
-  <ion-list>
-          <ion-item transparent>
-            <img icon-small src="assets/icon/Username-512.png">
-            <ion-input placeholder="Username" position="floating" type="text" [(ngModel)]="username"></ion-input>
-          </ion-item>
-          
-          <ion-item transparent>
-            <img icon-small src="assets/icon/img_398183.png">
-            <ion-input placeholder="Password" position="floating" type="password" [(ngModel)]="password"></ion-input>
-          </ion-item>
-       <ion-label  color="danger" class="forget-password" (click)="ForgetPassword()">Forget Password</ion-label>
-       <div linespace></div>
-        <ion-button size="large" expand="block" shape="round" class="ion-button-class" fill="solid" color="danger" (click)="login()">Login</ion-button>
-        <h2>Or</h2>
 
-        <ion-row class="ion-align-items-center">
-          <ion-col size="12" class="ion-text-center">
-            <ion-icon class="ion-icon"  name="logo-facebook" (click)="facebook()"></ion-icon>
-            <ion-icon class="ion-icon" name="logo-google" (click)="google()"></ion-icon>
-            <ion-icon class="ion-icon" name="logo-instagram" (click)="instagram()"></ion-icon>
-          </ion-col>
-        </ion-row>
+  <div id="recaptcha-container" style="display: none;"></div>
 
-       <ion-label class="ion-label" (click)="gotoRegisterPage()">Don't have An Account?<span class="link-button" color="danger" > Sign Up Here</span></ion-label>
 
-      
-
-        
-        
-      </ion-list>
-    </ion-card-header>
-    </ion-card>
-    
-    
-  </ion-content>
-  
+</ion-content>

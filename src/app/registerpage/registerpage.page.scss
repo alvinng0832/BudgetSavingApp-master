@@ -1,112 +1,55 @@
-.login-header{
-    background: var(--theme-color);
-}
-.login-header{
-    position: relative;
-    background: rgb(188, 158, 196);
-    border-radius: 0em;
+.login {
+  text-align: center;
+  height: 100%;
+  padding: 0 40px 0 40px;
 }
 
-.ion-card{
-    background: rgb(182, 93, 167);
-    border-radius: 4em;
-    color: rgba(0, 0, 0, 0.863); 
-    padding-bottom: 50px;  
+ion-item {
+  --background: transparent;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: #ffffff;
+  // width: 80%;
+  border-radius: 25px;
+  margin-bottom: 1em;
+}
+p {
+  margin: 0;
+  padding-bottom: 1em;
+  font-weight: 300;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
 }
 
-.ion-icon{
-    font-size: 50px;
-    
-    color: rgb(54, 46, 46);
-    padding-bottom: 3px;
-    margin-right: 40px;
-    margin-left: 40px;
-    margin-bottom: 45px;
+h3 {
+  margin: 0;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
-
-h2{
-    color: rgb(0, 0, 0);
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-}
-h1{
-    color: rgb(0, 0, 0);
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
+ion-icon {
+  margin-right: 5px;
 }
 
-.login-header:after{
-    content: '';
-    position: absolute;
-    bottom:0;
-    left: 15%;
-    width:0;
-    height:0;
-    border: 20px solid transparent;
-    border-top-color: var(--theme-color);
-    border-bottom:0;
-    margin-left: -15px;
-    margin-bottom: -15px;
-}
-.logo-icon{
-    display: block;
-    width: 150px;
-    margin:  0 auto;
-    text-align: center;
-}
-[heading-column-1r]{
-    display: flex;
-    -ms-flex-align: center;
-    align-items:center;
-}
-[big-heading]{
-    font-family: "Heebo-Bold" !important;
-    font-size: 30px !important;
-    color: #000;
+ion-button {
+  height: 48px !important;
 }
 
-.ion-content{
-    --background: #fafafa;
-}
-[transparent]{
-    --background:transparent;
-}
-.ion-input{
-    --color:#000;
-    --padding-bottom:15px;
-    --padding-top:15px;
-    --padding-start:5px;
-    font-size: 15px;
-    text-indent:1px;
-    padding-left:10px !important
-}
-[icon-small]{
-    width: 30px;
-}
-.ion-item{
-    --highlight-color-focused:transparent;
-    --highlight-height:0;
-    --highlight-color-invalid:#000;
-    --highlight-color-valid:#ddd;
-    --min-height:65px;
-    --padding-start:0;
-}
-[linespace]{
-    height:30px;
-}
-[small-heading]{
-    color:#000;
-    opacity: .6;
-    font-size: 15px;
-    font-weight: bold;
-}
-.forget-password{
-    font-size: 20px;
+.logo {
+  display: block;
+  align-content: center;
+  margin: auto;
+  width: 50%;
 }
 
+ion-content {
+  --background: linear-gradient(#e29d9d, #462c83);
+}
 
+ion-input {
+    color:white;
+}
 
-
+ion-icon {
+    color:white;
+}

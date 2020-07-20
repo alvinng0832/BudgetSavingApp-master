@@ -47,6 +47,9 @@ export class AppComponent {
   gotologin(){
     this.router.navigateByUrl('/loginpage')
   }
+  gotoregister(){
+    this.router.navigateByUrl('/registerpage')
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {

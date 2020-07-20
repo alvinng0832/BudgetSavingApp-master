@@ -1,61 +1,134 @@
-<ion-header class="ion-no-border">
-	<div class="login-header ion-padding">
-	  <img class="logo-icon" src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
-	</div>
-  </ion-header>
-  
-  <ion-content class="background">
-	<ion-card class="ion-card">
-	  <ion-card-header>
-	 <div class="center">
-	   <div heading-column-1r>
-		 <h1 big-heading>Registration</h1>
+
+<ion-content>
+
+  <div class="login">
+	<h3>Register</h3>
+	<div class="logo">
+		<img src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
+		</div>
+
+    <!-- Register Slide -->
+    <ion-slides  #slideWithNav (ionSlideDidChange)="SlideDidChange($event)">
+      <ion-slide>
+        <form class="form" [formGroup]="validation_form" (ngSubmit)="tryRegister(validation_form.value)">
+
+          <ion-item lines="none">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-input type="text" placeholder="Enter Username" formControlName="username"></ion-input>
+          </ion-item>
+
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.username">
+              <div class="error-message"
+                *ngIf="validation_form.get('username').hasError(validation.type) && (validation_form.get('username').dirty || validation_form.get('username').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
+
+          <ion-item lines="none">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-input type="text" placeholder="Enter Email" formControlName="email"></ion-input>
+          </ion-item>
+
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message"
+                *ngIf="validation_form.get('email').hasError(validation.type) && (validation_form.get('email').dirty || validation_form.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
+
+          <!-- <ion-item lines="none">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-input type="text" placeholder="Enter Phone Number" formControlName="phonenum"></ion-input>
+          </ion-item> -->
+
+          <div class="validation-errors">
+            <!-- <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message"
+                *ngIf="validation_form.get('phonenum').hasError(validation.type) && (validation_form.get('phonenum').dirty || validation_form.get('phonenum').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container> -->
+          </div>
+
+          <ion-item lines="none">
+            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+            <ion-input type="password" placeholder="Enter Password" type="password" formControlName="password">
+            </ion-input>
+          </ion-item>
+
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message"
+                *ngIf="validation_form.get('password').hasError(validation.type) && (validation_form.get('password').dirty || validation_form.get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <ion-item lines="none">
+            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+            <ion-input type="password" placeholder="Enter confirm Password"></ion-input>
+          </ion-item>
+
+
+
+          <ion-button shape="round" expand="block" type="submit" [disabled]="!validation_form.valid">Register
+          </ion-button>
+
+        </form>
+      </ion-slide>
+      <ion-slide>
+
+
+        <div>
+
+          <ion-item style="width: 100%;">
+            <ion-label stacked>No.</ion-label>
+            <ion-input [(ngModel)]="phoneNumber"></ion-input>
+          </ion-item>
+
+          <ion-button [disabled]="!phoneNumber" expand="full" ion-button id="sign-in-button" (click)="verify()">
+            Send Otp
+          </ion-button>
+
+          <ion-item style="width: 100%;">
+            <ion-label stacked>OTP</ion-label>
+            <ion-input [(ngModel)]="otp"></ion-input>
+          </ion-item>
+          <ion-button [disabled]="!otp" expand="full" id="sign-in-button" (click)="update()">
+            Verify
+          </ion-button>
+
+
+          <div id="recaptcha-container" style="display: none;"></div>
+        </div>
+      </ion-slide>
+	</ion-slides>
 	
-	   </div>
-	</div>
-	<ion-label small-heading>
-	  We Will Bring You into a Better Life 
-	</ion-label>
-	<h2><strong>Please Kindly Fill Up Your Details in Here~ </strong></h2>
-	<form [formGroup]="registrationform"></form>
-	<ion-list>
-		<ion-item transparent>
-			<img icon-small src="assets/icon/Username-512.png">
-			<ion-input placeholder="username" position="floating" type="text" [(ngModel)]="username"></ion-input>
-		  </ion-item>
-		  <ion-item transparent>
-			<img icon-small src="assets/icon/email.png">
-			<ion-input placeholder="emailaddress" position="floating" type="text" [(ngModel)]="emailaddress"></ion-input>
-		  </ion-item>
-			<ion-item transparent>
-			  <img icon-small src="assets/icon/img_398183.png">
-			  <ion-input placeholder="password" position="floating" type="password" [(ngModel)]="password"></ion-input>
-			</ion-item>
-			<ion-item transparent>
-			  <img icon-small src="assets/icon/392-3929478_confirm-new-password.png">
-			  <ion-input placeholder="confirmpassword" position="floating" type="password" [(ngModel)]="confirmpassword"></ion-input>
-			</ion-item>
-		 <div linespace></div>
-		  <ion-button size="large" expand="block" shape="round" class="ion-button-class" fill="solid" color="success" (click)="Signup()">Sign Up</ion-button>
-		  <h2>Or Sign up with</h2>
-  
-		  <ion-row class="ion-align-items-center">
-			<ion-col size="12" class="ion-text-center">
-				<ion-icon class="ion-icon"  name="logo-facebook" (click)="facebook()"></ion-icon>
-				<ion-icon class="ion-icon" name="logo-instagram" (click)="instagram()"></ion-icon>
-			</ion-col>
-		  </ion-row>
-  
-		 <ion-label class="ion-label" (click)="gotologinPage()">Already Have An Account?<span class="link-button" color="danger" > Click here to Login</span></ion-label>
-  
-		
-  
-		  
-		  
-		</ion-list>
-	  </ion-card-header>
-	  </ion-card>
 	  
-	  
-	</ion-content>
+	<ion-row class="ion-align-items-center">
+		<ion-col size="12" class="ion-text-center">
+			<ion-icon class="ion-icon"  name="logo-facebook" (click)="facebook()"></ion-icon>
+			<ion-icon class="ion-icon" name="logo-instagram" (click)="instagram()"></ion-icon>
+		</ion-col>
+	  </ion-row>
+
+	 <ion-label class="ion-label" (click)="goLoginPage()">Already Have An Account?<span class="link-button" color="danger" > Click here to Login</span></ion-label>
+
+	
+
+
+
+
+
+  </div>
+
+
+</ion-content>
 	
