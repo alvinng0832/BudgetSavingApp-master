@@ -16,7 +16,7 @@ export class ExpenseService {
   }
 
   addExpense(expense: Expense){
-    let Id = this.documentRef.id;
+    
     return this.fireStore.collection("Expenses").add(expense);
   }
 

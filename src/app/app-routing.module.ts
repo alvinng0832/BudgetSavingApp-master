@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'registerpage',
+    redirectTo: 'learn',
     pathMatch: 'full'
   },
   {
@@ -103,7 +103,12 @@ const routes: Routes = [
   {
     path: 'newgoal',
     loadChildren: () => import('./newgoal/newgoal.module').then( m => m.NewgoalPageModule)
+  },
+  {
+    path: 'learn',
+    loadChildren: () => import('./learn/learn.module').then( m => m.LearnPageModule)
   }
+
 
 ];
 
