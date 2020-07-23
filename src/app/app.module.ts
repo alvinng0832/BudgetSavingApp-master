@@ -19,7 +19,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {Keyboard} from '@ionic-native/keyboard/ngx';
 import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -38,7 +38,8 @@ firebase.initializeApp(environment.firebase);
     FormsModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [
     StatusBar,
@@ -49,6 +50,7 @@ firebase.initializeApp(environment.firebase);
     Storage,
     HttpClient,
     Keyboard,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

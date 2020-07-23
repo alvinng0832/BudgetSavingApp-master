@@ -1,15 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+
+interface GoalsRecord {
+  Name: string;
+  TargetAmount: number;
+  SavedAmount: number;
+  DesiredDate: Date;
+}
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.page.html',
   styleUrls: ['./goals.page.scss'],
 })
+
+
 export class GoalsPage implements OnInit {
+  
   studentList = [];
+  uid: any
+  goalsdata: GoalsRecord;
   selectTabs = 'recent';
-  constructor(private router: Router, private firebaseService: FirebaseService) { }
+  constructor(private router: Router, private firebaseService: FirebaseService) { 
+     this.goalsdata = {} as GoalsRecord;
+  }
 
   ngOnInit() {
     this.firebaseService.read_students().subscribe(data => {
@@ -32,8 +46,8 @@ export class GoalsPage implements OnInit {
   this.router.navigateByUrl('/newgoal')
   }
 
-  RemoveRecord(rowID) {
-    this.firebaseService.delete_student(rowID);
+  RemoveRecord (record) {
+    this.firebaseService.delete_student(record);
   }
 
   EditRecord(record) {
@@ -50,8 +64,8 @@ export class GoalsPage implements OnInit {
     record['TargetAmount'] = recordRow.TargetAmount;
     record['SavedAmount'] = recordRow.SavedAmount;
     record['DesiredDate'] = recordRow.DesiredDate;
-    this.firebaseService.update_student(recordRow.id, record);
-    recordRow.isEdit = false;
+    this.firebaseService.update_student( recordRow, record);
+    recordRow.isEdit = true;
   }
 
 

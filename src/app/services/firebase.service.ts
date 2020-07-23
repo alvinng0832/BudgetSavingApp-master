@@ -1,17 +1,24 @@
 // firebase.service.ts
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from '../user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-
-  collectionName = 'Students';
-
+ collectionName = "addGoals"
+  uid: any
   constructor(
-    private firestore: AngularFirestore
-  ) { }
+    private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
+  ) { 
+    this.afAuth.auth.onAuthStateChanged((user) => {
+      console.log(user)
+      this.uid = user.uid
+    })
+    
+  }
 
   create_student(record) {
     return this.firestore.collection(this.collectionName).add(record);

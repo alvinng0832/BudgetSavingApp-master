@@ -18,12 +18,16 @@
   </ion-segment>
 
     <div *ngIf="selectTabs == 'Acitve'">
-      <h3></h3>
+  
       <ion-card *ngFor="let item of studentList" color="primary">
         <span *ngIf="!item.isEdit; else elseBlock">
           <ion-card-header>
             <ion-card-title>{{item.Name}}  </ion-card-title>
-            <ion-card-subtitle> Saved: SGD {{item.SavedAmount}} Goal: SGD {{item.TargetAmount}}</ion-card-subtitle>
+            <ion-row>
+            <ion-card-subtitle class="ion-card-save"> Saved: SGD {{item.SavedAmount}}</ion-card-subtitle>
+            <ion-card-subtitle class="ion-card-target"> Goal: SGD {{item.TargetAmount}}</ion-card-subtitle>
+          </ion-row>
+          <ion-card-subtitle> {{item.DesiredDate}} </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
       
@@ -80,6 +84,7 @@
         </ng-template>
       </ion-card>
     </div>
+    
   
     <div *ngIf="selectTabs == 'Reached'">
       <h3></h3>

@@ -19,14 +19,15 @@ export class AuthService {
   registerUser(value) {
     return this.afAuth.auth.createUserWithEmailAndPassword(value.email, value.password)
       .then(newUser => {
-        firebase
-          .database()
-          .ref('/users/')
-          .child(newUser.user.uid)
-          .set({
-            username: value.username,
-            email: value.email
-          })
+        // firebase
+        //   .database()
+        //   .ref('/users/')
+        //   .child(newUser.user.uid)
+        //   .set({
+        //     username: value.username,
+        //     email: value.email
+        //   })
+          localStorage.setItem('user', JSON.stringify(newUser))
       }).catch(er => {
         console.log(er)
       })

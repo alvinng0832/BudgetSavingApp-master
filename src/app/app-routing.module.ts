@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./ourstore/ourstore.module').then( m => m.OurstorePageModule)
   },
   {
-    path: 'location',
-    loadChildren: () => import('./location/location.module').then( m => m.LocationPageModule)
-  },
-  {
     path: 'moneyorlife',
     loadChildren: () => import('./bookdetails/moneyorlife/moneyorlife.module').then( m => m.MoneyorlifePageModule)
   },
@@ -91,7 +87,6 @@ const routes: Routes = [
     path: 'stripe5',
     loadChildren: () => import('./stripe/stripe5/stripe5.module').then( m => m.Stripe5PageModule)
   },
-
   {
     path: 'add-expenses',
     loadChildren: () => import('./add-expenses/add-expenses.module').then( m => m.AddExpensesPageModule)
@@ -107,7 +102,12 @@ const routes: Routes = [
   {
     path: 'learn',
     loadChildren: () => import('./learn/learn.module').then( m => m.LearnPageModule)
+  },
+  {
+    path: 'location-api',
+    loadChildren: () => import('./location-api/location-api.module').then( m => m.LocationApiPageModule)
   }
+
 
 
 ];

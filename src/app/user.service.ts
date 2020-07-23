@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
 import { auth } from 'firebase/app';
+import { firestore } from 'firebase';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 interface user {
   username: string;
@@ -15,7 +17,7 @@ export class UserService {
 
   private user: user
 
-  constructor(private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
+  constructor(private fireStore:AngularFirestore, private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
 
   }
 
@@ -57,5 +59,8 @@ export class UserService {
 
   getUID(): string {
     return this.user.uid
+  }
+  createUser(User){
+    return this.fireStore.collection("user").add(User)
   }
 }
