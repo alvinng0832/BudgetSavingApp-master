@@ -47,12 +47,13 @@ export class AddExpensesPage implements OnInit {
     }
   
     addExpense(){
-      this.expense.amount = this.addExpenseForm.controls.amount.value;
-      //this.expense.userId = this.userService.getUID();
-      this.expense.description = this.addExpenseForm.controls.description.value;
-      this.expense.type = this.addExpenseForm.controls.type.value;
-      this.expense.id = this.documentRef.id;
-      this.expenseService.addExpense(this.expense);
+      console.log(this.addExpenseForm.value);
+      this.expenseService.addExpense(this.addExpenseForm.value).then(resp => {
+        this.addExpenseForm.reset();
+      })
+        .catch(error => {
+          console.log(error);
+        });
     }
   
 

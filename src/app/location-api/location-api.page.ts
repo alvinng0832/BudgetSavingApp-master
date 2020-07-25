@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { Icon } from 'ionicons/dist/types/components/icon/icon';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 declare var google;
 @Component({
 selector: 'app-location-api',
@@ -20,7 +21,7 @@ export class LocationApiPage implements OnInit{
           address: '#B3-37/38, 313@Somerset313 Orchard Rd, Singapore238895',
           operatinghours: '<h2> Daily 10am-10pm </h2>' ,
           socialcontact: '<h2> www.facebook.com/gonoodlehousesingapore </h2>',
-          phonecontact: '+65 6363 5323',
+          phonecontact: '<ion-button (click)="callUser">Tel: +65 6363 5323 </ion-button>',
           moreinfo: 'More Information',
           latitude: "1.3015",
           longitude: "103.8384"
@@ -32,7 +33,7 @@ export class LocationApiPage implements OnInit{
         address: '103 Amoy St Singapore 069923',
         operatinghours: '<h2> Mon-Sat noon-midnight </h2>' ,
         socialcontact: '<h2> https://moonstone.sg/ </h2>',
-        phonecontact: '+65 6610 3029',
+        phonecontact: '<ion-button (click)="callUser1()">Tel: +65 6610 3029 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.281664",
         longitude: "103.845213"
@@ -44,7 +45,7 @@ export class LocationApiPage implements OnInit{
         address: '#B1-28, Paya Lebar Quarter, 10 Paya Lebar Rd Singapore 409057',
         operatinghours: '<h2> Mon-Sun 11am-10pm </h2>' ,
         socialcontact: '<h2> https://www.facebook.com/yakinikulikesg </h2>',
-        phonecontact: '+65 6970 7397',
+        phonecontact: '<ion-button (click)="callUser2()">Tel: +65 6970 7397 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.317429",
         longitude: "103.892562"
@@ -56,7 +57,7 @@ export class LocationApiPage implements OnInit{
         address: '167-169 Telok Ayer St Singapore 068620',
         operatinghours: '<h2> Daily 11.30am-11.45pm </h2>' ,
         socialcontact: '<h2> https://meatsmith.com.sg/ </h2>',
-        phonecontact: '+65 6221 2262',
+        phonecontact: '<ion-button (click)="callUser3()">Tel: +65 6221 2262 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.280124",
         longitude: "103.847477"
@@ -68,7 +69,7 @@ export class LocationApiPage implements OnInit{
         address: '#B2-22/4, Guoco Tower7 Wallich StSingapore078884',
         operatinghours: '<h2> Mon-Fri 7.30am-9pm; Sat & Sun 9.30am-8pm </h2>' ,
         socialcontact: '<h2> https://www.ahlocknco.com/ </h2>',
-        phonecontact: '+65 8218 8696',
+        phonecontact: '<ion-button (click)="callUser4()">Tel: +65 8218 8696 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.277043,",
         longitude: "103.845751"
@@ -80,7 +81,7 @@ export class LocationApiPage implements OnInit{
         address: '127 Telok Ayer St Singapore 068596',
         operatinghours: '<h2> Mon-Sat 10am-midnight; Sun 4pm-midnight </h2>' ,
         socialcontact: '<h2> https://www.facebook.com/fulinbarandkitchen </h2>',
-        phonecontact: '+65 6423 0311',
+        phonecontact: '<ion-button (click)="callUser5()">Tel: +65 6423 0311 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.281061",
         longitude: "103.845745"
@@ -92,7 +93,7 @@ export class LocationApiPage implements OnInit{
         address: '475 Changi Rd Singapore 419892',
         operatinghours: '<h2> Daily 11.30am-2am </h2>' ,
         socialcontact: '<h2> https://sengkeeherbalsoup.wixsite.com/sengkeeherbalsoup/our-food </h2>',
-        phonecontact: '+65 6746 4089',
+        phonecontact: '<ion-button (click)="callUser6()">Tel: +65 6746 4089 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.319422",
         longitude: "103.910878"
@@ -104,7 +105,7 @@ export class LocationApiPage implements OnInit{
         address: '52 Amoy St Singapore 069878',
         operatinghours: '<h2> Mon-Thur 11am-11pm; Fri 11am-1am; Sat 5pm-1am. </h2>' ,
         socialcontact: '<h2> http://www.wantonsg.com/ </h2>',
-        phonecontact: '+65 6221 1336',
+        phonecontact: '<ion-button (click)="callUser7()">Tel: +65 6221 1336 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.280143",
         longitude: "103.84678"
@@ -116,7 +117,7 @@ export class LocationApiPage implements OnInit{
         address: '#01-01 Far East Square22 China St Singapore 049564',
         operatinghours: '<h2> Mon-Sat 10am-midnight; Sun 4pm-midnight </h2>' ,
         socialcontact: '<h2> http://www.chillipanmee.com/ </h2>',
-        phonecontact: '+65 6787 7889',
+        phonecontact: '<ion-button (click)="callUser8()">Tel: +65 6787 7889 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.283457",
         longitude: "103.847853"
@@ -128,7 +129,7 @@ export class LocationApiPage implements OnInit{
         address: '10 Circular Rd Singapore 049366',
         operatinghours: '<h2> Mon-Sat noon–3pm, 6pm–10pm </h2>' ,
         socialcontact: '<h2> https://www.facebook.com/TheSaltedPlumSG </h2>',
-        phonecontact: '+65 6260 0155',
+        phonecontact: '<ion-button (click)="callUser9()">Tel: +65 6260 0155 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.287783",
         longitude: "103.848887"
@@ -140,7 +141,7 @@ export class LocationApiPage implements OnInit{
         address: '1 Kadayanallur Street Stall No. 7 Maxwell Food Centre, Singapore 069184 Singapore',
         operatinghours: '<h2> Daily Open 11am- 10pm </h2>' ,
         socialcontact: '<h2> https://www.facebook.com/AhTaiChickenRice </h2>',
-        phonecontact: '+65 8137 6559',
+        phonecontact: '<ion-button (click)="callUser10()">Tel: +65 8137 6559 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.2801",
         longitude: "103.8449"
@@ -152,7 +153,7 @@ export class LocationApiPage implements OnInit{
         address: '3 Seng Poh Road Green World #01-01, Singapore 168891 Singapore',
         operatinghours: '<h2>Daily Open 11am - 10pm </h2>' ,
         socialcontact: '<h2> http://tiongbahru.market/ </h2>',
-        phonecontact: '+65 6438 4380',
+        phonecontact: '<ion-button (click)="callUser11()">Tel: +65 6438 4380 </ion-button>',
         moreinfo: 'More Information',
         latitude: "1.2857",
         longitude: "103.8341"
@@ -161,7 +162,7 @@ export class LocationApiPage implements OnInit{
      
     ];
   
-    constructor() {}
+    constructor(private callNumber: CallNumber) {}
   
     ionViewDidEnter() {
       this.showMap();
@@ -179,7 +180,6 @@ export class LocationApiPage implements OnInit{
         
         let mapMarker = new google.maps.Marker({
           position: position,
-          icon: this.icon,
           title: marker.title,
           subtitle:
            marker.subtitle,
@@ -191,7 +191,6 @@ export class LocationApiPage implements OnInit{
           moreinfo: marker.moreinfo,
           latitude: marker.latitude,
           longitude: marker.longitude
-         
         });
  
   
@@ -204,6 +203,7 @@ export class LocationApiPage implements OnInit{
 
     
     ngOnInit(){
+      
 
     }
   
@@ -212,7 +212,7 @@ export class LocationApiPage implements OnInit{
                                 '<h1 id="firstHeading" class"firstHeading" >' + marker.title + '</h1>' + marker.subtitle + 
                                   marker.image + '<h2>Address:' + marker.address + '</h2>' + '<h1> Our Operating Hours: ' +
                                   marker.operatinghours +  '</h1>' + '<a href>' + marker.socialcontact + '</a href>' + 
-                                  '<ion-button> Call Us Online: '  + marker.phonecontact + '</ion-button>' + '<ion-button>' + marker.moreinfo + '</ion-button>' 
+                                  marker.phonecontact  + '<ion-button>' + marker.moreinfo + '</ion-button>' 
                                   +  '<ion-button id="navigate">Get Direction</ion-button>' +
                               '</div>';
   
@@ -253,6 +253,69 @@ export class LocationApiPage implements OnInit{
       this.map = new google.maps.Map(this.mapRef.nativeElement, options);
       this.addMarkersToMap(this.markers);
     }
+
+    callUser(){
+      this.callNumber.callNumber("+65 6363 5323", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser1(){
+      this.callNumber.callNumber("+65 6610 3029", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser2(){
+      this.callNumber.callNumber("+65 6970 7397", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser3(){
+      this.callNumber.callNumber("+65 6221 2262", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser4(){
+      this.callNumber.callNumber("+65 8218 8696", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser5(){
+      this.callNumber.callNumber("+65 6423 0311", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser6(){
+      this.callNumber.callNumber("+65 6746 4089", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser7(){
+      this.callNumber.callNumber("+65 6221 1336", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser8(){
+      this.callNumber.callNumber("+65 6787 7889", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser9(){
+      this.callNumber.callNumber("+65 6260 0155", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser10(){
+      this.callNumber.callNumber("+65 8137 6559", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+    callUser11(){
+      this.callNumber.callNumber("+65 6438 4380", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+    }
+
+
 
 
 }

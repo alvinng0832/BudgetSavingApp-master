@@ -8,13 +8,16 @@
 </ion-header>
 
 <ion-content fullscreen={true}>
+  <ion-card>
+
+ 
   <form [formGroup]="studentForm" (ngSubmit)="CreateRecord()">
 
 
   <ion-item lines="full">
-    <ion-label position="stacked">
+    <ion-textarea position="stacked">
       Category List
-    </ion-label>
+    </ion-textarea>
     <ion-select formControlName="Name">
       <ion-select-option value="New Vehicles">New Vehicles</ion-select-option>
       <ion-select-option value="New Home">New Home</ion-select-option>
@@ -30,18 +33,18 @@
   </ion-item>
   
   <ion-item>
-    <ion-label position="floating">Target Amount</ion-label>
+    <ion-textarea position="floating">Target Amount</ion-textarea>
     <ion-input formControlName="TargetAmount"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Saved Amount</ion-label>
+    <ion-textarea position="floating">Saved Amount</ion-textarea>
     <ion-input formControlName="SavedAmount"></ion-input>
   </ion-item>
 
   <ion-item>
     <div class="container">
-      <ion-label position="floating">Desired Date</ion-label>
+      <ion-textarea position="floating">Desired Date</ion-textarea>
       <ion-datetime formControlName="DesiredDate" (ionChange)="calcAge()" [max]="today">
       </ion-datetime>
     </div>
@@ -55,6 +58,7 @@
   </ion-item>
 
 </form>
+</ion-card>
 
 
 

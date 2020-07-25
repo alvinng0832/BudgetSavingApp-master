@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'location-api',
+    redirectTo: 'newgoal',
     pathMatch: 'full'
   },
   {
@@ -106,7 +106,12 @@ const routes: Routes = [
   {
     path: 'location-api',
     loadChildren: () => import('./location-api/location-api.module').then( m => m.LocationApiPageModule)
+  },
+  {
+    path: 'myprofile',
+    loadChildren: () => import('./myprofile/myprofile.module').then( m => m.MyprofilePageModule)
   }
+
 
 
 

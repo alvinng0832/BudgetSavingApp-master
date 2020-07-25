@@ -20,6 +20,7 @@ import {Keyboard} from '@ionic-native/keyboard/ngx';
 import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 
 firebase.initializeApp(environment.firebase);
@@ -54,6 +55,7 @@ firebase.initializeApp(environment.firebase);
     HttpClient,
     Keyboard,
     Geolocation,
+    CallNumber,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],
