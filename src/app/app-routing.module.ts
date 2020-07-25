@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'learn',
+    redirectTo: 'location-api',
     pathMatch: 'full'
   },
   {

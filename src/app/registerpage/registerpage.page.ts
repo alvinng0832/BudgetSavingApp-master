@@ -174,6 +174,13 @@ export class RegisterpagePage implements OnInit {
     })
   }
 
+  facebook(){
+
+  }
+  instagram(){
+    
+  }
+
 
   goLoginPage() {
     this.navCtrl.navigateBack('/authlogin');

@@ -40,21 +40,6 @@ export class NewgoalPage implements OnInit {
       
     })
 
-    this.firebaseService.read_students().subscribe(data => {
-
-      this.studentList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          TargetAmount: e.payload.doc.data()['TargetAmount'],
-          SavedAmount: e.payload.doc.data()['SavedAmount'],
-          DesiredDate: e.payload.doc.data()['DesiredDate'],
-        };
-      })
-      console.log(this.studentList);
-
-    });
   }
   calcAge() {
     let today: any = new Date();

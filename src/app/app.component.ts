@@ -1,4 +1,4 @@
-import { Component, RendererFactory2, Renderer2 } from '@angular/core';
+import { Component, RendererFactory2, Renderer2 ,OnInit} from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -8,14 +8,20 @@ import { Storage } from "@ionic/storage";
 import { ThemeService } from './services/theme.service';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   rootPage: any = HomePage;
   darkMode: any
+
+
+      ngOnInit(){
+   
+  }
 
   constructor(
     private platform: Platform,
@@ -23,11 +29,12 @@ export class AppComponent {
     private statusBar: StatusBar,
     public router: Router,
     private storage: Storage,
-    private themeService: ThemeService,
+    private themeService: ThemeService
   ) {
     this.initializeApp();
     this.darkMode = this.themeService.darkMode;
   }
+
 
   
 

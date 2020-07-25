@@ -1,12 +1,20 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-  <ion-title>Custom Marker</ion-title>
+    <ion-title>
+      Singapore Locality Map
+    </ion-title>
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
   </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <h3>testing123</h3>
-    <h3>testing123</h3>
-    <h3>testing321</h3>
-  <div #mapElement class="map"></div>
-  </ion-content>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1><b><u>Cheapest Food All Around in Your Neighbourhood Locations</u></b></h1>
+  <div #map id="map"></div>
+</ion-content>
+
+
+
+
+

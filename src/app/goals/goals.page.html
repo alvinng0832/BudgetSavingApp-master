@@ -23,6 +23,7 @@
         <span *ngIf="!item.isEdit; else elseBlock">
           <ion-card-header>
             <ion-card-title>{{item.Name}}  </ion-card-title>
+            <ion-progress-bar value="0.25" buffer="0.5"></ion-progress-bar>
             <ion-row>
             <ion-card-subtitle class="ion-card-save"> Saved: SGD {{item.SavedAmount}}</ion-card-subtitle>
             <ion-card-subtitle class="ion-card-target"> Goal: SGD {{item.TargetAmount}}</ion-card-subtitle>

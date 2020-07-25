@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -21,8 +21,10 @@ import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+
 firebase.initializeApp(environment.firebase);
 @NgModule({
+  schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [AppComponent],
   entryComponents: [
     
@@ -39,6 +41,7 @@ firebase.initializeApp(environment.firebase);
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
+ 
     
   ],
   providers: [
@@ -52,7 +55,9 @@ firebase.initializeApp(environment.firebase);
     Keyboard,
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    
   ],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule {}

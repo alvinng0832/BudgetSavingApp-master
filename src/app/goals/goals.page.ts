@@ -64,8 +64,8 @@ export class GoalsPage implements OnInit {
     record['TargetAmount'] = recordRow.TargetAmount;
     record['SavedAmount'] = recordRow.SavedAmount;
     record['DesiredDate'] = recordRow.DesiredDate;
-    this.firebaseService.update_student( recordRow, record);
-    recordRow.isEdit = true;
+    this.firebaseService.update_student( recordRow.id, record);
+    recordRow.isEdit = false;
   }
 
 
