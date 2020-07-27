@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'newgoal',
+    redirectTo: 'goaldetails',
     pathMatch: 'full'
   },
   {
@@ -110,9 +110,11 @@ const routes: Routes = [
   {
     path: 'myprofile',
     loadChildren: () => import('./myprofile/myprofile.module').then( m => m.MyprofilePageModule)
+  },
+  {
+    path: 'goaldetails',
+    loadChildren: () => import('./goaldetails/goaldetails.module').then( m => m.GoaldetailsPageModule)
   }
-
-
 
 
 ];

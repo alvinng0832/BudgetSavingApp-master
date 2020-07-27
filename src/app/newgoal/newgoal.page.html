@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>New Goals</ion-title>
+    <ion-title>Set New Goals</ion-title>
     <ion-button slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-button>
@@ -8,16 +8,16 @@
 </ion-header>
 
 <ion-content fullscreen={true}>
-  <ion-card>
+  <ion-card class="ion-card">
 
  
   <form [formGroup]="studentForm" (ngSubmit)="CreateRecord()">
 
 
   <ion-item lines="full">
-    <ion-textarea position="stacked">
+    <ion-label position="floating">
       Category List
-    </ion-textarea>
+    </ion-label>
     <ion-select formControlName="Name">
       <ion-select-option value="New Vehicles">New Vehicles</ion-select-option>
       <ion-select-option value="New Home">New Home</ion-select-option>
@@ -29,26 +29,27 @@
       <ion-select-option value="Kid Spoiling">Kids Spoiling</ion-select-option>
       <ion-select-option value="Charity">Charity</ion-select-option>
     </ion-select>
-
   </ion-item>
   
   <ion-item>
-    <ion-textarea position="floating">Target Amount</ion-textarea>
+    <ion-label position="floating">Target Amount</ion-label>
     <ion-input formControlName="TargetAmount"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-textarea position="floating">Saved Amount</ion-textarea>
+    <ion-label position="floating">Saved Amount</ion-label>
     <ion-input formControlName="SavedAmount"></ion-input>
   </ion-item>
 
   <ion-item>
     <div class="container">
-      <ion-textarea position="floating">Desired Date</ion-textarea>
+      <ion-label position="floating">Desired Date</ion-label>
       <ion-datetime formControlName="DesiredDate" (ionChange)="calcAge()" [max]="today">
       </ion-datetime>
     </div>
   </ion-item>
+
+
 
   <ion-item>
     <ion-button (click)="CreateRecord()" [disabled]="studentForm.invalid">
@@ -56,6 +57,7 @@
       &nbsp;Create Record
     </ion-button>
   </ion-item>
+  
 
 </form>
 </ion-card>

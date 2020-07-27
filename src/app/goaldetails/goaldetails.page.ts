@@ -1,32 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
 
 interface GoalsRecord {
   Name: string;
   TargetAmount: number;
   SavedAmount: number;
   DesiredDate: Date;
-  progressValue: number;
+  bufferValue: number;
 }
+
 @Component({
-  selector: 'app-goals',
-  templateUrl: './goals.page.html',
-  styleUrls: ['./goals.page.scss'],
+  selector: 'app-goaldetails',
+  templateUrl: './goaldetails.page.html',
+  styleUrls: ['./goaldetails.page.scss'],
 })
 
 
-export class GoalsPage implements OnInit {
-  
-  studentList = [];
-  uid: any
+export class GoaldetailsPage implements OnInit {
+  today: any;
+  percent: number;
   goalsdata: GoalsRecord;
-  selectTabs = 'recent';
-  constructor(private router: Router, private firebaseService: FirebaseService) { 
-     this.goalsdata = {} as GoalsRecord;
-  }
+  circularValue: number;
+  studentList = [];
+  selectedDate: any;
 
-  ngOnInit() {
+ 
+  
+  constructor(private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
+    this.goalsdata = {} as GoalsRecord;
+   }
+
+   ngOnInit() {
     this.firebaseService.read_students().subscribe(data => {
 
       this.studentList = data.map(e => {
@@ -37,26 +43,32 @@ export class GoalsPage implements OnInit {
           TargetAmount: e.payload.doc.data()['TargetAmount'],
           SavedAmount: e.payload.doc.data()['SavedAmount'],
           DesiredDate: e.payload.doc.data()['DesiredDate'],
-          progressValue: e.payload.doc.data()['SavedAmount']/e.payload.doc.data()['TargetAmount']
+          circularValue: e.payload.doc.data()['SavedAmount']/ e.payload.doc.data()['TargetAmount'] * 100
         };
       })
       console.log(this.studentList);
 
     });
   }
-  newgoals(){
-  this.router.navigateByUrl('/newgoal')
+
+  formatSubtitle = (percent: number) : string => {
+    if(percent >= 100){
+      return "Congratulations!"
+    }else if(percent >= 50){
+      return "Half"
+    }else if(percent > 0){
+      return "Just began"
+    }else {
+      return "Not started"
+    }
   }
 
-  details(){
-    this.router.navigateByUrl('/goaldetails')
+  back(){
+    this.router.navigateByUrl('/goals')
   }
+  
 
-  RemoveRecord (record) {
-    this.firebaseService.delete_student(record);
-  }
-
-  EditRecord(record) {
+  editAmount(record) {
     record.isEdit = true;
     record.Name = record.Name;
     record.TargetAmount = record.TargetAmount;
@@ -73,6 +85,11 @@ export class GoalsPage implements OnInit {
     this.firebaseService.update_student( recordRow.id, record);
     recordRow.isEdit = false;
   }
+  calcAge() {
+    let today: any = new Date();
+    let selectedDate: any = new Date(this.selectedDate);
 
-
+    let age = Math.round((Math.abs(selectedDate - today) / (24 * 60 * 60 * 1000)) / 365);
+  }
+  
 }

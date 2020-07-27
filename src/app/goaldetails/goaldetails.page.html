@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-icon class="back-icon" (click)="back()"
+      name="arrow-back-outline">Goal Detail</ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card  class="card-content" color="warning" *ngFor="let item of studentList">
+    <span *ngIf="!item.isEdit; else elseBlock">
+    <ion-icon (click)="editAmount(item)" class="ion-icon" color="dark"  name="pencil-outline"></ion-icon>
+    <ion-card-title class="ion-card-title">{{item.Name}} </ion-card-title>
+    <circle-progress class="ion-align-items-center" [radius]="100" [outerStrokeWidth]="16"
+     [innerStrokeWidth]="8" [animationDuration]="1100" [animation]= "true" 
+     [percent]= "formatSubtitle" [percent]= "item.circularValue" > </circle-progress>
+
+   <ion-row>
+    <ion-card-subtitle class="ion-card-target">{{item.SavedAmount}} / {{item.TargetAmount}} </ion-card-subtitle>
+   
+  </ion-row>
+  <h1><b>SGD</b></h1>
+</span>
+  <ng-template  #elseBlock>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button class="cancel" fill="solid" color="medium" size="small" (click)="item.isEdit = false">
+                Cancel
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="update" fill="solid" color="success" size="small" (click)="UpdateRecord(item)">
+                Update
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-card-content">
+      <ion-item lines="full">
+        <ion-label class="font-size1" position="floating">
+          <strong>
+          Category List
+        </strong>
+        </ion-label>
+        <ion-select [(ngModel)]="item.Name">
+          <ion-select-option value="New Vehicles">New Vehicles</ion-select-option>
+          <ion-select-option value="New Home">New Home</ion-select-option>
+          <ion-select-option value="Holiday Trip">Holiday Trip</ion-select-option>
+          <ion-select-option value="Wedding">Wedding</ion-select-option>
+          <ion-select-option value="Education">Education</ion-select-option>
+          <ion-select-option value="Emergency">Emergency Fund</ion-select-option>
+          <ion-select-option value="HealthCare">Health Care</ion-select-option>
+          <ion-select-option value="Party">Party</ion-select-option>
+          <ion-select-option value="Kid Spoiling">Kids Spoiling</ion-select-option>
+          <ion-select-option value="Charity">Charity</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="font-size1" position="floating"><strong >Saved Amount</strong></ion-label>
+        <ion-input type="text" class="font-size" [(ngModel)]="item.SavedAmount"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label  class="font-size1" position="floating"><strong >Target Amount</strong></ion-label>
+        <ion-input type="text" class="font-size" [(ngModel)]="item.TargetAmount"></ion-input>
+      </ion-item>
+      <ion-item>
+        <div class="container">
+          <ion-label class="font-size1" position="floating">Desired Date</ion-label>
+          <ion-datetime  class="font-size" [(ngModel)]="item.desiredDate" (ionChange)="calcAge()" [max]="today">
+          </ion-datetime>
+        </div>
+      </ion-item>
+    
+    </ion-card-content>
+  </ng-template>
+      <ion-button expand="full" color="medium" class="ion-reached">Set Goal As Reached</ion-button>
+
+  </ion-card>
+
+</ion-content>

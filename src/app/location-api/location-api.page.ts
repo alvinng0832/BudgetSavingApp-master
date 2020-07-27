@@ -176,13 +176,13 @@ export class LocationApiPage implements OnInit{
       for (let marker of markers) {
         
         let position = new google.maps.LatLng(marker.latitude, marker.longitude);
-        
+        var iconBase = 'https://maps.google.com/mapfiles/kml/paddle/'
         
         let mapMarker = new google.maps.Marker({
+         
           position: position,
           title: marker.title,
-          subtitle:
-           marker.subtitle,
+          subtitle: marker.subtitle,
           image: marker.image,
           address: marker.address,
           operatinghours: marker.operatinghours,
@@ -190,7 +190,9 @@ export class LocationApiPage implements OnInit{
           phonecontact: marker.phonecontact,
           moreinfo: marker.moreinfo,
           latitude: marker.latitude,
-          longitude: marker.longitude
+          longitude: marker.longitude,
+          icon: iconBase + 'pink-stars.png',
+        
         });
  
   

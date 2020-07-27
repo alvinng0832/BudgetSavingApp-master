@@ -42,6 +42,7 @@ firebase.initializeApp(environment.firebase);
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
+    
  
     
   ],

@@ -19,9 +19,9 @@ export class AppComponent implements OnInit{
   darkMode: any
 
 
-      ngOnInit(){
-   
-  }
+ngOnInit(){
+
+}
 
   constructor(
     private platform: Platform,
@@ -35,8 +35,6 @@ export class AppComponent implements OnInit{
     this.darkMode = this.themeService.darkMode;
   }
 
-
-  
 
   
   gotohome(){

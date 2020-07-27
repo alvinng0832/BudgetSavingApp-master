@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Goals</ion-title>
+    <ion-title>My Goals</ion-title>
     <ion-button slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-button>
@@ -19,30 +19,32 @@
 
     <div *ngIf="selectTabs == 'Acitve'">
   
-      <ion-card *ngFor="let item of studentList" color="primary">
+      <ion-card *ngFor="let item of studentList" color="primary" (click)="details()">
+
         <span *ngIf="!item.isEdit; else elseBlock">
+          
           <ion-card-header>
-            <ion-card-title>{{item.Name}}  </ion-card-title>
-            <ion-progress-bar value="0.25" buffer="0.5"></ion-progress-bar>
+            <ion-card-title class="ion-card-title">{{item.Name}}  </ion-card-title>
+            <ion-progress-bar color="secondary" class="ion-progress-bar" value="{{item.progressValue}}" color-degraded ="{'0': '#00cbcb',  '15': '#f9c3d3', '25': '#fd8c8e'}"></ion-progress-bar>
             <ion-row>
             <ion-card-subtitle class="ion-card-save"> Saved: SGD {{item.SavedAmount}}</ion-card-subtitle>
             <ion-card-subtitle class="ion-card-target"> Goal: SGD {{item.TargetAmount}}</ion-card-subtitle>
           </ion-row>
-          <ion-card-subtitle> {{item.DesiredDate}} </ion-card-subtitle>
+          <ion-card-subtitle class="ion-card-subtitle"> {{item.DesiredDate}} </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
       
             <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
               <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
-      
             </ion-button>
+
             <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
               <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
-      
             </ion-button>
+            
           </ion-card-content>
         </span>
-        <ng-template #elseBlock>
+        <ng-template  #elseBlock>
           <ion-card-header>
             <ion-card-title>
               <ion-grid>
@@ -64,7 +66,7 @@
               </ion-grid>
             </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
+          <ion-card-content >
             <ion-item>
               <ion-label><strong>Name</strong></ion-label>
               <ion-input type="text" [(ngModel)]="item.Name"></ion-input>
