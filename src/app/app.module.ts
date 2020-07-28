@@ -1,3 +1,4 @@
+import { LearnService } from './services/learn.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -57,6 +58,7 @@ firebase.initializeApp(environment.firebase);
     Keyboard,
     Geolocation,
     CallNumber,
+    LearnService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],
