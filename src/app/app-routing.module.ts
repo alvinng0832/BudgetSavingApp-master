@@ -114,7 +114,11 @@ const routes: Routes = [
   {
     path: 'goaldetails',
     loadChildren: () => import('./goaldetails/goaldetails.module').then( m => m.GoaldetailsPageModule)
+  },  {
+    path: 'reachedgoaldetails',
+    loadChildren: () => import('./reachedgoaldetails/reachedgoaldetails.module').then( m => m.ReachedgoaldetailsPageModule)
   }
+
 
 
 ];

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import { GoalsService } from '../services/goals.service';
 
 interface GoalsRecord {
   Name: string;
@@ -25,10 +26,11 @@ export class GoaldetailsPage implements OnInit {
   circularValue: number;
   studentList = [];
   selectedDate: any;
+  data: any
 
  
   
-  constructor(private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
+  constructor(private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
     this.goalsdata = {} as GoalsRecord;
    }
 
@@ -66,6 +68,11 @@ export class GoaldetailsPage implements OnInit {
   back(){
     this.router.navigateByUrl('/goals')
   }
+
+  reachedgoals(){
+    this.goalsservice.setGoals(this.data)
+    this.router.navigateByUrl('/goals');
+  }
   
 
   editAmount(record) {
@@ -91,5 +98,7 @@ export class GoaldetailsPage implements OnInit {
 
     let age = Math.round((Math.abs(selectedDate - today) / (24 * 60 * 60 * 1000)) / 365);
   }
+
+
   
 }

@@ -74,5 +74,9 @@ export class GoalsPage implements OnInit {
     recordRow.isEdit = false;
   }
 
+  Reacheddetails(){
+    
+  }
+
 
 }
