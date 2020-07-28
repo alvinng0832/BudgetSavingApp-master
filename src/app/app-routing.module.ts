@@ -114,14 +114,19 @@ const routes: Routes = [
   {
     path: 'goaldetails',
     loadChildren: () => import('./goaldetails/goaldetails.module').then( m => m.GoaldetailsPageModule)
-  },  {
+  },
+  {
     path: 'reachedgoaldetails',
     loadChildren: () => import('./reachedgoaldetails/reachedgoaldetails.module').then( m => m.ReachedgoaldetailsPageModule)
   },
   {
     path: 'learn-details',
     loadChildren: () => import('./learn-details/learn-details.module').then( m => m.LearnDetailsPageModule)
-  }
+  },
+    
+    path: 'add-income',
+    loadChildren: () => import('./add-income/add-income.module').then( m => m.AddIncomePageModule)
+  },
 
 
 
