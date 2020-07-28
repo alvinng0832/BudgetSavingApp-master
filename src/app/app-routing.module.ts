@@ -117,6 +117,10 @@ const routes: Routes = [
   },  {
     path: 'reachedgoaldetails',
     loadChildren: () => import('./reachedgoaldetails/reachedgoaldetails.module').then( m => m.ReachedgoaldetailsPageModule)
+  },
+  {
+    path: 'add-income',
+    loadChildren: () => import('./add-income/add-income.module').then( m => m.AddIncomePageModule)
   }
 
 
