@@ -12,13 +12,13 @@ import { validateEventsArray } from '@angular/fire/firestore';
 })
 export class LearnPage implements OnInit {
 
-  segmentModel: "personal-finance";
+  segmentModel: "all";
   learn: LearnInfo[];
 
   //Call the array of items from the learn database
-  
+
   dataLearn = [] // all data
-  filtered = [] // filtered
+  filtered = [] // for filtering
 
   constructor(
     private dom : DomSanitizer,
@@ -28,21 +28,27 @@ export class LearnPage implements OnInit {
 
 
   ngOnInit() {
-    this.segmentModel = "personal-finance"
+    this.segmentModel = "all" // first start as All
     this.learnService.getLearn().subscribe(data => {
       let obj: any[]
-      obj = data
+      obj = data // get all data
+
       obj.forEach(d => {
-        d.video = this.dom.bypassSecurityTrustResourceUrl(d.video)
-        this.dataLearn.push(d)
+        d.video = this.dom.bypassSecurityTrustResourceUrl(d.video) // By pass the sercurity of the url
+        this.dataLearn.push(d) 
       })
-      this.filtered = this.dataLearn
+      this.filtered = this.dataLearn // both filtered and datalearn have the same data
       console.log(this.dataLearn)
-      // data.forEach(d => {
-      //   console.log(d)
-      //   this.dom.bypassSecurityTrustResourceUrl(d.video)
-      // })
+      this.all() // initialize the all data
+      
+
     })
+  }
+
+  all() {
+    this.filtered = []  // clear filter
+    this.filtered = this.dataLearn  // filtered == all data
+
   }
 
   details(val) {
@@ -51,24 +57,27 @@ export class LearnPage implements OnInit {
       state: {
         obj: val
       }
-  
     }
     this.router.navigate(['learn-details'], navigationExtras);
   }
 
-  //
+  //Filter by category
   segmentChange(event) {
-    // console.log(event)
-    console.log(this.segmentModel)
-    this.filtered = []
-    this.dataLearn.forEach(see => {
-      console.log(see.title)
+
+    if (this.segmentModel == 'all') {  // if segment == all run the all data 
+      this.all();
+    } else {
+ 
+    this.filtered = [] // clear the filter data and push new obj that equals to category
+    console.log(this.dataLearn)
+    this.dataLearn.forEach(see => { // run for loop of alldata
+      console.log(see)
       if (see.category == this.segmentModel) {
-        this.filtered.push(see)
+        this.filtered.push(see) //if meet conditions , push in the filtered array
+        console.log(this.filtered)
       }
     })
-    console.log(this.filtered)
+    }
   }
-
 }
 

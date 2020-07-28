@@ -8,37 +8,42 @@
 </ion-header>
 
 <ion-content>
-
-<!-- <ion-card> -->
+  <!-- <ion-card> -->
   <!-- <ion-card-subtitle>
    Slider
   </ion-card-subtitle>
   <img src="assets/learn/finance.jpg">
   </ion-card> -->
 
-
   <!-- Scrollable Segment -->
-<ion-segment scrollable value="personal-finance"
-[(ngModel)]="segmentModel" (ionChange)="segmentChange($event)">
-  <ion-segment-button value="personal-finance" >
-    <ion-label>Personal Finance</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="insurance">
-    <ion-label>Insurance</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="savings">
-    <ion-label>Savings</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="star">
-    <ion-label>Personal Finance</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="call">
-    <ion-label>Personal Finance</ion-label>
+  <ion-segment
+    scrollable
+    value="all"
+    [(ngModel)]="segmentModel"
+    (ionChange)="segmentChange($event)"
+  >
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
     </ion-segment-button>
-</ion-segment>
+    <ion-segment-button value="personal-finance">
+      <ion-label>Personal Finance</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="insurance">
+      <ion-label>Insurance</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="savings">
+      <ion-label>Savings</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="star">
+      <ion-label>Personal Finance</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="call">
+      <ion-label>Personal Finance</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-<!--CATEGORIES OF FINANCE-->
- <ion-card *ngFor="let learn of filtered" >
+  <!--CATEGORIES OF FINANCE-->
+  <ion-card *ngFor="let learn of filtered">
     <!-- <ion-item>
       <ion-avatar slot="start">
      <img src="assets/learn/finance.jpg">
@@ -48,15 +53,11 @@
         <p>Dec 10, 2019</p>
       </ion-label>
     </ion-item> -->
-  
- 
+
     <ion-card-header>
       <ion-card-title>{{learn.title}}</ion-card-title>
     </ion-card-header>
-    <img [src]="learn.image">
+    <img [src]="learn.image" />
     <ion-button expand="full" (click)="details(learn)">View more</ion-button>
-
   </ion-card>
-
-
 </ion-content>
