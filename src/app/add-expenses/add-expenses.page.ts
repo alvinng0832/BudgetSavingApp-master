@@ -28,6 +28,7 @@ export class AddExpensesPage implements OnInit {
     private modalController: ModalController, 
     private expenseService:ExpenseService, 
     // private userService: UserService
+    
     ) { 
     // this.documentRef = fireStore.doc("Expenses");
     
