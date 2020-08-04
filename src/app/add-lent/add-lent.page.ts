@@ -56,13 +56,12 @@ RecordList=[];
 }
 
 LentRecord() {
-    console.log(this.lentedForm.value);
+   // console.log(this.lentedForm.value);
     this.ilentService.addNote(this.lentedForm.value).then(() => {
       this.lentedForm.reset();
     })
       .catch(error => {
         console.log(error);
-      });
-      return(this.lentedForm.value)
+      })
   }
 }

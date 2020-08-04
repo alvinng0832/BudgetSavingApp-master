@@ -41,7 +41,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
 @NgModule({
   imports: [
     CommonModule,
@@ -85,8 +84,7 @@ import { AngularFirestoreCollection } from '@angular/fire/firestore';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
-    AngularFirestoreCollection
+    MatTreeModule
   ],
   declarations: [AddLentPage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

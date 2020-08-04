@@ -50,7 +50,7 @@ export class AddBorrowPage implements OnInit {
       Date: ['', [Validators.required]],
       DueDate: ['', [Validators.required]]
   })
-  console.log(this.iborrowService.getNotes().snapshotChanges())
+ 
 }
 
 BorrowRecord(){

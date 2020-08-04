@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'registerpage',
+    redirectTo: 'add-borrow',
     pathMatch: 'full'
   },
   {
