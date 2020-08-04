@@ -51,7 +51,8 @@ export class RegisterpagePage implements OnInit {
     private formBuilder: FormBuilder,
     public toastController: ToastController,
     public alertCtrl: AlertController,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private afstore: AngularFirestore
 
   ) { }
 
@@ -99,6 +100,7 @@ export class RegisterpagePage implements OnInit {
 
     this.authService.registerUser(value)
       .then(res => {
+        
         // console.log(res);
         this.errorMessage = "";
         this.presentToast("Your account has been created successfully.")

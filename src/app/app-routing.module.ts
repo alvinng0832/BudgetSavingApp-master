@@ -129,6 +129,35 @@ const routes: Routes = [
     path: 'add-income',
     loadChildren: () => import('./add-income/add-income.module').then( m => m.AddIncomePageModule)
   },
+  {
+    path: 'expenses',
+    loadChildren: () => import('./expenses/expenses.module').then( m => m.ExpensesPageModule)
+  },
+  {
+    path: 'expensedetails',
+    loadChildren: () => import('./expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
+  },
+  {
+    path: 'debtrecord',
+    loadChildren: () => import('./debtrecord/debtrecord.module').then( m => m.DebtrecordPageModule)
+  },
+  {
+    path: 'add-lent',
+    loadChildren: () => import('./add-lent/add-lent.module').then( m => m.AddLentPageModule)
+  },
+  {
+    path: 'add-borrow',
+    loadChildren: () => import('./add-borrow/add-borrow.module').then( m => m.AddBorrowPageModule)
+  },
+  {
+    path: 'note',
+    loadChildren: () => import('./note/note.module').then( m => m.NotePageModule)
+  }
+
+
+
+
+
 
 
 

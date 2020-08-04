@@ -5,6 +5,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import { Router } from '@angular/router';
 
 interface GoalsRecord {
+  id:string;
   Name: string;
   TargetAmount: number;
   SavedAmount: number;
@@ -40,7 +41,7 @@ export class NewgoalPage implements OnInit {
       Name: ['', [Validators.required]],
       TargetAmount: ['', [Validators.required]],
       SavedAmount: ['', [Validators.required]],
-      DesiredDate: ['', [Validators.required]],
+      DesiredDate: ['', [Validators.required]]
      
      
 

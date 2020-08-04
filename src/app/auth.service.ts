@@ -3,39 +3,29 @@ import { Router, CanActivate } from '@angular/router'
 import { UserService } from './user.service'
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Injectable()
 export class AuthService {
-  checkLogged() {
-    throw new Error("Method not implemented.");
-  }
-  getUserInfo(): firebase.User {
-    throw new Error("Method not implemented.");
-  }
-  register(info: firebase.User) {
-    throw new Error("Method not implemented.");
-  }
-
+username:string
   save(uid: string) {
     throw new Error("Method not implemented.");
   }
 
   constructor(
+    public afstore: AngularFirestore,
     private afAuth: AngularFireAuth
   ) { }
 
   registerUser(value) {
+    
     return this.afAuth.auth.createUserWithEmailAndPassword(value.email, value.password)
       .then(newUser => {
-        // firebase
-        //   .database()
-        //   .ref('/users/')
-        //   .child(newUser.user.uid)
-        //   .set({
-        //     username: value.username,
-        //     email: value.email
-        //   })
+        this.afstore.doc(`users/${newUser.user.uid}`).set({
+          value
+        });
+        
           localStorage.setItem('user', JSON.stringify(newUser))
       }).catch(er => {
         console.log(er)
@@ -67,5 +57,13 @@ export class AuthService {
 
   userDetails() {
     return this.afAuth.user
+  }
+
+  getCurrentUser() {
+    if(firebase.auth().currentUser) {
+      return firebase.auth().currentUser;
+    } else {
+      return null;
+    }
   }
 }

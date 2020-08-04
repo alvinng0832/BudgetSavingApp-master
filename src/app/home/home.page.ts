@@ -4,6 +4,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Chart } from "chart.js";
 
 
+interface Car {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',

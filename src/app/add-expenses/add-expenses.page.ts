@@ -1,69 +1,98 @@
-import { Component, OnInit } from '@angular/core';
-import {ExpenseService} from 'src/app/services/expense.service';
-import {Expense} from 'src/models/expense';
-import { UserService } from '../user.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
-import { firestore } from 'firebase';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {Component, ViewChild, OnInit} from '@angular/core';
+import {MatAccordion} from '@angular/material/expansion';
+import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { ExpenseService } from '../services/expense.service';
+import { Expense } from 'src/models/expense';
+
+interface Animal {
+  name: string;
+
+}
+interface ExpensesRecord {
+  FirstName: string;
+  LastName: string;
+  Amount: string;
+  Date: Date;
+  Category: string;
+  Tags: string;
+  Description: string;
+}
+
 @Component({
   selector: 'app-add-expenses',
   templateUrl: './add-expenses.page.html',
   styleUrls: ['./add-expenses.page.scss'],
 })
-export class AddExpensesPage implements OnInit {
-  addExpenseForm: FormGroup;
-  documentRef: any;
+export class AddExpensesPage implements OnInit{
+  toppings = new FormControl();
+
+  toppingList: string[] = ['coffee & tea', 'medical services', 'accomodation','cloths', 'gambling', 'shoes',
+'accessories', 'adult fun', 'airplane', 'alcohol', 'apps', 'bicycle', 'birthday','books','building upkeep','bus','car','cosmetics', 'devices','drugs',
+'electricity','quity purchase','events','ferry','fuel','furniture','games','groceries','hairdresser','heating','home improvement','income tax',
+'insurance', 'internet','landline phone','lending'];
+  startDate = new Date(1990, 0, 1);
+  animals: Animal[] = [
+    {name:"Food & Drinks"},
+    {name:"Clothing & Footwear"},
+    {name:"Health & PersonalCare"},
+    {name:"Charity"},
+    {name:"Education"},
+    {name:"Gifts"},
+    {name:"Home & Utilities"},
+    {name:"Leisure"},
+    {name:"Loans"},
+    {name:"Other"},
+    {name:"Sports"},
+    {name:"Taxes"},
+    {name:"Transport"}
+  ];
   expense: Expense = {
     id: null,
-    amount: '',
-    description: '',
-    type: '',
- //   userId: null
+    FirstName: '',
+    LastName: '',
+    Amount: '',
+    Description: '',
+    Category: '',
+    Tags:'',
+    Date: '',
+    userId: null
   };
- 
-  constructor(
-    // private fireStore: AngularFirestore, 
-    private fb: FormBuilder, 
-    private modalController: ModalController, 
-    private expenseService:ExpenseService, 
-    // private userService: UserService
-    
-    ) { 
-    // this.documentRef = fireStore.doc("Expenses");
-    
-    this.addExpenseForm = this.fb.group({
-    
-      amount: [''],
-      description: [''],
-      type: [''],
-     
-    });
-  }
+  uid:any
+  hide = true;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+  Expensedata: ExpensesRecord;
+  expensesForm: FormGroup;
+  constructor(private expensesService:ExpenseService,  private router: Router, private fb: FormBuilder) {
+   
+    this.Expensedata = {} as ExpensesRecord;
+   }
+   
+   
+
   ngOnInit() {
+    this.expensesForm = this.fb.group({
+      FirstName:  ['', [Validators.required]],
+      LastName: ['', [Validators.required]],
+      Amount: ['', [Validators.required]],
+      Date: ['', [Validators.required]],
+      Category: ['', [Validators.required]],
+      Tags: ['', [Validators.required]],
+      Description: ['', [Validators.required]],
+    });
+
+     
+   
+
   }
-  dismissModal():void {
-    this.modalController.dismiss().then().catch()
-  
-    }
-  
-    addExpense(){
-
-      // this.expense.amount = this.addExpenseForm.controls.amount.value;
-      // //this.expense.userId = this.userService.getUID();
-      // this.expense.description = this.addExpenseForm.controls.description.value;
-      // this.expense.type = this.addExpenseForm.controls.type.value;
-      // this.expense.id = this.documentRef.id;
-      // this.expenseService.addExpense(this.expense);
-
-      console.log(this.addExpenseForm.value);
-      this.expenseService.addExpense(this.addExpenseForm.value).then(resp => {
-        this.addExpenseForm.reset();
-      })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  
-
+  ExpensesRecord() {
+    console.log(this.expensesForm.value);
+    this.expensesService.addExpense(this.expensesForm.value).then(resp => {
+      this.expensesForm.reset();
+      this.router.navigateByUrl('/expenses')
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 }

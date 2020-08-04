@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 interface GoalsRecord {
   Name: string;
@@ -17,12 +18,12 @@ interface GoalsRecord {
 
 
 export class GoalsPage implements OnInit {
-  
+
   studentList = [];
   uid: any
   goalsdata: GoalsRecord;
   selectTabs = 'recent';
-  constructor(private router: Router, private firebaseService: FirebaseService) { 
+  constructor(private router: Router, private firebaseService: FirebaseService, private firestore: AngularFirestore) { 
      this.goalsdata = {} as GoalsRecord;
   }
 
@@ -48,12 +49,12 @@ export class GoalsPage implements OnInit {
   this.router.navigateByUrl('/newgoal')
   }
 
-  details(){
-    this.router.navigateByUrl('/goaldetails')
+  details(doc: { id: any; }) {
+        this.router.navigate(['/goaldetails', doc.id]);
   }
-
-  RemoveRecord (record) {
-    this.firebaseService.delete_student(record);
+  
+  RemoveRecord (record_id) {
+    this.firebaseService.delete_student(record_id);
   }
 
   EditRecord(record) {

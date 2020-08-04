@@ -9,6 +9,7 @@ import { UserService } from '../user.service';
 })
 export class FirebaseService {
  collectionName = "addGoals"
+ usercollection = "users"
   uid: any
   constructor(
     private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
@@ -21,18 +22,18 @@ export class FirebaseService {
   }
 
   create_student(record) {
-    return this.firestore.collection(this.collectionName).add(record);
+    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(record);
   }
 
   read_students() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection(this.usercollection).doc(this.uid).collection(this.collectionName).snapshotChanges();
   }
 
-  update_student(recordID, record) {
-    this.firestore.doc(this.collectionName + '/' + recordID).update(record);
+ update_student(recordID, record) {
+    this.firestore.doc(this.usercollection + this.uid + recordID).update(record);
   }
 
   delete_student(record_id) {
-    this.firestore.doc(this.collectionName + '/' + record_id).delete();
+    this.firestore.collection(this.usercollection + '/addGoals' + record_id).doc(this.uid).delete();
   }
 }

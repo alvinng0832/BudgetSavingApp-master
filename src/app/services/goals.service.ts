@@ -29,12 +29,4 @@ studentList=[]
 
     });
   }
-
-  setGoals(studentList){
-    this.data = this.studentList
-  }
-
-  getGoals(){
-    return this.data;
-  }
 }

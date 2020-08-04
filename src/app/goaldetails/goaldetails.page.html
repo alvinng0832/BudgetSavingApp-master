@@ -7,19 +7,28 @@
 
 <ion-content>
   
-  <ion-card  class="card-content" color="warning" *ngFor="let item of studentList">
+  <ion-card  class="card-content" color="warning" *ngFor="let item of goalList">
     <span *ngIf="!item.isEdit; else elseBlock">
-    <ion-icon (click)="editAmount(item)" class="ion-icon" color="dark"  name="pencil-outline"></ion-icon>
-    <ion-card-title class="ion-card-title">{{item.Name}} </ion-card-title>
+      <ion-row>
+    <ion-icon  (click)="editAmount(item)" class="ion-icon" color="dark"  name="pencil-outline"></ion-icon>
+  </ion-row>
+    <ion-row>
+    <ion-card-title class="ion-card-name"> {{item.Name}} </ion-card-title>
+  </ion-row>
+  <ion-row>
+
+  
     <circle-progress class="ion-align-items-center" [radius]="100" [outerStrokeWidth]="16"
      [innerStrokeWidth]="8" [animationDuration]="1100" [animation]= "true" 
      [percent]= "formatSubtitle" [percent]= "item.circularValue" > </circle-progress>
-
+    </ion-row>
    <ion-row>
     <ion-card-subtitle class="ion-card-target">{{item.SavedAmount}} / {{item.TargetAmount}} </ion-card-subtitle>
    
   </ion-row>
-  <h1><b>SGD</b></h1>
+  <ion-row>
+  <h1 class="h1"><b>SGD</b></h1>
+</ion-row>
 </span>
   <ng-template  #elseBlock>
     <ion-card-header>
@@ -78,7 +87,7 @@
     
     </ion-card-content>
   </ng-template>
-      <ion-button (click)="reachedgoals()" expand="full" color="medium" class="ion-reached">Set Goal As Reached</ion-button>
+      <ion-button  expand="full" color="medium" class="ion-reached">Set Goal As Reached</ion-button>
 
   </ion-card>
 
