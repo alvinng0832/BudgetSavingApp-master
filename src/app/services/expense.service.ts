@@ -13,13 +13,19 @@ export class ExpenseService {
   uid: any
   email: string;
   collectionName = "Expenses"
+  user: any;
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
-    this.afAuth.auth.onAuthStateChanged((user) => {
-      console.log(user)
-      this.uid = user.uid
-      this.email = user.email
-    })
+
+    this.user = JSON.parse(localStorage.getItem('user'));
+
+
+    console.log(this.user.user.uid)
+    // this.afAuth.auth.onAuthStateChanged((user) => {
+    //   console.log(user)
+    //   this.uid = user.uid
+    //   this.email = user.email
+    // })
     
 
   }
@@ -28,7 +34,7 @@ export class ExpenseService {
     return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(expense)
   }
   read_students() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection('Expenses').doc(this.user.user.uid).collection('Expense').snapshotChanges();
   }
   update_student(recordID, expense) {
     this.firestore.doc(this.collectionName + '/' + recordID).update(expense);

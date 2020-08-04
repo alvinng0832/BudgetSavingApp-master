@@ -70,7 +70,7 @@ firebase.initializeApp(environment.firebase);
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFirestoreCollection,
+    // AngularFirestoreCollection,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
