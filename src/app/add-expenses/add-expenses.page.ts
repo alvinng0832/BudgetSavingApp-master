@@ -58,7 +58,7 @@ export class AddExpensesPage implements OnInit{
     Date: '',
     userId: null
   };
-uid:any
+  uid:any
   hide = true;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   Expensedata: ExpensesRecord;
