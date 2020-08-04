@@ -1,4 +1,4 @@
-import { LearnService } from './services/learn.service';
+// import { LearnService } from './services/learn.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -70,7 +70,7 @@ firebase.initializeApp(environment.firebase);
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFirestoreCollection,
+    // AngularFirestoreCollection,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -128,7 +128,7 @@ firebase.initializeApp(environment.firebase);
     Keyboard,
     Geolocation,
     CallNumber,
-    LearnService,
+    // LearnService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],
