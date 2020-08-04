@@ -7,6 +7,15 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
+  checkLogged() {
+    throw new Error("Method not implemented.");
+  }
+  getUserInfo(): firebase.User {
+    throw new Error("Method not implemented.");
+  }
+  register(info: firebase.User) {
+    throw new Error("Method not implemented.");
+  }
 
   save(uid: string) {
     throw new Error("Method not implemented.");
