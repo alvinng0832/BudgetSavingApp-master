@@ -23,7 +23,7 @@
 
         <span *ngIf="!item.isEdit; else elseBlock">
           
-          <ion-card-header (click)="details()">
+          <ion-card-header (click)="details(item.id)">
             <ion-card-title class="ion-card-title">{{item.Name}}  </ion-card-title>
             <ion-progress-bar color="secondary" class="ion-progress-bar" value="{{item.progressValue}}" color-degraded ="{'0': '#00cbcb',  '15': '#f9c3d3', '25': '#fd8c8e'}"></ion-progress-bar>
             <ion-row>
@@ -38,7 +38,7 @@
               <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
             </ion-button>
 
-            <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+            <ion-button shape="round" color="danger" size="small" (click)="(item.id)">
               <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
             </ion-button>
 
@@ -58,7 +58,7 @@
                     </ion-button>
                   </ion-col>
                   <ion-col>
-                    <ion-button fill="solid" color="success" size="small" (click)="UpdateRecord(item)">
+                    <ion-button fill="solid" color="success" size="small" (click)="UpdateRecord(item.id)">
                       Update
                     </ion-button>
                   </ion-col>

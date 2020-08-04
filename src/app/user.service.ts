@@ -60,7 +60,5 @@ export class UserService {
   getUID(): string {
     return this.user.uid
   }
-  createUser(User){
-    return this.fireStore.collection("user").add(User)
-  }
+
 }

@@ -3,8 +3,9 @@ import { NavController } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { GoalsService } from '../services/goals.service';
-
+import { ActivatedRoute } from '@angular/router';
 interface GoalsRecord {
+  id:string
   Name: string;
   TargetAmount: number;
   SavedAmount: number;
@@ -20,24 +21,27 @@ interface GoalsRecord {
 
 
 export class GoaldetailsPage implements OnInit {
+  
   today: any;
   percent: number;
   goalsdata: GoalsRecord;
   circularValue: number;
-  studentList = [];
+  goalList = [];
   selectedDate: any;
   data: any
-
+  id:any
+  sub: any;
  
   
-  constructor(private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
+  constructor(private route: ActivatedRoute,private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
     this.goalsdata = {} as GoalsRecord;
+
    }
 
    ngOnInit() {
     this.firebaseService.read_students().subscribe(data => {
 
-      this.studentList = data.map(e => {
+      this.goalList = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
@@ -48,9 +52,12 @@ export class GoaldetailsPage implements OnInit {
           circularValue: e.payload.doc.data()['SavedAmount']/ e.payload.doc.data()['TargetAmount'] * 100
         };
       })
-      console.log(this.studentList);
+      console.log(this.goalList);
 
     });
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id']; 
+ });
   }
 
   formatSubtitle = (percent: number) : string => {
@@ -68,11 +75,6 @@ export class GoaldetailsPage implements OnInit {
   back(){
     this.router.navigateByUrl('/goals')
   }
-
-  reachedgoals(){
-    this.goalsservice.setGoals(this.data)
-    this.router.navigateByUrl('/goals');
-  }
   
 
   editAmount(record) {
@@ -89,7 +91,7 @@ export class GoaldetailsPage implements OnInit {
     record['TargetAmount'] = recordRow.TargetAmount;
     record['SavedAmount'] = recordRow.SavedAmount;
     record['DesiredDate'] = recordRow.DesiredDate;
-    this.firebaseService.update_student( recordRow.id, record);
+   // this.firebaseService.update_student( recordRow.id, record);
     recordRow.isEdit = false;
   }
   calcAge() {

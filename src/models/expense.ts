@@ -1,7 +1,11 @@
 export interface Expense {
     id?: string,
-    amount: string,
-    description: string,
-    type: string,
-  //  userId: string
+    FirstName: string,
+    LastName: string,
+    Amount: string,
+    Description: string,
+    Category: string,
+    Tags: string,
+    Date: string
+    userId: string
 }

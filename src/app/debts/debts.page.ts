@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {  IlentService } from '../services/ilent.service';
+
 
 @Component({
   selector: 'app-debts',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DebtsPage implements OnInit {
 
-  constructor() { }
+
+
+  selectTabs = 'recent';
+  RecordList=[];
+  constructor(private ilentService: IlentService) { 
+    
+  }
 
   ngOnInit() {
+  
   }
 
 }

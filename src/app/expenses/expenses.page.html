@@ -1,0 +1,42 @@
+<ion-header color="secondary">
+  <ion-toolbar style="color: rgb(226, 122, 122);">
+    <ion-title>Expenses</ion-title>
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  >
+  <ion-segment [(ngModel)]="selectTabs">
+    <ion-segment-button  value="By Expense">
+      <ion-label style="font-size: 20px; color: rgb(255, 126, 126);">By Expense</ion-label>
+    </ion-segment-button>
+    <ion-segment-button  value="By Category" >
+      <ion-label  style="font-size: 20px; color: rgb(255, 126, 126);">By Categories</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+    <div *ngIf="selectTabs == 'By Expense'">
+      <ion-card *ngFor="let item of expensesList" color="light" (click)="Expenses()">
+        <ion-card-header >
+          <ion-row>
+          <ion-card-title style="color: rgb(0, 0, 0); font-size: 22px;" class="ion-card-title">  {{item.Category.name}}</ion-card-title>
+          <ion-card-subtitle  style="color: rgb(204, 58, 89);"  class="ion-card-save">SGD: {{item.Amount}}</ion-card-subtitle>
+          <ion-card-subtitle  style="color: rgb(204, 58, 89);"  class="ion-card-save">SGD: {{item.Date}}</ion-card-subtitle>
+        </ion-row>
+      
+        </ion-card-header>
+     </ion-card>
+    </div>
+    <div *ngIf="selectTabs == 'By Category'">
+
+    </div>
+  
+  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button style="width: 85px; height: 85px;">
+      <ion-icon class="ion-icon" (click)="newExpenses()" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

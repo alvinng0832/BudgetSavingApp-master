@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'goaldetails',
+    redirectTo: 'add-lent',
     pathMatch: 'full'
   },
   {
@@ -114,14 +114,44 @@ const routes: Routes = [
   {
     path: 'goaldetails',
     loadChildren: () => import('./goaldetails/goaldetails.module').then( m => m.GoaldetailsPageModule)
-  },  {
+  },
+  {
     path: 'reachedgoaldetails',
     loadChildren: () => import('./reachedgoaldetails/reachedgoaldetails.module').then( m => m.ReachedgoaldetailsPageModule)
   },
   {
     path: 'add-income',
     loadChildren: () => import('./add-income/add-income.module').then( m => m.AddIncomePageModule)
+  },
+  {
+    path: 'expenses',
+    loadChildren: () => import('./expenses/expenses.module').then( m => m.ExpensesPageModule)
+  },
+  {
+    path: 'expensedetails',
+    loadChildren: () => import('./expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
+  },
+  {
+    path: 'debtrecord',
+    loadChildren: () => import('./debtrecord/debtrecord.module').then( m => m.DebtrecordPageModule)
+  },
+  {
+    path: 'add-lent',
+    loadChildren: () => import('./add-lent/add-lent.module').then( m => m.AddLentPageModule)
+  },
+  {
+    path: 'add-borrow',
+    loadChildren: () => import('./add-borrow/add-borrow.module').then( m => m.AddBorrowPageModule)
+  },
+  {
+    path: 'note',
+    loadChildren: () => import('./note/note.module').then( m => m.NotePageModule)
   }
+
+
+
+
+
 
 
 
