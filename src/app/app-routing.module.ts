@@ -123,9 +123,7 @@ const routes: Routes = [
     path: 'learn-details',
     loadChildren: () => import('./learn-details/learn-details.module').then( m => m.LearnDetailsPageModule)
   },
-  
   {
-    
     path: 'add-income',
     loadChildren: () => import('./add-income/add-income.module').then( m => m.AddIncomePageModule)
   },
@@ -153,14 +151,6 @@ const routes: Routes = [
     path: 'note',
     loadChildren: () => import('./note/note.module').then( m => m.NotePageModule)
   }
-
-
-
-
-
-
-
-
 ];
 
 @NgModule({

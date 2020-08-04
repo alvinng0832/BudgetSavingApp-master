@@ -33,12 +33,15 @@ username:string
   }
   
   loginUser(value) {
-    return new Promise<any>((resolve, reject) => {
-      this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password)
-        .then(
-          res => resolve(res),
-          err => reject(err))
-    })
+    return this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password)
+      .then(sc => {
+        console.log(sc)
+      })
+      .catch(er => {
+        console.log(er)
+      })
+    
+  
   }
 
   logoutUser() {

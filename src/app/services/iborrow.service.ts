@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 export interface BorrowDebts {
+  
+
   id:string
   Name: string;
   Description: string;
@@ -20,6 +22,7 @@ export interface BorrowDebts {
 export class IborrowService implements OnInit{
 
   private BorrowCollection: AngularFirestoreCollection<BorrowDebts>;
+  user:any
   private iBorrow: Observable<BorrowDebts[]>;
   uid:any
   collectionName: "iborrow"
@@ -28,16 +31,19 @@ export class IborrowService implements OnInit{
       private afAuth: AngularFireAuth,
       private authService: AuthService
     ) {
+
+      this.user =JSON.parse(localStorage.getItem('user'))
       this.afAuth.auth.onAuthStateChanged((user) => {
-        console.log(user)
+       
         this.uid = user.uid
       })
+      console.log(this.user.user.uid)
     }
       
      
    
     ngOnInit(){
-      this.BorrowCollection = this.firestore.collection('users').doc(this.uid).collection<BorrowDebts>(this.collectionName);
+      this.BorrowCollection = this.firestore.collection('users').doc(this.user).collection<BorrowDebts>(this.collectionName);
       this.iBorrow = this.BorrowCollection.snapshotChanges().pipe(
       map(actions => actions.map(e => {
       const data = e.payload.doc.data() ;
@@ -57,16 +63,19 @@ export class IborrowService implements OnInit{
 
       
       getNotes() {
-        return this.iBorrow;
+        return this.firestore.collection('users').doc(this.uid);
       }
       updateNote(iborrow) {
-        return this.BorrowCollection.doc(iborrow.id).update(iborrow);
+        return this.firestore.collection('users' ).doc(this.uid).collection('iBorrow')
+        .add(iborrow)
       }
       deleteNote(iborrow) {
         this.BorrowCollection.doc(iborrow.id).delete();
       }
       addNote(iborrow) {
-        return this.BorrowCollection.add(iborrow)
+        console.log(iborrow)
+        return this.firestore.collection('users' ).doc(this.uid).collection('iBorrow')
+        .add(iborrow)
       }
      
 }
