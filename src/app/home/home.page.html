@@ -1,119 +1,40 @@
-<ion-content class="background-image">
-  <h1>Frequently Asked Questions </h1>
-<div  class="row">
-<div class="col">
-  <div class="tabs">
-    <div class="tab">
-      <input type="checkbox" id="chck1">
-      <label class="tab-label" for="chck1">Category</label>
-     
-      <div class="tab-content">
-        <ion-item>
-          <ion-select class="ion-select">
-           <ion-select-option>
-            <ion-chip >
-          <ion-icon name="pin">Food & Drink</ion-icon>
-          <ion-label>Category List</ion-label>
-        </ion-chip>  
-        </ion-select-option>
-        
-        <ion-select-option>
-          <ion-chip >
-        <ion-icon name="pin">Clothing & Footwear</ion-icon>
-        <ion-label>Category List</ion-label>
-      </ion-chip>  
-      </ion-select-option>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Home</ion-title>
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
 
-      <ion-select-option>
-        <ion-chip >
-      <ion-icon name="pin">Health & Personal Care</ion-icon>
-      <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-    
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Charity</ion-icon>
-    <ion-label>Category List</ion-label>
-  </ion-chip>  
-  </ion-select-option>
+<ion-content>
+  <ion-list-header color="light">Overview of Monthly Budgets</ion-list-header>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <!-- <ion-card-subtitle>Number of Viewers per season for</ion-card-subtitle> -->
+      <ion-card-title>Overview of Goals</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #pieChart></canvas>
+    </ion-card-content>
+  </ion-card>
 
-      <ion-select-option>
-        <ion-chip >
-      <ion-icon name="pin">Education</ion-icon>
-      <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Overview of Expenses</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #pie1Chart></canvas>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Gifts</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Overview of Income</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #pie2Chart></canvas>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Home & Utilities</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Leisure</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Loans</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Other</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Sports</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Taxes</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-
-    <ion-select-option>
-      <ion-chip >
-    <ion-icon name="pin">Transport</ion-icon>
-    <ion-label>Category List</ion-label>
-    </ion-chip>  
-    </ion-select-option>
-      </ion-select>
-
-      </ion-item>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 </ion-content>
-       
-
-          
-      
-      
-
-
-

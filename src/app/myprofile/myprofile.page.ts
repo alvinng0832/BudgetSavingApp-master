@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-myprofile',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyprofilePage implements OnInit {
 
-  constructor() { }
+  profile_form: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+
+
   }
 
 }

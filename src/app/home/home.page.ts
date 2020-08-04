@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ExpenseService } from '../services/expense.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormBuilder, FormGroup } from '@angular/forms';
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { Chart } from "chart.js";
+
 
 interface Car {
   value: string;
@@ -17,23 +14,101 @@ interface Car {
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+    @ViewChild('pieChart') pieChart;
+    @ViewChild('pie1Chart') pie1Chart;
+    @ViewChild('pie2Chart') pie2Chart;
+  
+    pie: any;
+    colorArray: any;
+    constructor() { }
 
-
-expensesForm: FormGroup
-  data: any;
-
-  email;
-  constructor(private fb: FormBuilder, private afAuth: AngularFireAuth, private onauth: ExpenseService) {
-   
-  }
 
   ngOnInit() {
+    
   }
-  ionViewDidEnter() {
+  
+    ionViewDidEnter() {
+      this.createPieChart();
+      this.createPie1Chart();
+      this.createPie2Chart();
+    }
+  
+    //Chart for Goals
+    createPieChart() {
+      this.pie = new Chart(this.pieChart.nativeElement, {
+        type: 'pie',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+            label: 'Viewers in millions',
+            data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17, 18 , 19, 20, 22],
+            backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+            borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
 
-    this.email = this.onauth.email
-   }
-   
- 
+  //Chart for Expenses
+  createPie1Chart() {
+    this.pie = new Chart(this.pie1Chart.nativeElement, {
+      type: 'pie',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Viewers in millions',
+          data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17, 18 , 19, 20, 22],
+          backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+          borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  }
+  
 
+// Chart for Income 
+createPie2Chart() {
+  this.pie = new Chart(this.pie2Chart.nativeElement, {
+    type: 'pie',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+      datasets: [{
+        label: 'Viewers in millions',
+        data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17, 18 , 19, 20, 22],
+        backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+        borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
 }
