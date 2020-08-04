@@ -26,24 +26,26 @@ export class ExpensesPage implements OnInit {
 
   ngOnInit() {
     this.expenseService.read_students().subscribe(data => {
-
+      console.log(data)
       this.expensesList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          FirstName: e.payload.doc.data()['FirstName'],
-          LastName: e.payload.doc.data()['LastName'],
-          Amount: e.payload.doc.data()['Amount'],
-          Date: e.payload.doc.data()['Date'],
-          Tags: e.payload.doc.data()['Date'],
-          Description: e.payload.doc.data()['Description'],
-          Category: e.payload.doc.data()['Category']
-        };
-      })
-      console.log(this.expensesList);
+        const data = e.payload.doc.data();
+        const id = e.payload.doc.id;
 
-    });
-  }
+        return {id, ...data}
+          
+        } );
+      
+      console.log(this.expensesList)
+  })
+
+}
+    // this.expenseService.read_students().subscribe(data => {
+
+      
+    //   console.log(this.expensesList);
+
+    // });
+  
   Expenses(){
 this.router.navigateByUrl('/expensedetails')
   }
