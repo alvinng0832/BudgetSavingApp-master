@@ -9,13 +9,14 @@ import { AddIncomePageRoutingModule } from './add-income-routing.module';
 import { AddIncomePage } from './add-income.page';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    AddIncomePageRoutingModule
+    AddIncomePageRoutingModule,
   ],
   declarations: [AddIncomePage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
