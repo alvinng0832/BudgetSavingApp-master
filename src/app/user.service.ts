@@ -14,11 +14,17 @@ interface user {
   providedIn: 'root'
 })
 export class UserService {
-
-  private user: user
+  uid: any;
+  user: any;
+ 
 
   constructor(private fireStore:AngularFirestore, private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
-
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.afAuth.auth.onAuthStateChanged((user) => {
+     
+      this.uid = user.uid
+    })
+    console.log(this.user.user.uid)
   }
 
   setUser(user: user) {
@@ -59,6 +65,10 @@ export class UserService {
 
   getUID(): string {
     return this.user.uid
+  }
+
+  getProfile(){
+    this.fireStore.collection("users").doc(this.user.user.uid).snapshotChanges;
   }
 
 }

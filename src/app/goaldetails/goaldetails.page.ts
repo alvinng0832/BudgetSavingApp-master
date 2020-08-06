@@ -4,6 +4,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { GoalsService } from '../services/goals.service';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 interface GoalsRecord {
   id:string
   Name: string;
@@ -31,33 +32,41 @@ export class GoaldetailsPage implements OnInit {
   data: any
   id:any
   sub: any;
+  user: any;
+  uid: any;
  
   
-  constructor(private route: ActivatedRoute,private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
+  constructor( private afAuth: AngularFireAuth, private route: ActivatedRoute,private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
     this.goalsdata = {} as GoalsRecord;
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.afAuth.auth.onAuthStateChanged((user) => {
+     
+      this.uid = user.uid
+    })
+    console.log(this.user.user.uid)
 
    }
 
    ngOnInit() {
     this.firebaseService.read_students().subscribe(data => {
-
+      console.log(data)
       this.goalList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          TargetAmount: e.payload.doc.data()['TargetAmount'],
-          SavedAmount: e.payload.doc.data()['SavedAmount'],
-          DesiredDate: e.payload.doc.data()['DesiredDate'],
-          circularValue: e.payload.doc.data()['SavedAmount']/ e.payload.doc.data()['TargetAmount'] * 100
-        };
-      })
-      console.log(this.goalList);
+        const data = e.payload.doc.data();
+        const id = e.payload.doc.id;
+        const Name = e.payload.doc.data()['Name'];
+        const TargetAmount = e.payload.doc.data()['TargetAmount'];
+        const SavedAmount = e.payload.doc.data()['SavedAmount'];
+        const DesiredDate = e.payload.doc.data()['DesiredDate'];
+        const circularValue =  e.payload.doc.data()['SavedAmount']/ e.payload.doc.data()['TargetAmount'] * 100;
 
-    });
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; 
- });
+
+        return {id, Name, TargetAmount, SavedAmount, DesiredDate, circularValue, ...data}
+          
+      });
+      
+      console.log(this.goalList)
+  })
+
   }
 
   formatSubtitle = (percent: number) : string => {
@@ -91,7 +100,7 @@ export class GoaldetailsPage implements OnInit {
     record['TargetAmount'] = recordRow.TargetAmount;
     record['SavedAmount'] = recordRow.SavedAmount;
     record['DesiredDate'] = recordRow.DesiredDate;
-   // this.firebaseService.update_student( recordRow.id, record);
+   this.firebaseService.update_student( recordRow.id, record);
     recordRow.isEdit = false;
   }
   calcAge() {

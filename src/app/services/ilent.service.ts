@@ -23,7 +23,8 @@ export class IlentService implements OnInit{
   private ilented: Observable<LentDebts[]>;
   uid:any
   user:any
-  collectionName: "ilented"
+  collectionName= "ilented"
+
 
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
@@ -38,7 +39,7 @@ export class IlentService implements OnInit{
     }
       
     ngOnInit(){
-      this.LentCollection =  this.firestore.collection('users').doc(this.user).collection<LentDebts>(this.collectionName);
+      this.LentCollection =  this.firestore.collection('users').doc(this.user).collection<LentDebts>('ilented');
       this.ilented = this.LentCollection.snapshotChanges().pipe(
       map(data => data.map(e => {
       const data = e.payload.doc.data() ;
@@ -57,16 +58,16 @@ export class IlentService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection('users').doc(this.uid);
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
       }
       updateNote(ilent) {
-        return this.firestore.collection('users').doc(this.user).collection(this.collectionName).add(ilent)      }
+       this.firestore.collection('users').doc(this.user.user.uid).collection('ilented').add(ilent)    
+        }
       deleteNote(ilent) {
         this.LentCollection.doc(ilent.id).delete();
       }
       addNote(ilent) {
-        console.log(ilent)
-        return this.firestore.collection('users').doc(this.user).collection(this.collectionName).add(ilent)
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent)
       }
      
     

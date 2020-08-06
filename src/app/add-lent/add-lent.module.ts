@@ -41,6 +41,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { DatePickerModule } from 'ionic4-date-picker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -84,7 +87,13 @@ import {MatTreeModule} from '@angular/material/tree';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    DatePickerModule,
+    MatDatepickerModule,  
+    MatNativeDateModule,
+    MatFormFieldModule, 
+    
+    
   ],
   declarations: [AddLentPage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

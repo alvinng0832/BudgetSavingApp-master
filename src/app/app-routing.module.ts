@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'add-borrow',
+    redirectTo: 'debts',
     pathMatch: 'full'
   },
   {

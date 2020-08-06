@@ -10,7 +10,6 @@ interface BorrowRecord {
   Description: string;
   Amount: string;
   Date: string;
-  DueDate: string;
   userId: string;
 }
 @Component({

@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-lent</ion-title>
+    <ion-title>Add Borrowing</ion-title>
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
   </ion-toolbar>
-  <ion-button slot="start">
-    <ion-menu-button></ion-menu-button>
-  </ion-button>
 </ion-header>
 
 <ion-content>
@@ -23,23 +23,23 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
     
-      <mat-form-field style="width: 220px;" >
+      <mat-form-field style="width: 350px;" >
         <mat-label style="color:white">Name</mat-label>
-        <input style="width: 300px; font-size: 18px; height: 50px;" type="text" formControlName="Name" matInput placeholder="FirstName" required matInput>
+        <input style="width: 300px; font-size: 22px; height: 50px;" type="text" formControlName="Name" matInput placeholder="FirstName" required matInput>
       </mat-form-field>
   
      
     </mat-expansion-panel>
   
     <mat-expansion-panel >
-      <mat-expansion-panel-header  [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
+      <mat-expansion-panel-header  [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
         <ion-icon class="ion-icon" style="color: white;" name="cash-outline"></ion-icon>
  
         <mat-panel-description>
           Amount
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <mat-form-field appearance="fill" style="width: 300px;">
+      <mat-form-field appearance="fill" style="width: 320px;">
         <mat-label style="color: white; font-size: 20px; width: 400px;">Amount in SGD</mat-label>
         <input type="number" style="width: 100%; height: 60px; font-size: 25px;" 
          formControlName="Amount" matInput placeholder="Amount" class="example-right-align">
@@ -57,21 +57,21 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
   
-      <mat-form-field  appearance="fill" style="width: 400px;">
-        <mat-label  style="color: white; font-size: 18px; width: 400px;">What was it for?</mat-label>
-        <textarea  formControlName="Description" matInput></textarea>
+      <mat-form-field appearance="fill" style="width: 400px; font-size: 22px;">
+        <mat-label  style="color: white;  width: 400px; ">What was it for?</mat-label>
+        <textarea style=" height: 80px;" formControlName="Description" matInput></textarea>
       </mat-form-field>
       
     </mat-expansion-panel>
   
     <mat-expansion-panel >
-      <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
+      <mat-expansion-panel-header [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
         <ion-icon class="ion-icon" style="color: white;" name="calendar-outline"></ion-icon>
         <mat-panel-title>Date</mat-panel-title>
         <mat-panel-description>From When Start</mat-panel-description>
       </mat-expansion-panel-header>
   
-      <mat-form-field class="example-full-width" style="font-size:18px; width: 300px;" color="accent" appearance="outline">
+      <mat-form-field class="example-full-width" style="font-size:22px; width: 350px;" color="accent" appearance="outline">
         <mat-label style="color:white">Choose a date </mat-label>
         <input style="width: 100%; height: 60px;" formControlName="Date" matInput [matDatepicker]="picker1">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -80,13 +80,13 @@
     </mat-expansion-panel>
   
     <mat-expansion-panel >
-      <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
+      <mat-expansion-panel-header [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
         <ion-icon class="ion-icon" style="color: white;" name="calendar-outline"></ion-icon>
         <mat-panel-title>Due Date</mat-panel-title>
         <mat-panel-description>To When</mat-panel-description>
       </mat-expansion-panel-header>
   
-      <mat-form-field class="example-full-width" style="font-size:18px; width: 300px;" color="accent" appearance="outline">
+      <mat-form-field class="example-full-width" style="font-size:22px; width: 350px;" color="accent" appearance="outline">
         <mat-label style="color:white">Choose a date </mat-label>
         <input style="width: 100%; height: 60px;" formControlName="DueDate" matInput [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -95,7 +95,7 @@
     </mat-expansion-panel>
   
   
-    <ion-button expand="full" fill="outline" style="height: 80px;" (click)="BorrowRecord()" [disabled]="BorrowForm.invalid">
+    <ion-button expand="full" fill="solid" style="height: 80px;" (click)="BorrowRecord()" [disabled]="BorrowForm.invalid">
       <span style="font-size: 50px;" class="material-icons">
       done_outline
       </span>
