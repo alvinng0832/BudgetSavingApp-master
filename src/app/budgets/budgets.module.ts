@@ -5,6 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { BudgetsPageRoutingModule } from './budgets-routing.module';
 import { BudgetsPage } from './budgets.page';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,7 +16,10 @@ import { BudgetsPage } from './budgets.page';
     IonicModule,
     BudgetsPageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule
   ],
   declarations: [BudgetsPage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

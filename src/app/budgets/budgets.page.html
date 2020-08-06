@@ -69,13 +69,21 @@
 
 <!-- CALENDAR INPUTS -->
 
+
+      
+
   <form [formGroup]="addCalendarForm" (ngSubmit)="addCalendar()">
     <ion-item>
-      <ion-label></ion-label>
-      <ion-textarea placeholder="Type Start Date" type="text" formControlName="startDate"></ion-textarea>
+      <!-- <ion-textarea placeholder="Type Start Date" type="text" formControlName="startDate"></ion-textarea> -->
+      <input placeholder="Enter Start Date" matInput [matDatepicker]="pickerStartDate" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStartDate></mat-datepicker>
     </ion-item>
     <ion-item>
-      <ion-textarea placeholder="Type End Date" type="text" formControlName="endDate"></ion-textarea>
+      <!-- <ion-textarea placeholder="Type End Date" type="text" formControlName="endDate"></ion-textarea> -->
+      <input matInput placeholder="Enter End Date" [matDatepicker]="pickerEndDate" formControlName="endDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEndDate></mat-datepicker>
     </ion-item>
 
     <ion-grid>
