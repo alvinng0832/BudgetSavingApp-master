@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
 import { auth } from 'firebase/app';
-import { firestore } from 'firebase';
-import { AngularFirestore } from '@angular/fire/firestore';
 
 interface user {
   username: string;
@@ -18,7 +16,7 @@ export class UserService {
   user: any;
  
 
-  constructor(private fireStore:AngularFirestore, private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
+  constructor( private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
     this.user =JSON.parse(localStorage.getItem('user'))
     this.afAuth.auth.onAuthStateChanged((user) => {
      
@@ -67,8 +65,6 @@ export class UserService {
     return this.user.uid
   }
 
-  getProfile(){
-    this.fireStore.collection("users").doc(this.user.user.uid).snapshotChanges;
-  }
+  
 
 }
