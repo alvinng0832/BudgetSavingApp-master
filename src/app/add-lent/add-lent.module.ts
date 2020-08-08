@@ -41,7 +41,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
+import { DatePickerModule } from 'ionic4-date-picker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -86,7 +88,12 @@ import { AngularFirestoreCollection } from '@angular/fire/firestore';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    AngularFirestoreCollection
+    DatePickerModule,
+    MatDatepickerModule,  
+    MatNativeDateModule,
+    MatFormFieldModule, 
+    
+    
   ],
   declarations: [AddLentPage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

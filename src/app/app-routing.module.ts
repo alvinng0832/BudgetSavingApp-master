@@ -154,7 +154,8 @@ const routes: Routes = [
   {
     path: 'tabsbudget',
     loadChildren: () => import('./tabsbudget/tabsbudget.module').then( m => m.TabsbudgetPageModule)
-  },  {
+  },
+  {
     path: 'calculatedbudget',
     loadChildren: () => import('./calculatedbudget/calculatedbudget.module').then( m => m.CalculatedbudgetPageModule)
   }
