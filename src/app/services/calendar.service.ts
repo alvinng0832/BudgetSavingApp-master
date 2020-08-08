@@ -14,7 +14,8 @@ export class CalendarService {
   user: any;
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
-    this.user = JSON.parse(localStorage.getItem('user'));
+    let json = JSON.parse(localStorage.getItem('user'));
+    this.user = json.user
   }
 
   addCalendar(calendar: Calendar){

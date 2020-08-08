@@ -23,8 +23,8 @@ export class FirebaseService implements OnInit{
   constructor(
     private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
   ) { 
-    this.user = JSON.parse(localStorage.getItem('user'));
-
+    let json = JSON.parse(localStorage.getItem('user'));
+    this.user = json.user
     
   }
 ngOnInit(){

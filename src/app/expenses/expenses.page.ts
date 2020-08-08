@@ -25,26 +25,26 @@ export class ExpensesPage implements OnInit {
    }
 
   ngOnInit() {
-  //   this.expenseService.read_students().subscribe(data => {
-  //     console.log(data)
-  //     this.expensesList = data.map(e => {
-  //       const data = e.payload.doc.data();
-  //       const id = e.payload.doc.id;
-  //       const FirstName = e.payload.doc.data()['FirstName'];
-  //       const LastName = e.payload.doc.data()['LastName']
-  //       const Amount = e.payload.doc.data()['Amount']
-  //       const Date = e.payload.doc.data()['Date']
-  //       const Tags = e.payload.doc.data()['Tags']
-  //       const Category = e.payload.doc.data()['Category']
-  //       const Description = e.payload.doc.data()['Description']
+    this.expenseService.read_students().subscribe(data => {
+      console.log(data)
+      this.expensesList = data.map(e => {
+        const data = e.payload.doc.data();
+        const id = e.payload.doc.id;
+        const FirstName = e.payload.doc.data()['FirstName'];
+        const LastName = e.payload.doc.data()['LastName']
+        const Amount = e.payload.doc.data()['Amount']
+        const Date = e.payload.doc.data()['Date']
+        const Tags = e.payload.doc.data()['Tags']
+        const Category = e.payload.doc.data()['Category']
+        const Description = e.payload.doc.data()['Description']
 
 
-  //       return {id, FirstName, LastName, Amount, Date, Tags,Category,Description, ...data}
+        return {id, FirstName, LastName, Amount, Date, Tags,Category,Description, ...data}
           
-  //       } );
+        } );
       
-  //     console.log(this.expensesList)
-  // })
+      console.log(this.expensesList)
+  })
 }
  
   Expenses(){
