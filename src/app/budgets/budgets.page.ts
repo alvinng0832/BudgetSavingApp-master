@@ -16,6 +16,9 @@ interface budgetRecord{
 export class BudgetsPage implements OnInit {
   addCalendarForm: FormGroup;
   budgetdata:budgetRecord
+
+  calendarList=[];
+
   
   constructor(
     private modalController: ModalController,
@@ -35,8 +38,20 @@ export class BudgetsPage implements OnInit {
         endDate: ['', [Validators.required]]
   
       })
-  
+
+      this.calendarService.getCalendar().subscribe(data => {
+        console.log(data)
+        this.calendarList = data.map(e => {
+          const data = e.payload.doc.data();
+          const id = e.payload.doc.id;
+
+          return {id, ...data}
+        })
+       
+       
+      })
     }
+        
 
     addCalendar(){
 

@@ -150,7 +150,16 @@ const routes: Routes = [
   {
     path: 'note',
     loadChildren: () => import('./note/note.module').then( m => m.NotePageModule)
+  },
+  {
+    path: 'tabsbudget',
+    loadChildren: () => import('./tabsbudget/tabsbudget.module').then( m => m.TabsbudgetPageModule)
+  },  {
+    path: 'calculatedbudget',
+    loadChildren: () => import('./calculatedbudget/calculatedbudget.module').then( m => m.CalculatedbudgetPageModule)
   }
+
+
 ];
 
 @NgModule({

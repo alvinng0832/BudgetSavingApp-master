@@ -37,7 +37,6 @@ export class ExpensesPage implements OnInit {
       
       console.log(this.expensesList)
   })
-
 }
     // this.expenseService.read_students().subscribe(data => {
 
