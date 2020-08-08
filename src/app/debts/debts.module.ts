@@ -7,17 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { DebtsPageRoutingModule } from './debts-routing.module';
 
 import { DebtsPage } from './debts.page';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DebtsPageRoutingModule,
-    MatButtonModule,
-    MatIconModule
+    DebtsPageRoutingModule
   ],
   declarations: [DebtsPage]
 })

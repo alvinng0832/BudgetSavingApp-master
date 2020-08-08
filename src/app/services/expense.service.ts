@@ -31,17 +31,17 @@ export class ExpenseService {
   }
 
   addExpense(expense: Expense){
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(expense)
+    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(expense)
   }
   read_students() {
-    return this.firestore.collection('users').doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection('Expenses').doc(this.user.user.uid).collection('Expense').snapshotChanges();
   }
-  update_student(expenseID, expense) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(expenseID).update(expense);
+  update_student(recordID, expense) {
+    this.firestore.doc(this.collectionName + '/' + recordID).update(expense);
   }
 
   delete_student(expense_id) {
-    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(expense_id).delete()
+    this.firestore.doc(this.collectionName + '/' + expense_id).delete();
   }
 
 

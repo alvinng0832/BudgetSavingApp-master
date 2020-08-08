@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Chart } from 'chart.js';
+import { ExpenseService } from '../services/expense.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Chart } from "chart.js";
 
 
 interface Car {

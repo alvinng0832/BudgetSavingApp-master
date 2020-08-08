@@ -48,7 +48,6 @@
     "firebase": "^7.16.0",
     "firebase-admin": "^9.0.0",
     "firebase-functions": "^3.8.0",
-    "ionic4-date-picker": "^0.1.0",
     "ng-circle-progress": "^1.5.1",
     "react-gradient-progress": "^1.0.3",
     "rxjs": "~6.5.1",

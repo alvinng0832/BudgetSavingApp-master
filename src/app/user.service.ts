@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
 import { auth } from 'firebase/app';
+import { firestore } from 'firebase';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 interface user {
   username: string;
@@ -12,17 +14,11 @@ interface user {
   providedIn: 'root'
 })
 export class UserService {
-  uid: any;
-  user: any;
- 
 
-  constructor( private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
-    this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
-    console.log(this.user.user.uid)
+  private user: user
+
+  constructor(private fireStore:AngularFirestore, private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
+
   }
 
   setUser(user: user) {
@@ -64,7 +60,5 @@ export class UserService {
   getUID(): string {
     return this.user.uid
   }
-
-  
 
 }

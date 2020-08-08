@@ -42,6 +42,9 @@ export class NewgoalPage implements OnInit {
       TargetAmount: ['', [Validators.required]],
       SavedAmount: ['', [Validators.required]],
       DesiredDate: ['', [Validators.required]]
+     
+     
+
     })
 
   }

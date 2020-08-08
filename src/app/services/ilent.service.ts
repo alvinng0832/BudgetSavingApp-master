@@ -4,53 +4,41 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
+import {LentDebts} from'src/models/ilent';
 
-export interface LentDebts {
-  id?: string,
-  Name: string,
-  Amount: string,
-  Description: string,
-  DueDate:string,
-  Date: string,
-  userId: string
-}
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class IlentService implements OnInit{
+export class IlentService {
   private LentCollection: AngularFirestoreCollection<LentDebts>;
   private ilented: Observable<LentDebts[]>;
   uid:any
-  user:any
-  collectionName= "ilented"
-
-
+  collectionName: "ilented"
+ ilent:LentDebts;
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
       private authService: AuthService
     ) {
-      this.user =JSON.parse(localStorage.getItem('user'))
-      this.afAuth.auth.onAuthStateChanged((user) => {
-       
-        this.uid = user.uid
-      })
-      console.log(this.user.user.uid)
+      let currentUser = this.authService.getCurrentUser();
+      if(this.afAuth.auth.currentUser) {
+        let user = this.afAuth.auth.currentUser.uid;
+      }
+      
+      if (currentUser) {
+        this.refreshNotesCollection(currentUser.uid)
+      }
     }
       
-    ngOnInit(){
-      this.LentCollection =  this.firestore.collection('users').doc(this.user).collection<LentDebts>('ilented');
+    refreshNotesCollection(userId){
+      this.LentCollection =  this.firestore.collection('users').doc(userId).collection<LentDebts>(this.collectionName);
       this.ilented = this.LentCollection.snapshotChanges().pipe(
       map(data => data.map(e => {
       const data = e.payload.doc.data() ;
       const id = e.payload.doc.id;
-      const Name = e.payload.doc.data()['Name'];
-      const Description = e.payload.doc.data()['Description'];
-      const Amount = e.payload.doc.data()['Amount'];
-      const Date = e.payload.doc.data()['Date'];
-      const DueDate = e.payload.doc.data()['DueDate'];
   
-      return {id, Name, Description, Amount, Date, DueDate, ...data };
+      return {id, ...data };
       
       }))
       )
@@ -58,16 +46,16 @@ export class IlentService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.ilented;
       }
       updateNote(ilent) {
-       this.firestore.collection('users').doc(this.user.user.uid).collection('ilented').add(ilent)    
-        }
+        return this.LentCollection.doc(ilent.id).update(ilent);
+      }
       deleteNote(ilent) {
         this.LentCollection.doc(ilent.id).delete();
       }
       addNote(ilent) {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent)
+        return this.LentCollection.add(ilent);
       }
      
     

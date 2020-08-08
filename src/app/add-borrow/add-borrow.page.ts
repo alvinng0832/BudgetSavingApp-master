@@ -10,6 +10,7 @@ interface BorrowRecord {
   Description: string;
   Amount: string;
   Date: string;
+  DueDate: string;
   userId: string;
 }
 @Component({
@@ -49,7 +50,7 @@ export class AddBorrowPage implements OnInit {
       Date: ['', [Validators.required]],
       DueDate: ['', [Validators.required]]
   })
- 
+  console.log(this.iborrowService.getNotes().snapshotChanges())
 }
 
 BorrowRecord(){

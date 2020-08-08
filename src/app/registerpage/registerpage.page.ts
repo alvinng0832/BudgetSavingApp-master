@@ -10,12 +10,6 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-export interface Profile {
-  id?:string
-  username: string;
-  email: string;
-  password: string;
-}
 @Component({
   selector: 'app-registerpage',
   templateUrl: './registerpage.page.html',

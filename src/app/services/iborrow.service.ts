@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 export interface BorrowDebts {
+  
+
   id:string
   Name: string;
   Description: string;
@@ -61,7 +63,7 @@ export class IborrowService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection('users').doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection('users').doc(this.uid);
       }
       updateNote(iborrow) {
         return this.firestore.collection('users' ).doc(this.uid).collection('iBorrow')
