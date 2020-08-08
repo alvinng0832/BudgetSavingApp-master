@@ -17,8 +17,8 @@
     <span *ngIf="!item.isEdit; else elseBlock">
     <ion-row>
       <ion-icon (click)="Back()" class="ion-back" name="arrow-back-outline"></ion-icon>
-      <ion-icon (click)="Remove()" class="ion-trash" name="trash-outline"></ion-icon>
-      <ion-icon (click)="EditExpenses()" class="ion-create" name="create-outline"></ion-icon>
+      <ion-icon (click)="Remove(item.id)" class="ion-trash" name="trash-outline"></ion-icon>
+      <ion-icon (click)="EditExpenses(item)" class="ion-create" name="create-outline"></ion-icon>
   </ion-row>
  
     
@@ -48,7 +48,7 @@
 
      
       
-      <ng-template  #elseBlock>
+      <ng-template color="medium" #elseBlock>
         <ion-card-header>
           <ion-card-title>
             <ion-grid>
@@ -70,22 +70,34 @@
             </ion-grid>
           </ion-card-title>
         </ion-card-header>
-        <ion-card-content >
+        <ion-card-content color="medium">
           <ion-item>
-            <ion-label><strong>Name</strong></ion-label>
-            <ion-input type="text" [(ngModel)]="item.Name"></ion-input>
+            <ion-label><strong>First Name</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.FirstName"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label><strong>Target Amount</strong></ion-label>
-            <ion-input type="text" [(ngModel)]="item.TargetAmount"></ion-input>
+            <ion-label><strong>Last Name</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.LastName"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label><strong>Saved Amount</strong></ion-label>
-            <ion-input type="text" [(ngModel)]="item.SavedAmount"></ion-input>
+            <ion-label><strong>Amount</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Amount"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label><strong>Desired Date</strong></ion-label>
-            <ion-input type="text" [(ngModel)]="item.DesiredDate"></ion-input>
+            <ion-input type="text" [(ngModel)]="item.Date"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Tags</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Tags"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Description</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Description"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Categories</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Category.name"></ion-input>
           </ion-item>
         </ion-card-content>
       </ng-template>

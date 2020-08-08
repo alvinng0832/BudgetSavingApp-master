@@ -5,18 +5,34 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+export interface Profile {
+  id:string
+  username: string;
+  email: string;
+  password: string;
+}
 
 @Injectable()
 export class AuthService {
 username:string
+  user: any;
+  uid: any;
   save(uid: string) {
     throw new Error("Method not implemented.");
   }
 
   constructor(
+    private firestore:AngularFirestore,
     public afstore: AngularFirestore,
     private afAuth: AngularFireAuth
-  ) { }
+  ) { 
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.afAuth.auth.onAuthStateChanged((user) => {
+     
+      this.uid = user.uid
+    })
+    console.log(this.user.user.uid)
+  }
 
   registerUser(value) {
     
@@ -68,5 +84,8 @@ username:string
     } else {
       return null;
     }
+  }
+  getProfile(){
+    return this.firestore.collection("users").doc(this.user.user.uid).snapshotChanges();
   }
 }

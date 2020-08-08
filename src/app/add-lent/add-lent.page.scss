@@ -17,15 +17,18 @@
   
   .example-headers-align .mat-form-field + .mat-form-field {
     margin-left: 50px;
+    background: rgb(245, 211, 100);
   }
   .mat-input{
       box-sizing: 50px;
+      background: rgb(245, 211, 100);
   }
   .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;
+    background: rgb(245, 211, 100);
   }
   .mat-expansion-panel-header.mat-expanded {
-    background: rgb(243, 57, 187);
+    background: rgb(245, 211, 100);
   }
   
   .mat-expansion-indicator::after {
@@ -38,7 +41,7 @@
     font-size: 30px;
   }
   ion-content {
-    --background: linear-gradient(#9b9b9b, #e6e6e6);
+    --background: linear-gradient(#9b9b9b, #e9a7a7);
   }
   ::ng-deep .mat-select-content{
     width: max-content;
