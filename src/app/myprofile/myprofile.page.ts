@@ -29,20 +29,20 @@ export class MyprofilePage implements OnInit {
 
   ngOnInit() {
 
-    this.authService.getProfile().subscribe(data => {
+    // this.authService.getProfile().subscribe(data => {
 
-      this.ProfileList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          username : e.payload.doc.data()['username'],
-          email : e.payload.doc.data()['email'],
-          password : e.payload.doc.data()['password'],
-        };
-      })
-      console.log(this.ProfileList);
+    //   this.ProfileList = data.map(e => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       isEdit: false,
+    //       username : e.payload.doc.data()['username'],
+    //       email : e.payload.doc.data()['email'],
+    //       password : e.payload.doc.data()['password'],
+    //     };
+    //   })
+    //   console.log(this.ProfileList);
 
-    });
+    // });
 
   }
 }
