@@ -40,23 +40,9 @@ ngOnInit(){
 
 
   
-  gotohome(){
-    this.router.navigateByUrl('/home')
-  }
-  gotobudgets(){
-    this.router.navigateByUrl('/budgets')
-  }
-  gotogoals(){
-    this.router.navigateByUrl('/goals')
-  }
-  gotolocation(){
-    this.router.navigateByUrl('/location')
-  }
-  gotologin(){
-    this.router.navigateByUrl('/loginpage')
-  }
-  gotoregister(){
-    this.router.navigateByUrl('/registerpage')
+  goto(url){
+    this.router.navigateByUrl(`/${url}`)
+    this.menu.close()
   }
 
   initializeApp() {
