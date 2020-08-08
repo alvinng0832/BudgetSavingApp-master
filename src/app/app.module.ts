@@ -57,6 +57,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { LearnService } from './services/learn.service';
 firebase.initializeApp(environment.firebase);
 @NgModule({
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -128,7 +129,7 @@ firebase.initializeApp(environment.firebase);
     Keyboard,
     Geolocation,
     CallNumber,
-    // LearnService,
+    LearnService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],

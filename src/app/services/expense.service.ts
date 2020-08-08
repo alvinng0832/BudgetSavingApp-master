@@ -17,16 +17,7 @@ export class ExpenseService {
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
 
-    this.user = JSON.parse(localStorage.getItem('user'));
-
-
-    console.log(this.user.user.uid)
-    // this.afAuth.auth.onAuthStateChanged((user) => {
-    //   console.log(user)
-    //   this.uid = user.uid
-    //   this.email = user.email
-    // })
-    
+    // this.user = JSON.parse(localStorage.getItem('user'));
 
   }
 

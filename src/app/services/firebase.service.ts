@@ -25,30 +25,24 @@ export class FirebaseService implements OnInit{
   ) { 
     this.user = JSON.parse(localStorage.getItem('user'));
 
-
-    console.log(this.user.user.uid)
-    // this.afAuth.auth.onAuthStateChanged((user) => {
-    //   console.log(user)
-    //   this.uid = user.uid
-    // })
     
   }
 ngOnInit(){
   
 }
   create_student(record) {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(record);
+    return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).add(record);
   }
 
   read_students() {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).snapshotChanges();
   }
 
  update_student(recordID, record) {
- this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(recordID).update(record);
+ this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).doc(recordID).update(record);
 }
 
   delete_student(record_id) {
-    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(record_id).delete()
+    this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).doc(record_id).delete()
   }
 }

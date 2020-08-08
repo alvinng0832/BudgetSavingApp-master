@@ -15,18 +15,14 @@ export class CalendarService {
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
     this.user = JSON.parse(localStorage.getItem('user'));
-
-
   }
 
   addCalendar(calendar: Calendar){
-    
-    return this.firestore.collection("Calendar").doc(this.uid).collection('transaction').add(calendar)
+    return this.firestore.collection("Calendar").doc(this.user.id).collection('transaction').add(calendar)
   }
 
   getCalendar() {
-    console.log(this.user)
-    return this.firestore.collection('Calendar').doc(this.user.user.uid).collection('transaction').snapshotChanges();
+    return this.firestore.collection('Calendar').doc(this.user.uid).collection('transaction').snapshotChanges();
   }
 
 

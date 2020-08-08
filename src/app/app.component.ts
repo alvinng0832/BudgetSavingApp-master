@@ -1,11 +1,12 @@
 import { Component, RendererFactory2, Renderer2 ,OnInit} from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { Storage } from "@ionic/storage";
 import { ThemeService } from './services/theme.service';
+import { AuthService } from './auth.service';
 
 
 
@@ -29,7 +30,9 @@ ngOnInit(){
     private statusBar: StatusBar,
     public router: Router,
     private storage: Storage,
-    private themeService: ThemeService
+    private menu: MenuController,
+    private themeService: ThemeService,
+    private authSer: AuthService
   ) {
     this.initializeApp();
     this.darkMode = this.themeService.darkMode;
@@ -70,6 +73,10 @@ ngOnInit(){
     });
   }
   
+  logout() {
+    this.authSer.logoutUser()
+    this.menu.close()
+  }
   
 
 }

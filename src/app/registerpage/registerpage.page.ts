@@ -102,20 +102,19 @@ export class RegisterpagePage implements OnInit {
 
 
   tryRegister(value) {
-    console.log(value)
-
     this.authService.registerUser(value)
       .then(res => {
         
-        // console.log(res);
         this.errorMessage = "";
-        this.presentToast("Your account has been created successfully.")
 
         // AFTER REGISTER IT STRAIGHT AWAY GO IN LOGIN STATE, IN OTHER WORDS, NO NEED GO LOGIN PAGE 
         // MANDATORY UPDATE PHONE NUMBER 
         this.authService.loginUser(value).then(suc => {
+         
           this.afAuth.auth.onAuthStateChanged((user) => {
             if (user) {
+               this.presentToast("Your account has been created successfully.")
+
               // UPDATE PHONE WHILE IN LOGIN STATE BEFORE ENTERING TO MAIN PAGE
               this.next() // < GO TO NEXT SLIDE WHICH IS THE PHONE NUMBER
             }
@@ -181,14 +180,6 @@ export class RegisterpagePage implements OnInit {
       })
     })
   }
-
-  facebook(){
-
-  }
-  instagram(){
-    
-  }
-
 
   goLoginPage() {
     this.navCtrl.navigateBack('/authlogin');

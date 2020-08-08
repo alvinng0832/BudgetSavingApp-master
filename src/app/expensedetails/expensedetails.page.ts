@@ -23,7 +23,6 @@ export class ExpensedetailsPage implements OnInit {
      
       this.uid = user.uid
     })
-    console.log(this.user.user.uid)
    }
 
   ngOnInit() {
