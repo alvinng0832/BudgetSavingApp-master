@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { 
+  AuthenGuard as AuthGuard 
+} from './guards/authen.guard';
+
+
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate: [AuthGuard] // this is the guard component, pls go to guard page for more info
   },
   {
     path: '',
@@ -21,11 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'goals',
-    loadChildren: () => import('./goals/goals.module').then( m => m.GoalsPageModule)
+    loadChildren: () => import('./goals/goals.module').then( m => m.GoalsPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'budgets',
-    loadChildren: () => import('./budgets/budgets.module').then( m => m.BudgetsPageModule)
+    loadChildren: () => import('./budgets/budgets.module').then( m => m.BudgetsPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'ourstore',
@@ -89,7 +97,8 @@ const routes: Routes = [
   },
   {
     path: 'add-expenses',
-    loadChildren: () => import('./add-expenses/add-expenses.module').then( m => m.AddExpensesPageModule)
+    loadChildren: () => import('./add-expenses/add-expenses.module').then( m => m.AddExpensesPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'debts',
@@ -129,7 +138,8 @@ const routes: Routes = [
   },
   {
     path: 'expenses',
-    loadChildren: () => import('./expenses/expenses.module').then( m => m.ExpensesPageModule)
+    loadChildren: () => import('./expenses/expenses.module').then( m => m.ExpensesPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'expensedetails',

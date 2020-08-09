@@ -29,11 +29,11 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     
-    
+  
   }
   
     ionViewDidEnter() {
-
+      
       this.createPieChart();
       this.createPie1Chart();
       this.createPie2Chart();
