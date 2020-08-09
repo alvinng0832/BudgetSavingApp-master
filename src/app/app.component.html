@@ -6,12 +6,12 @@
     <div class="header-content">
       <img src="./assets/icon/people-customer-unknown-512.png" alt="">
       <ion-label>
-        <h2>User name</h2>
+        <h2 *ngIf="user">{{user.displayName}}</h2>
         <p>Budget Saving</p>
       </ion-label>
     </div>
    <div class="action-button" >
-     <ion-button href="/myprofile">
+     <ion-button (click)="goto('myprofile')">
        <ion-icon slot="start" name="add"></ion-icon>Edit Profile
      </ion-button>
    </div>

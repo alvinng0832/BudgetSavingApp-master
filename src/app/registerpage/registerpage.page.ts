@@ -81,6 +81,10 @@ export class RegisterpagePage implements OnInit {
         // Validators.minLength(8),
         Validators.required
       ])),
+      password1: new FormControl('', Validators.compose([
+        // Validators.minLength(8),
+        Validators.required
+      ]))
 
     });
 
@@ -104,7 +108,10 @@ export class RegisterpagePage implements OnInit {
 
 
   tryRegister(value) {
-    this.presentLoading()
+    if (value.password != value.password1) {
+      this.presentToast("Password does not match")
+    } else {
+
     this.authService.registerUser(value)
       .then(res => {
 
@@ -115,7 +122,7 @@ export class RegisterpagePage implements OnInit {
         this.authService.loginUser(value).then(suc => {
 
           this.afAuth.auth.onAuthStateChanged((user) => {
-            this.loading.dismiss()
+      
             if (user) {
 
               user.updateProfile({
@@ -128,12 +135,16 @@ export class RegisterpagePage implements OnInit {
             }
           })
         })
+
       }, err => {
+
         // RETURN ERROR DURING REGISTER 
         console.log(err);
+    
         this.errorMessage = err.message;
         this.successMessage = "";
       })
+    }
   }
 
   verify() {
@@ -180,6 +191,7 @@ export class RegisterpagePage implements OnInit {
 
     )
   }
+  //Verifying OTP
   update() {
     this.presentLoading(); // show loading
     this.afAuth.authState.subscribe(user => {
