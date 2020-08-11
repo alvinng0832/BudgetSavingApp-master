@@ -158,7 +158,11 @@ const routes: Routes = [
   {
     path: 'calculatedbudget',
     loadChildren: () => import('./calculatedbudget/calculatedbudget.module').then( m => m.CalculatedbudgetPageModule)
+  },  {
+    path: 'add-calendar',
+    loadChildren: () => import('./add-calendar/add-calendar.module').then( m => m.AddCalendarPageModule)
   }
+
 
 
 ];

@@ -16,12 +16,12 @@ export class CalendarService {
    
     this.user = JSON.parse(localStorage.getItem('user'));
 
-
+    this.uid = this.user
   }
 
   addCalendar(calendar: Calendar){
     
-    return this.firestore.collection("Calendar").doc(this.uid).collection('transaction').add(calendar)
+    return this.firestore.collection("Calendar").doc(this.user.user.uid).collection('transaction').add(calendar)
   }
 
   getCalendar() {

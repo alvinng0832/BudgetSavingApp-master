@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular'
-import { AddExpensesPage } from '../add-expenses/add-expenses.page';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CalendarService } from '../services/calendar.service';
+import { AddCalendarPage } from '../add-calendar/add-calendar.page';
+
+import { AddExpensesPage } from '../add-expenses/add-expenses.page';
+import { Router } from '@angular/router';
 
 interface budgetRecord{
   endDate:string;
@@ -22,7 +25,9 @@ export class BudgetsPage implements OnInit {
   
   constructor(
     private modalController: ModalController,
-    
+    private router: Router,
+  
+
     private formBuilder: FormBuilder,
     private calendarService: CalendarService
     
@@ -54,13 +59,6 @@ export class BudgetsPage implements OnInit {
         
 
     addCalendar(){
-
-      // this.expense.amount = this.addExpenseForm.controls.amount.value;
-      // //this.expense.userId = this.userService.getUID();
-      // this.expense.description = this.addExpenseForm.controls.description.value;
-      // this.expense.type = this.addExpenseForm.controls.type.value;
-      // this.expense.id = this.documentRef.id;
-      // this.expenseService.addExpense(this.expense);
   
       console.log(this.addCalendarForm.value);
       this.calendarService.addCalendar(this.addCalendarForm.value).then(resp => {
@@ -79,11 +77,14 @@ export class BudgetsPage implements OnInit {
   
   async presentModal() {
     const modal = await this.modalController.create({
-      component: AddExpensesPage
+      component: AddCalendarPage
     });
     return await modal.present();
   }
 
+  goToExpenses() {
+    this.router.navigateByUrl('/tabsbudget');
+  }
   
 }
 
