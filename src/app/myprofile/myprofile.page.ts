@@ -5,6 +5,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 interface Profile {
   id:string
@@ -21,13 +22,23 @@ export class MyprofilePage implements OnInit {
   profile: Profile;
 
   ProfileList: [];
+  user: any;
 
 
-  constructor( private router: Router, private firebaseService: FirebaseService, private firestore: AngularFirestore ,private authService: AuthService, private fb: FormBuilder) {
+  constructor( 
+    private router: Router, 
+    private firebaseService: FirebaseService, 
+    private firestore: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private authService: AuthService, 
+    private fb: FormBuilder) {
+    this.user = this.afAuth.auth.currentUser
+    console.log(this.user)
     this.profile = {} as Profile
    }
 
   ngOnInit() {
+    console.log(this.user)
 
     // this.authService.getProfile().subscribe(data => {
 

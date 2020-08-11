@@ -9,23 +9,23 @@
 
 <ion-content class="ion-padding">
 
-    <ion-card *ngFor="let item of ProfileList">
-    <ion-avatar>
+    <ion-card >
+    <ion-avatar style="margin-top: 1em;">
     <img
-      src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+      src="https://instagram.fsin8-1.fna.fbcdn.net/v/t51.2885-19/s320x320/99155136_238539014110164_6564776796615606272_n.jpg?_nc_ht=instagram.fsin8-1.fna.fbcdn.net&_nc_ohc=eGcwjoflBCkAX_o4yxg&oh=bba7aaa27ad5a490cb4dbac82b4dc3f9&oe=5F57567D"
     />
   </ion-avatar>
 
     <ion-item>
-      <ion-label>{{item.username}}</ion-label>
+      <ion-label>User: {{user.displayName}}</ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label>{{item.email}}</ion-label>
+      <ion-label>Email: {{user.email}}</ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label>{{item.password}} </ion-label>
+      <ion-label>Phone No. {{user.phoneNumber}} </ion-label>
     </ion-item>
   </ion-card>
 </ion-content>

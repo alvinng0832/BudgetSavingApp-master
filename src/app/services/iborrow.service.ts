@@ -35,7 +35,7 @@ export class IborrowService implements OnInit{
        
         this.uid = user.uid
       })
-      console.log(this.user.user.uid)
+
     }
       
      

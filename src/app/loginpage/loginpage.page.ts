@@ -60,12 +60,21 @@ export class LoginPage implements OnInit {
   };
 
   loginUser(value) {
+    this.presentLoading()
     this.authService.loginUser(value)
       .then(res => {
-        console.log(res);
-        this.errorMessage = "";
+        let obj: any;
+        obj = res
+        console.log(obj.user);
 
+        if (res) {
 
+          localStorage.setItem('user', JSON.stringify(obj.user))
+          this.navCtl.navigateForward("/home")
+          this.loadingController.dismiss()
+        } 
+        this.loadingController.dismiss()
+        // this.errorMessage = "";
       }, err => {
         this.loadingController.dismiss()
         this.errorMessage = err.message;
@@ -73,5 +82,13 @@ export class LoginPage implements OnInit {
   }
 
  
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+    });
+    await loading.present();
+    console.log('Loading dismissed!');
+  }
 }
 

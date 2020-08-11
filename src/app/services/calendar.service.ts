@@ -25,8 +25,7 @@ export class CalendarService {
   }
 
   getCalendar() {
-    console.log(this.user)
-    return this.firestore.collection('Calendar').doc(this.user.user.uid).collection('transaction').snapshotChanges();
+    return this.firestore.collection('Calendar').doc(this.user.uid).collection('transaction').snapshotChanges();
   }
 
 

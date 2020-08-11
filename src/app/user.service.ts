@@ -17,12 +17,7 @@ export class UserService {
  
 
   constructor( private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
-    this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
-    console.log(this.user.user.uid)
+
   }
 
   setUser(user: user) {

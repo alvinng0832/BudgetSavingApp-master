@@ -73,7 +73,7 @@
 
           <ion-item lines="none">
             <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
-            <ion-input type="password" placeholder="Enter confirm Password"></ion-input>
+            <ion-input type="password" placeholder="Enter confirm Password" formControlName="password1"></ion-input>
           </ion-item>
 
 
@@ -106,7 +106,9 @@
           </ion-button>
 
 
-          <div id="recaptcha-container" style="display: none;"></div>
+          <div id="recaptcha-container" style="display: none;">
+            <div id="recap" ></div>
+          </div>
         </div>
       </ion-slide>
 	</ion-slides>

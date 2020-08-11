@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 interface Car {
@@ -18,14 +19,21 @@ export class HomePage implements OnInit {
   
     pie: any;
     colorArray: any;
-    constructor() { }
+ 
+    constructor(
+      private afAuth: AngularFireAuth,
+    ) {
+      
+     }
 
 
   ngOnInit() {
     
+  
   }
   
     ionViewDidEnter() {
+      
       this.createPieChart();
       this.createPie1Chart();
       this.createPie2Chart();
