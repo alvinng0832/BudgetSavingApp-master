@@ -1,5 +1,41 @@
 ion-avatar {
-    display: block;
+    height: 75px;
+    width: 75px;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;  
+    position: absolute;
+    align-self: center;
+    top: 45px;
+}
+
+#upper {
+    width: 100%;
+    height: 7em;
+    background-color: #333333;
+
+}
+
+.profile {
+    margin-top: 40px;
+}
+
+ion-row {
+    width: 59%;
     margin-left: auto;
-    margin-right: auto;    
+    margin-right: auto;
+    text-align: center;
+}
+
+.w {
+    font-size: 9px;
+}
+
+
+
+#center {
+    border-width: 0 0.2px 0 0.2px;
+    border-style: solid;
+    border-color: #cccccc;
 }
