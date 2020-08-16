@@ -57,6 +57,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { LearnService } from './services/learn.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 firebase.initializeApp(environment.firebase);
 @NgModule({
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -127,6 +128,7 @@ firebase.initializeApp(environment.firebase);
     Geolocation,
     CallNumber,
     LearnService,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],

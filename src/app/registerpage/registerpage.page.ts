@@ -46,6 +46,10 @@ export class RegisterpagePage implements OnInit {
     'password': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 8 characters long.' }
+    ],
+    'confirmpassword': [
+      { type: 'required', message: 'Confirm Password is required.' },
+      { type: 'minlength', message: 'Password must be at least 8 characters long.' }
     ]
   };
 
@@ -90,7 +94,7 @@ export class RegisterpagePage implements OnInit {
         // Validators.minLength(8),
         Validators.required
       ])),
-      password1: new FormControl('', Validators.compose([
+      confirmpassword: new FormControl('', Validators.compose([
         // Validators.minLength(8),
         Validators.required
       ]))
@@ -117,7 +121,7 @@ export class RegisterpagePage implements OnInit {
 
 
   tryRegister(value) {
-    if (value.password != value.password1) {
+    if (value.password != value.confirmpassword) {
       this.presentToast("Password does not match")
     } else {
 
@@ -250,7 +254,7 @@ export class RegisterpagePage implements OnInit {
       message: 'Please wait...',
     });
     await loading.present();
-
-
   }
+
+
 }
