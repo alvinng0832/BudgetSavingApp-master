@@ -31,7 +31,6 @@ LentList=[];
      
       this.uid = user.uid
     })
-    console.log(this.user.user.uid)
   }
 
 

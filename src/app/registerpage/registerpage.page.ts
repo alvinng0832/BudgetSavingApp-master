@@ -46,17 +46,11 @@ export class RegisterpagePage implements OnInit {
     'password': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 8 characters long.' }
-    ],
-    'confirmpassword': [
-      { type: 'required', message: 'Confirm Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 8 characters long.' }
     ]
   };
 
   verificationId: any;
   recaptchaVerifier: any;
-  user: any;
-  uid: string;
 
   constructor(
     private navCtrl: NavController,
@@ -68,14 +62,7 @@ export class RegisterpagePage implements OnInit {
     private afstore: AngularFirestore,
     private loading: LoadingController,
 
-  ) { 
-    this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
-    console.log(this.user.user.uid)
-  }
+  ) { }
 
   ngOnInit() {
 
@@ -94,7 +81,7 @@ export class RegisterpagePage implements OnInit {
         // Validators.minLength(8),
         Validators.required
       ])),
-      confirmpassword: new FormControl('', Validators.compose([
+      password1: new FormControl('', Validators.compose([
         // Validators.minLength(8),
         Validators.required
       ]))
@@ -121,7 +108,7 @@ export class RegisterpagePage implements OnInit {
 
 
   tryRegister(value) {
-    if (value.password != value.confirmpassword) {
+    if (value.password != value.password1) {
       this.presentToast("Password does not match")
     } else {
 
@@ -233,7 +220,7 @@ export class RegisterpagePage implements OnInit {
   }
 
   goLoginPage() {
-    this.navCtrl.navigateBack('/loginpage');
+    this.navCtrl.navigateBack('/authlogin');
   }
 
   async presentToast(msg) {
@@ -254,7 +241,7 @@ export class RegisterpagePage implements OnInit {
       message: 'Please wait...',
     });
     await loading.present();
+
+
   }
-
-
 }
