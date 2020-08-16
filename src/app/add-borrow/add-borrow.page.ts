@@ -10,6 +10,7 @@ interface BorrowRecord {
   Description: string;
   Amount: string;
   Date: string;
+  DueDate: string;
   userId: string;
 }
 @Component({
@@ -18,6 +19,19 @@ interface BorrowRecord {
   styleUrls: ['./add-borrow.page.scss'],
 })
 export class AddBorrowPage implements OnInit {
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 
   dateClass = (d: Date): MatCalendarCellCssClasses => {
     const date = d.getDate();
@@ -32,6 +46,7 @@ export class AddBorrowPage implements OnInit {
     Amount: "",
     Date: "",
     DueDate: "",
+    NewAmount: "",
     userId: null
   };
   startDate = new Date(1990, 0, 1);
@@ -47,15 +62,16 @@ export class AddBorrowPage implements OnInit {
       Description: ['', [Validators.required]],
       Amount: ['', [Validators.required]],
       Date: ['', [Validators.required]],
-      DueDate: ['', [Validators.required]]
+      DueDate: ['', [Validators.required]],
   })
  
 }
 
 BorrowRecord(){
-  // console.log(this.BorrowForm.value);
+  console.log(this.BorrowForm.value);
   this.iborrowService.addNote(this.BorrowForm.value).then(resp => {
     this.BorrowForm.reset();
+    this.router.navigateByUrl('/debts')
   })
     .catch(error => {
       console.log(error);

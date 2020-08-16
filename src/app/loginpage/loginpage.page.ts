@@ -7,6 +7,7 @@ import { auth } from 'firebase/app';
 import { UserService } from '../user.service';
 import * as firebase from 'firebase';
 import { NavController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private router: Router
 
   ) { }
 
@@ -64,7 +66,7 @@ export class LoginPage implements OnInit {
       .then(res => {
         console.log(res);
         this.errorMessage = "";
-
+        this.router.navigateByUrl('/home')
 
       }, err => {
         this.loadingController.dismiss()

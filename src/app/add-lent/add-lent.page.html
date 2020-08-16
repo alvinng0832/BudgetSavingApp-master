@@ -12,7 +12,7 @@
   <mat-accordion style="color: darkgoldenrod;" class="example-headers-align" multi>
   
     <form [formGroup]="lentedForm" class="create-account-form">
-    <mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       
       <mat-expansion-panel-header [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
         <ion-icon class="ion-icon" style="color: rgb(0, 0, 0);" name="person-outline"></ion-icon>
@@ -25,9 +25,12 @@
         <mat-label style="color:rgb(0, 0, 0)">Name</mat-label>
         <input style="width: 450px; font-size: 24px; height: 50px;" type="text" formControlName="Name" matInput placeholder="FirstName" required matInput>
       </mat-form-field>
+      <mat-action-row>
+        <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+      </mat-action-row>
     </mat-expansion-panel>
   
-    <mat-expansion-panel >
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
       <mat-expansion-panel-header  [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
         <ion-icon class="ion-icon" style="color: rgb(0, 0, 0);" name="cash-outline"></ion-icon>
  
@@ -42,9 +45,13 @@
         <span matPrefix>$&nbsp;</span>
         <span style="font-size: 20px;" matSuffix>.00</span>
       </mat-form-field>
+      <mat-action-row>
+        <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+        <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+      </mat-action-row>
     </mat-expansion-panel>
   
-    <mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
       <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
         <ion-icon class="ion-icon" style="color: rgb(0, 0, 0);" name="list-outline"></ion-icon>
      
@@ -57,10 +64,13 @@
         <mat-label  style="color: rgb(0, 0, 0); font-size: 22px; width: 400px;">What was it for?</mat-label>
         <textarea  formControlName="Description" matInput></textarea>
       </mat-form-field>
-      
+      <mat-action-row>
+        <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+        <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+      </mat-action-row>
     </mat-expansion-panel>
   
-    <mat-expansion-panel >
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
       <mat-expansion-panel-header [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
         <ion-icon class="ion-icon" style="color: rgb(0, 0, 0);" name="calendar-outline"></ion-icon>
         <mat-panel-title>Date</mat-panel-title>
@@ -73,10 +83,14 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker  touchUi #picker></mat-datepicker>
       </mat-form-field>
+      <mat-action-row>
+        <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+        <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+      </mat-action-row>
     </mat-expansion-panel>
    
 
-      <mat-expansion-panel >
+      <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
         <mat-expansion-panel-header [collapsedHeight]="'65px'" [expandedHeight]="'65px'">
           <ion-icon class="ion-icon" style="color: rgb(0, 0, 0);" name="calendar-outline"></ion-icon>
           <mat-panel-title>Due Date</mat-panel-title>
@@ -89,8 +103,13 @@
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker  touchUi #picker1></mat-datepicker>
         </mat-form-field>
+        <mat-action-row>
+          <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+          <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">End</button>
+        </mat-action-row>
       </mat-expansion-panel>
- 
+
+    
   
   
   

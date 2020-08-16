@@ -47,7 +47,7 @@ collectionName= "addGoals"
         const TargetAmount = e.payload.doc.data()['TargetAmount'];
         const SavedAmount = e.payload.doc.data()['SavedAmount'];
         const DesiredDate = e.payload.doc.data()['DesiredDate'];
-        const progressValue =  e.payload.doc.data()['SavedAmount']/ e.payload.doc.data()['TargetAmount'] ;
+        const progressValue =  e.payload.doc.data()['SavedAmount'] / e.payload.doc.data()['TargetAmount'] ;
 
 
         return {id, Name, TargetAmount, SavedAmount, DesiredDate, progressValue, ...data}

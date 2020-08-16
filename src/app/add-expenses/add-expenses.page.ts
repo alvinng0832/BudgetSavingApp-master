@@ -25,6 +25,19 @@ interface ExpensesRecord {
   styleUrls: ['./add-expenses.page.scss'],
 })
 export class AddExpensesPage implements OnInit{
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
   toppings = new FormControl();
 
   toppingList: string[] = ['coffee & tea', 'medical services', 'accomodation','cloths', 'gambling', 'shoes',

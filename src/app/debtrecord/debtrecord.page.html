@@ -1,9 +1,283 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>debtrecord</ion-title>
+    <ion-row>
+      <ion-icon  routerLink="/debts" class="navigateback"style="font-size: 50px;" name="arrow-back-circle-outline"></ion-icon>
+      <ion-title style="font-size: x-large;">Debts Reccord</ion-title>
+     
+    </ion-row>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+ 
+
+
+ 
+  
+  <ion-card color="medium"*ngFor="let item of LentRecord" style="height: auto;" >
+
+ 
+   
+   
+
+    <span *ngIf="!item.isEdit; else elseBlock">
+  
+    <ion-row>
+      <ion-icon color="success" name="wallet-outline"></ion-icon>
+      <ion-card-title style="font-size: 28px; margin-left: 1.5em; margin-top: 0.8em; color:rgb(0, 0, 0);">Loan, interests</ion-card-title>
+      <ion-label style="font-size: 30px; margin-left: 4.5em; margin-top: auto; margin-bottom: auto; color:rgb(0, 0, 0); ">SGD: {{item.TotalAmount}}</ion-label>
+    </ion-row>
+    <ion-row>
+     <ion-label class="ion-label" style="font-size: 20px; color:rgb(0, 0, 0);">
+      ""Me ->" {{item.Name}} : {{item.Description}}"
+     </ion-label>
+    </ion-row>
+    <ion-list>
+      <ion-item-sliding>
+    <ion-item>
+      <ion-row>
+        <ion-icon (click)="presentAlert(item)" name="create-outline" class="ion-amount"></ion-icon>
+      </ion-row>
+    </ion-item>
+    
+    <ion-item-options side="end">
+      <ion-item-option (click)="removelent(item.id)" style="font-size: 20px; " color="danger" expandable><ion-icon style="font-size: 35px; margin-right: 0.5em; margin-left: -0.8em; margin-bottom: 1.1em;" name="trash"></ion-icon>
+        Delete
+      </ion-item-option>
+      <ion-item-option (click)="forgive(item.id)" style="font-size: 20px; " color="success" expandable>
+        <span  style="font-size: 30px; margin-right: 0.5em; margin-left: 0.4em; margin-bottom: 1.1em;margin-top: 1.1em;"class="material-icons">thumb_up</span>
+        Close 
+      </ion-item-option>
+    </ion-item-options>
+
+  </ion-item-sliding>
+</ion-list>
+</span>
+
+
+
+
+<ng-template #elseBlock >
+
+  <ion-card-header color="warning" >
+    <ion-card-title>
+      <ion-grid>
+        <ion-row style="margin-bottom: 0em; margin-top: -1em;">
+          <ion-col>
+            <ion-icon  style="font-size: 42px; padding-left: 125px; color: black;" (click)="item.isEdit = false" name="close-outline"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <ion-icon style="font-size: 42px; padding-left: 80px; color: black;"(click)="UpdateRecord(item)" name="checkmark-done-outline"></ion-icon>   
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+  </ion-card-header>
+
+  <mat-accordion style="color: darkgoldenrod;" class="example-headers-align" multi>
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle style="color: rgb(205, 151, 255);">
+      <mat-expansion-panel-header  [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+        <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="person-outline"></ion-icon>
+        <mat-panel-description>
+         Fill Up Your Borrower Names
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field class="example-headers-align" style="width: 400px;" >
+        <mat-label style="color:rgb(0, 0, 0); font-size: 26px;">Name</mat-label>
+        <input style="width: 450px; font-size: 28px; height: 50px;" type="text" [(ngModel)]="item.Name" matInput placeholder="FirstName" required matInput>
+      </mat-form-field>
+      <mat-action-row>
+        <button mat-button color="primary"style="font-size: 24px;" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle style="color: rgb(205, 151, 255);">
+      <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+        <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="list-outline"></ion-icon>
+        <mat-panel-description>
+          Description
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field  appearance="fill" style="width: 450px;">
+        <mat-label  style="color: rgb(0, 0, 0); font-size: 30px; width: 400px;">What was it for?</mat-label>
+        <textarea style="font-size: 26px;" [(ngModel)]="item.Description" matInput></textarea>
+      </mat-form-field>
+      <mat-action-row>
+        <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+        <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+   
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle style="color: rgb(205, 151, 255);">
+      <mat-expansion-panel-header  [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+        <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="cash-outline"></ion-icon>
+        <mat-panel-description>
+          New Amount
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field appearance="fill" style="width: 350px;">
+        <mat-label style="color: rgb(0, 0, 0); font-size: 26px; width: 400px;">Type Your Amount</mat-label>
+        <input type="number" style=" height: 60px; font-size: 28px;" 
+        [(ngModel)]="item.NewAmount" matInput placeholder="Amount" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span style="font-size: 20px;" matSuffix>.00</span>
+      </mat-form-field>
+      <mat-action-row>
+        <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+        <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  
+    
+
+</ng-template>
+
+</ion-card>
+
+<ion-card color="dark" *ngFor="let item of BorrowRecord" style="height: auto;">
+
+  <span *ngIf="!item.isEdit; else elseBlock">
+
+  <ion-row>
+    <ion-icon style= "color: rgb(255, 252, 82);" name="pricetags-outline"></ion-icon>
+    <ion-card-title style="font-size: 28px; margin-left: 1.5em; margin-top: 0.8em; color: black;">Lending, renting</ion-card-title>
+    <ion-label style="font-size: 30px; margin-left: 4.5em; margin-top: auto; margin-bottom: auto; color: black;">SGD: {{item.TotalAmount}}</ion-label>
+  </ion-row>
+  <ion-row>
+   <ion-label class= "ion-label" style="font-size: 20px; color: black;">
+    "{{item.Name}} --> Me : {{item.Description}}"
+   </ion-label>
+  </ion-row>
+  <ion-list>
+    <ion-item-sliding>
+  <ion-item>
+    <ion-row>
+      <ion-icon (click)="presentAlert(item)" name="create-outline" class="ion-amount" ></ion-icon>
+    </ion-row>
+  </ion-item>
+  
+  <ion-item-options side="end">
+    <ion-item-option (click)="removeborrow(item.id)" style="font-size: 20px; " color="danger" expandable><ion-icon style="font-size: 35px; margin-right: 0.5em; margin-left: -0.8em; margin-bottom: 1.1em;" name="trash"></ion-icon>
+      Delete
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
+</ion-list>
+</span>
+
+
+
+
+<ng-template #elseBlock >
+
+<ion-card-header color="warning" >
+  <ion-card-title>
+    <ion-grid>
+      <ion-row style="margin-bottom: 0em; margin-top: -1em;">
+        <ion-col>
+          <ion-icon  style="font-size: 42px; padding-left: 125px; color: black;" (click)="item.isEdit = false" name="close-outline"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <ion-icon style="font-size: 42px; padding-left: 80px; color: black;"(click)="UpdateRecord1(item)" name="checkmark-done-outline"></ion-icon>   
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-title>
+</ion-card-header>
+
+<mat-accordion style="color: darkgoldenrod;" class="example-headers-align" multi>
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle style="color: rgb(205, 151, 255);">
+    <mat-expansion-panel-header  [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+      <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="person-outline"></ion-icon>
+      <mat-panel-description>
+       Fill Up Your Borrower Names
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field class="example-headers-align" style="width: 400px;" >
+      <mat-label style="color:rgb(0, 0, 0); font-size: 26px;">Name</mat-label>
+      <input style="width: 450px; font-size: 28px; height: 50px;" type="text" [(ngModel)]="item.Name" matInput placeholder="FirstName" required matInput>
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="primary"style="font-size: 24px;" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle style="color: rgb(205, 151, 255);">
+    <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+      <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="list-outline"></ion-icon>
+      <mat-panel-description>
+        Description
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field  appearance="fill" style="width: 450px;">
+      <mat-label  style="color: rgb(0, 0, 0); font-size: 30px; width: 400px;">What was it for?</mat-label>
+      <textarea style="font-size: 26px;" [(ngModel)]="item.Description" matInput></textarea>
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+ 
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle style="color: rgb(205, 151, 255);">
+    <mat-expansion-panel-header  [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+      <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="cash-outline"></ion-icon>
+      <mat-panel-description>
+        New Amount
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field appearance="fill" style="width: 350px;">
+      <mat-label style="color: rgb(0, 0, 0); font-size: 26px; width: 400px;">Type Your Amount</mat-label>
+      <input type="number" style=" height: 60px; font-size: 28px;" 
+      [(ngModel)]="item.NewAmount" matInput placeholder="Amount" class="example-right-align">
+      <span matPrefix>$&nbsp;</span>
+      <span style="font-size: 20px;" matSuffix>.00</span>
+    </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  
+
+</ng-template>
+
+</ion-card>
+
+<ion-card color="medium"*ngFor="let item of CloseDebts" style="height: auto;" >
+
+  <ion-row>
+    <ion-icon color="success" name="wallet-outline"></ion-icon>
+    <ion-card-title style="font-size: 28px; margin-left: 1.5em; margin-top: 0.8em; color:rgb(0, 0, 0);">Loan, interests</ion-card-title>
+    <ion-label style="font-size: 30px; margin-left: 4.5em; margin-top: auto; margin-bottom: auto; color:rgb(0, 0, 0); ">SGD: {{item.TotalAmount}}</ion-label>
+  </ion-row>
+
+  <ion-row>
+   <ion-label class="ion-label" style="font-size: 20px; color:rgb(0, 0, 0);">
+    ""Me ->" {{item.Name}} : {{item.Description}}"
+   </ion-label>
+  </ion-row>
+  <ion-list>
+    <ion-item-sliding>
+<ion-item color="dark"></ion-item>
+  <ion-item-options side="end">
+    <ion-item-option (click)="removedebts(item.id)" style="font-size: 20px; " color="danger" expandable><ion-icon style="font-size: 35px; margin-right: 0.5em; margin-left: -0.8em; margin-bottom: 1.1em;" name="trash"></ion-icon>
+      Delete
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
+</ion-list>
+
+</ion-card>
+
+
 
 </ion-content>

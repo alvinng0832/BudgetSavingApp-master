@@ -68,3 +68,28 @@
   .example-full-width{
     font-size: 30px;
   }
+
+  .customSelectMenu .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0 !important;
+    color: rgb(224, 140, 28);
+
+  }
+  
+  button.roundedButton.mat-raised-button {
+    width: 300px;
+    height: 80px;
+    text-align: left;
+    color: rgb(240, 147, 26);
+    border-radius: 50px;
+    box-shadow: none !important;
+  }
+  
+  .selection-icon {
+    position: relative;
+    top: 6px;
+    margin-right: 16px;
+    font-size: 40px;
+  }
+  .selection-viewvalue{
+    font-size: 20px;
+  }

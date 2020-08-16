@@ -21,31 +21,182 @@
   .fab-add{
     width: 70px;
     height: 70px;
+    margin-left: auto;
     
   }
   .fab-button{
-      margin-left: auto;
-    width: 70px;
-    height: 70px;
+    margin-left: auto;
+    border-spacing: 10cm;
+    width: 65px;
+    height: 75px;
     
   }
   .fab-button1{
     margin-left: auto;
+    border-spacing: 10cm;
 
-    width: 70px;
-    height: 70px;
-    color: skyblue;
+    width: 65px;
+    height: 75px;
   }
   .amount{
-      margin-left: 17em;
-      margin-top: auto;
-      margin-bottom: auto;
-    
+    padding-left:240px;
+    padding-top: 50px
+  }
+.alerticon{
+  font-size: 40px;
+}
+
+  .icon{
+    font-size: 35px;
   }
   .name{
-      margin-left: 3em; 
+    padding-left: 15px;
+    padding-top:25px;
   }
   .description{
-    margin-left: 3em; 
+    margin-left: 4.2em; 
+    padding-bottom:25px;
+  }
+  .ion-icon{
+    padding-left:20px;
+    padding-top: 35px;
+    font-size: 75px;
+    display: inline-block;
+    color: #000000;
+    vertical-align: middle;
+  }
+  .trash{
+    margin-left: 8em;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 30px;
+  }
+  ion-content {
+      --background: linear-gradient(#ebc1fc, #f0f0f0);
+    }
+    .example-action-buttons {
+      padding-bottom: 20px;
+      margin-top: 10em;
+    }
+    
+    .example-headers-align, .mat-expansion-panel-header-title,
+    .example-headers-align, .mat-expansion-panel-header-description {
+      flex-basis: 50;
+      font-size: 20px;
+    }
+    
+    .example-headers-align .mat-expansion-panel-header-description {
+      justify-content: space-between;
+      align-items: center;
+     
+    }
+    
+    .example-headers-align .mat-form-field + .mat-form-field {
+      margin-left: 50px;
+      background: rgb(245, 211, 100);
+    }
+    .mat-input{
+        box-sizing: 50px;
+        background: rgb(245, 211, 100);
+    }
+    .example-container .mat-form-field + .mat-form-field {
+      margin-left: 8px;
+      background: rgb(245, 211, 100);
+    }
+    .mat-expansion-panel-header.mat-expanded {
+      background: rgb(245, 211, 100);
+    }
+    
+    .mat-expansion-indicator::after {
+      transform: rotate(225deg) !important;  
+    }
+    .material-icons{
+      size: 30px;
+    }
+    
+    ::ng-deep .mat-select-content{
+      width: max-content;
+      height: 70px;
+      font-size: 20px;   
+    }
+    .example-right-align {
+      text-align: right;
+    }
+    
+    input.example-right-align::-webkit-outer-spin-button,
+    input.example-right-align::-webkit-inner-spin-button {
+      display: none;
+    }
+    
+    input.example-right-align {
+      -moz-appearance: textfield;
+    }
+    
+    .example-additional-selection {
+      opacity: 0.75;
+      font-size: 0.75em;
+    }
+    .example-full-width{
+      font-size: 30px;
+    }
+  
+    .customSelectMenu .mat-form-field-appearance-legacy .mat-form-field-underline {
+      height: 0 !important;
+      color: rgb(224, 140, 28);
+  
+    }
+    
+    button.roundedButton.mat-raised-button {
+      width: 300px;
+      height: 80px;
+      text-align: left;
+      color: rgb(240, 147, 26);
+      border-radius: 50px;
+      box-shadow: none !important;
+    }
+    
+    .selection-icon {
+      position: relative;
+      top: 6px;
+      margin-right: 16px;
+      font-size: 40px;
+    }
+    .selection-viewvalue{
+      font-size: 20px;
+    }
 
+    .example-container .mat-form-field + .mat-form-field {
+      margin-left: 8px;
+    }
+    
+    .example-right-align {
+      text-align: right;
+    }
+    
+    input.example-right-align::-webkit-outer-spin-button,
+    input.example-right-align::-webkit-inner-spin-button {
+      display: none;
+    }
+    
+    input.example-right-align {
+      -moz-appearance: textfield;
+    }
+    ion-icon{
+      font-size: 40px;
+    }
+    .ion-lenting{
+      margin-left: -8em;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .ion-borrowing{
+      margin-left: -9.8em;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .fab-borrowing{
+      margin-right: 4.5em;
+    }
+  .fab-lenting{
+    margin-right: 4.5em;
   }

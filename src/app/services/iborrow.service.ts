@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 export interface BorrowDebts {
-  id:string
+  id?:string
   Name: string;
   Description: string;
   Amount: string;
@@ -23,7 +23,7 @@ export class IborrowService implements OnInit{
   user:any
   private iBorrow: Observable<BorrowDebts[]>;
   uid:any
-  collectionName: "iborrow"
+  collectionName = 'iborrow'
  
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
@@ -61,19 +61,17 @@ export class IborrowService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection('users').doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
       }
-      updateNote(iborrow) {
-        return this.firestore.collection('users' ).doc(this.uid).collection('iBorrow')
-        .add(iborrow)
+      updateNote(iborrowID, iborrow) {
+         this.firestore.collection("users" ).doc(this.user.user.uid).collection(this.collectionName).doc(iborrowID).update(iborrow)
       }
-      deleteNote(iborrow) {
-        this.BorrowCollection.doc(iborrow.id).delete();
+      deleteNote(iborrowid) {
+        this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(iborrowid).delete();
       }
-      addNote(iborrow) {
+      addNote(iborrow : BorrowDebts) {
         console.log(iborrow)
-        return this.firestore.collection('users' ).doc(this.uid).collection('iBorrow')
-        .add(iborrow)
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(iborrow)
       }
      
 }

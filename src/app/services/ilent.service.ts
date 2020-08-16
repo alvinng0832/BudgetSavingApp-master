@@ -5,8 +5,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
+
 export interface LentDebts {
-  id?: string,
   Name: string,
   Amount: string,
   Description: string,
@@ -24,7 +24,7 @@ export class IlentService implements OnInit{
   uid:any
   user:any
   collectionName= "ilented"
-
+  collectionName1="closedebts"
 
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
@@ -60,15 +60,26 @@ export class IlentService implements OnInit{
       getNotes() {
         return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
       }
-      updateNote(ilent) {
-       this.firestore.collection('users').doc(this.user.user.uid).collection('ilented').add(ilent)    
+      updateNote(ilentID, ilent) {
+       this.firestore.collection('users').doc(this.user.user.uid).collection(this.collectionName).doc(ilentID).update(ilent);    
         }
-      deleteNote(ilent) {
-        this.LentCollection.doc(ilent.id).delete();
+      deleteNote(ilent_id) {
+        this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(ilent_id).delete();
       }
-      addNote(ilent) {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent)
+      addNote(ilent: LentDebts) {
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent);
       }
+      addCloseDebts(closedebts) {
+        console.log(closedebts)
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).add(closedebts);
+      }
+      getCloseDebts() {
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).snapshotChanges();
+      }
+      deleteCloseDebts(closedebts) {
+        this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).doc(closedebts).delete();
+      }
+
      
     
 }

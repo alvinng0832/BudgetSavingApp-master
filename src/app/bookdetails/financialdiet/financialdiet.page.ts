@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-financialdiet',
@@ -15,7 +17,7 @@ export class FinancialdietPage implements OnInit {
    
     };
 
-  constructor(private router:Router) { }
+  constructor(public platform: Platform,private socialSharing: SocialSharing,private router:Router) { }
 
   ngOnInit() {
   }
@@ -23,8 +25,13 @@ export class FinancialdietPage implements OnInit {
   financialdiet(){
     this.router.navigateByUrl('/stripe');
   }
-  share(){
-
+  share() {
+    this.socialSharing.shareViaWhatsApp('Hello WhatsApp', null, 'https://codevampires.com/')
+    .then(() => {
+      console.log('It works');
+    }).catch(() => {
+      alert('WhatsApp not available')
+    });
   }
 
 }

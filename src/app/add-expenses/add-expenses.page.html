@@ -13,7 +13,7 @@
 <mat-accordion style="color:red" class="example-headers-align" multi>
   
   <form [formGroup]="expensesForm" class="create-account-form">
-  <mat-expansion-panel>
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     
     <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
       
@@ -28,17 +28,20 @@
     </mat-expansion-panel-header>
   
     <mat-form-field style="width: 220px;" >
-      <mat-label style="color:white">First Name </mat-label>
+      <mat-label style="color:rgb(0, 0, 0)">First Name </mat-label>
       <input style="width: 300px; font-size: 18px; height: 50px;" type="text"  formControlName="FirstName" matInput placeholder="FirstName" required matInput>
     </mat-form-field>
 
     <mat-form-field style="width: 220px;">
-      <mat-label style="color:white">Last Name</mat-label>
+      <mat-label style="color:rgb(0, 0, 0)">Last Name</mat-label>
       <input  style="width: 300px; font-size: 18px; height: 50px;" type="text"  formControlName="LastName"  matInput placeholder="LastName" required matInput>
     </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="primary"style="font-size: 24px;" (click)="nextStep()">Next</button>
+    </mat-action-row>
   </mat-expansion-panel>
 
-  <mat-expansion-panel >
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
     <mat-expansion-panel-header  [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
       <ion-icon class="ion-icon" style="color: white;" name="cash-outline"></ion-icon>
       <mat-panel-title>
@@ -49,15 +52,19 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-form-field appearance="fill" style="width: 300px;">
-      <mat-label style="color: white; font-size: 20px; width: 400px;">Amount Spended </mat-label>
+      <mat-label style="color: rgb(0, 0, 0); font-size: 20px; width: 400px;">Amount Spended </mat-label>
       <input type="number" style="width: 100%; height: 60px; font-size: 25px;" 
        formControlName="Amount" matInput placeholder="Amount" class="example-right-align">
       <span matPrefix>$&nbsp;</span>
       <span style="font-size: 20px;" matSuffix>.00</span>
     </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
   </mat-expansion-panel>
 
-  <mat-expansion-panel>
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
     <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
       <ion-icon class="ion-icon" style="color: white;" name="list-outline"></ion-icon>
       <mat-panel-title>
@@ -69,7 +76,7 @@
     </mat-expansion-panel-header>
 
     <mat-form-field  appearance="fill" style="width: 400px;">
-      <mat-label  style="color: white; font-size: 18px; width: 400px;">Choose Your Category</mat-label>
+      <mat-label  style="color: rgb(0, 0, 0); font-size: 18px; width: 400px;">Choose Your Category</mat-label>
       <mat-select formControlName="Category" class="mat-select-content"  required>
         <mat-option>--Select An Option--</mat-option>
         <mat-option *ngFor="let animal of animals" [value]="animal">
@@ -77,10 +84,14 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
     
   </mat-expansion-panel>
 
-  <mat-expansion-panel>
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
     <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
       <ion-icon class="ion-icon" style="color: white;" name="list-outline"></ion-icon>
       <mat-panel-title>
@@ -93,14 +104,18 @@
  
 
     <mat-form-field  style= "width: 400px;" appearance="fill">
-      <mat-label style="color: white; font-size: 20px; width: 400px;">Toppings</mat-label>
+      <mat-label style="color: rgb(0, 0, 0); font-size: 20px; width: 400px;">Toppings</mat-label>
       <mat-select formControlName="Tags" style="color: white; font-size: 22px; height: 70px;" multiple>
         <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
 </mat-expansion-panel>
 
-  <mat-expansion-panel >
+  <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
     <mat-expansion-panel-header  [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
       <ion-icon class="ion-icon" style="color: white;" name="document-text-outline"></ion-icon>
       <mat-panel-title>Description</mat-panel-title>
@@ -108,13 +123,16 @@
     </mat-expansion-panel-header>
 
      <mat-form-field appearance="outline" style="width: 500px;">
-    <mat-label style="color:white; font-size:22px;">Description (Optional)</mat-label>
+    <mat-label style="color:rgb(0, 0, 0); font-size:22px;">Description (Optional)</mat-label>
     <input style="height: 75px;" type="text" formControlName="Description" matInput placeholder="Description" required matInput>
   </mat-form-field>
-
+  <mat-action-row>
+    <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+    <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">Next</button>
+  </mat-action-row>
   </mat-expansion-panel>
 
-  <mat-expansion-panel >
+  <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
     <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
       <ion-icon class="ion-icon" style="color: white;" name="calendar-outline"></ion-icon>
       <mat-panel-title>Desired Date</mat-panel-title>
@@ -122,11 +140,15 @@
     </mat-expansion-panel-header>
 
     <mat-form-field class="example-full-width" style="font-size:18px; width: 300px;" color="accent" appearance="outline">
-      <mat-label style="color:white">Choose a date </mat-label>
+      <mat-label style="color:rgb(0, 0, 0)">Choose a date </mat-label>
       <input style="width: 100%; height: 60px;" formControlName="Date" matInput [matDatepicker]="picker">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker  touchUi #picker></mat-datepicker>
     </mat-form-field>
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 24px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 24px;"(click)="nextStep()">End</button>
+    </mat-action-row>
   </mat-expansion-panel>
   <ion-button expand="full" fill="outline" style="height: 80px;" (click)="ExpensesRecord()" [disabled]="expensesForm.invalid">
     <span style="font-size: 50px;" class="material-icons">

@@ -50,6 +50,8 @@ export class RegisterpagePage implements OnInit {
 
   verificationId: any;
   recaptchaVerifier: any;
+  user: any;
+  uid: string;
 
   constructor(
     private navCtrl: NavController,
@@ -60,7 +62,14 @@ export class RegisterpagePage implements OnInit {
     private afAuth: AngularFireAuth,
     private afstore: AngularFirestore
 
-  ) { }
+  ) { 
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.afAuth.auth.onAuthStateChanged((user) => {
+     
+      this.uid = user.uid
+    })
+    console.log(this.user.user.uid)
+  }
 
   ngOnInit() {
 
@@ -191,7 +200,7 @@ export class RegisterpagePage implements OnInit {
 
 
   goLoginPage() {
-    this.navCtrl.navigateBack('/authlogin');
+    this.navCtrl.navigateBack('/loginpage');
   }
 
   async presentToast(msg) {

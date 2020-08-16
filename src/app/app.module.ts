@@ -10,14 +10,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import { AngularFirestoreModule, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import {Stripe} from '@ionic-native/stripe/ngx';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {Keyboard} from '@ionic-native/keyboard/ngx';
 import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -57,6 +56,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 firebase.initializeApp(environment.firebase);
 @NgModule({
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -114,8 +116,7 @@ firebase.initializeApp(environment.firebase);
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
-    
+    MatTreeModule,
     ],
   providers: [
     StatusBar,
@@ -125,9 +126,10 @@ firebase.initializeApp(environment.firebase);
     Stripe,
     Storage,
     HttpClient,
-    Keyboard,
     Geolocation,
     CallNumber,
+    Keyboard,
+    SocialSharing,
     // LearnService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     

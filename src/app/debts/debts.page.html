@@ -1,62 +1,245 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-title>debts</ion-title>
-    <ion-button slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-button>
+  <ion-toolbar color="light">   
+      <ion-title style="font-size: 25px;">All Debts</ion-title>
+      <ion-button slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-segment [(ngModel)]="selectTabs">
-    <ion-segment-button style="color: darkseagreen;" value="Ilent">
-      <ion-label>I Lented</ion-label>
+    <ion-segment-button style="color: rgb(0, 0, 0);" value="Ilent">
+      <ion-label style="font-size: 20px;">Lend</ion-label>
     </ion-segment-button>
-    <ion-segment-button style="color: darkseagreen;" value="IBorrow">
-      <ion-label>I Borrowed</ion-label>
+    <ion-segment-button style="color: rgb(0, 0, 0);" value="IBorrow">
+      <ion-label style="font-size: 20px;">Borrow</ion-label>
+    </ion-segment-button>
+    <ion-segment-button style="color: rgb(0, 0, 0);" value="CloseDebts">
+      <ion-label style="font-size: 20px;">Closed Debts</ion-label>
     </ion-segment-button>
   </ion-segment>
   <div *ngIf="selectTabs == 'Ilent'">
   
     <ion-card *ngFor="let item of LentList" color="tertiary" >
-      <ion-row>
-    <ion-card-title class="name" style="color: black; font-size: 24px;">{{item.Name}}</ion-card-title>
-    <ion-card-subtitle class="amount" style="color: black; font-size: 22px;">{{item.Amount}}</ion-card-subtitle>
-  </ion-row>
+      <span *ngIf="!item.isEdit; else elseBlock">
+    <ion-row >
+      <ion-icon (click)="goToDebtsRecord(item)" class="ion-icon" name="person-circle-outline"></ion-icon>
+      <ion-card-title class="name" style="color: black; font-size: 30px;">{{item.Name}}</ion-card-title>
+      <ion-card-title class="amount" style="color: black; font-size: 28px;" >SGD: {{item.TotalAmount}}</ion-card-title>
+    </ion-row>
+    <ion-row>
+      <ion-card-subtitle class="description" style="color:  rgb(128, 128, 128); font-size: 26px;"> {{item.Description}}</ion-card-subtitle>
+    </ion-row>
+<ion-item style="height: 50px;">
   <ion-row>
-    <ion-card-title class="description" style="color:  rgb(172, 172, 172); font-size: 24px;">{{item.Description}}</ion-card-title>
-  </ion-row>
+    <ion-button style="font-size: 22px;" (click)="AlertPresent(item)" fill="clear">Add New Record</ion-button>
+    <ion-icon (click)="removelentitem(item.id)"class="trash" name="trash-outline"></ion-icon> 
+   </ion-row>
+</ion-item>
+</span>
+<ng-template color="medium" #elseBlock>
 
+  <ion-card-header>
+    <ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon style="font-size: 42px; padding-left: 125px; color: black;" (click)="item.isEdit = false" name="close-outline"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <ion-icon style="font-size: 42px; padding-left: 80px; color: black;"(click)="UpdateRecord(item)" name="checkmark-done-outline"></ion-icon>   
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+  </ion-card-header>
+
+  <mat-accordion style="color: darkgoldenrod;" class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+        <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="person-outline"></ion-icon>
+        <mat-panel-description>
+         Fill Up Your Borrower Names
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field class="example-headers-align" style="width: 400px;" >
+        <mat-label style="color:rgb(0, 0, 0)">Name</mat-label>
+        <input style="width: 450px; font-size: 24px; height: 50px;" type="text" [(ngModel)]="item.Name" matInput placeholder="FirstName" required matInput>
+      </mat-form-field>
+    </mat-expansion-panel>
   
+    <mat-expansion-panel>
+      <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+        <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="list-outline"></ion-icon>
+        <mat-panel-description>
+          Description
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field  appearance="fill" style="width: 450px;">
+        <mat-label  style="color: rgb(0, 0, 0); font-size: 22px; width: 400px;">What was it for?</mat-label>
+        <textarea  [(ngModel)]="item.Description" matInput></textarea>
+      </mat-form-field>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+   
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header  [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+        <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="cash-outline"></ion-icon>
+        <mat-panel-description>
+          New Amount
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field appearance="fill" style="width: 350px;">
+        <mat-label style="color: rgb(0, 0, 0); font-size: 26px; width: 400px;">Type Your Amount</mat-label>
+        <input type="number" style=" height: 60px; font-size: 28px;" 
+        [(ngModel)]="item.NewAmount" matInput placeholder="Amount" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span style="font-size: 20px;" matSuffix>.00</span>
+      </mat-form-field>
+    </mat-expansion-panel>
+  
+    
+
+</ng-template>
     </ion-card>
     </div>
 
-    <div *ngIf="selectTabs == 'IBorrow'">
-      <ion-card *ngfor let item of BorrowList color="primary" >
 
+
+    <div *ngIf="selectTabs == 'IBorrow'">
+      <ion-card *ngFor="let item of BorrowList" color="primary" >
+        <span *ngIf="!item.isEdit; else elseBlock">
+          <ion-row >
+            <ion-icon (click)="goToDebtsRecord1(item)" class="ion-icon" name="person-circle-outline"></ion-icon>
+            <ion-card-title class="name" style="color: black; font-size: 30px;">{{item.Name}}</ion-card-title>
+            <ion-card-title class="amount" style="color: black; font-size: 28px;" >SGD: {{item.TotalAmount}}</ion-card-title>
+          </ion-row>
+          <ion-row>
+            <ion-card-subtitle class="description" style="color:  rgb(128, 128, 128); font-size: 26px;"> {{item.Description}}</ion-card-subtitle>
+          </ion-row>
+      <ion-item style="height: 50px;">
+        <ion-row>
+          <ion-button style="font-size: 22px;" (click)="AlertPresent(item)" fill="clear">Add New Record</ion-button>
+          <ion-icon (click)="removeborrowitem(item.id)"class="trash" name="trash-outline"></ion-icon> 
+         </ion-row>
+      </ion-item>
+      </span>
+      <ng-template color="medium" #elseBlock>
+      
+        <ion-card-header>
+          <ion-card-title>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon style="font-size: 42px; padding-left: 125px; color: black;" (click)="item.isEdit = false" name="close-outline"></ion-icon>
+                </ion-col>
+                <ion-col>
+                  <ion-icon style="font-size: 42px; padding-left: 80px; color: black;"(click)="UpdateRecord1(item)" name="checkmark-done-outline"></ion-icon>   
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-title>
+        </ion-card-header>
+      
+        <mat-accordion style="color: darkgoldenrod;" class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+              <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="person-outline"></ion-icon>
+              <mat-panel-description>
+               Fill Up Your Borrower Names
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field class="example-headers-align" style="width: 400px;" >
+              <mat-label style="color:rgb(0, 0, 0)">Name</mat-label>
+              <input style="width: 450px; font-size: 24px; height: 50px;" type="text" [(ngModel)]="item.Name" matInput placeholder="FirstName" required matInput>
+            </mat-form-field>
+          </mat-expansion-panel>
+        
+          <mat-expansion-panel>
+            <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+              <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="list-outline"></ion-icon>
+              <mat-panel-description>
+                Description
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field  appearance="fill" style="width: 450px;">
+              <mat-label  style="color: rgb(0, 0, 0); font-size: 22px; width: 400px;">What was it for?</mat-label>
+              <textarea  [(ngModel)]="item.Description" matInput></textarea>
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
+      
+         
+      
+          <mat-expansion-panel >
+            <mat-expansion-panel-header  [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+              <ion-icon class="icon" style="color: rgb(0, 0, 0);" name="cash-outline"></ion-icon>
+              <mat-panel-description>
+                New Amount
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field appearance="fill" style="width: 350px;">
+              <mat-label style="color: rgb(0, 0, 0); font-size: 26px; width: 400px;">Type Your Amount</mat-label>
+              <input type="number" style=" height: 60px; font-size: 28px;" 
+              [(ngModel)]="item.NewAmount" matInput placeholder="Amount" class="example-right-align">
+              <span matPrefix>$&nbsp;</span>
+              <span style="font-size: 20px;" matSuffix>.00</span>
+            </mat-form-field>
+          </mat-expansion-panel>
+        
+          
+      
+      </ng-template>
       </ion-card>
     </div>
-    <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+
+    <div *ngIf="selectTabs == 'CloseDebts'">
+      <ion-card *ngFor="let item of CloseDebts" color="primary">
+          <ion-row >
+            <ion-icon (click)="goToDebtsRecord1(item)" class="ion-icon" name="person-circle-outline"></ion-icon>
+            <ion-card-title class="name" style="color: black; font-size: 30px;">{{item.Name}}</ion-card-title>
+            <ion-card-title class="amount" style="color: rgb(247, 139, 139); font-size: 28px;" >Forgiven</ion-card-title>
+            <ion-card-title class="amount" style="color: black; font-size: 28px;" >SGD: {{item.TotalAmount}}</ion-card-title>
+          </ion-row>
+          <ion-row>
+            <ion-card-subtitle class="description" style="color:  rgb(128, 128, 128); font-size: 26px;"> {{item.Description}}</ion-card-subtitle>
+          </ion-row>
+      <ion-item style="height: 50px;">
+        <ion-row>
+          <ion-button style="font-size: 22px; margin-left: -11.7em;" (click)="RemoveClosedebt(item.id)" fill="clear">
+            <ion-icon class="trash" name="trash-outline"></ion-icon> Delete Debt</ion-button>
+         </ion-row>
+      </ion-item>
+    </ion-card>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button color="warning" class="fab-add">
         <ion-icon style="color: rgb(255, 255, 255);" name="add"></ion-icon>
       </ion-fab-button>
+
       <ion-fab-list side="top">
-
-       
         
-     
-        <ion-fab-button class="fab-button" color="medium">    
-          <ion-icon (click)="ILent()"  style="font-size: 25px; color: black;" name="male-female-outline"></ion-icon>
+        <ion-row>
+          <ion-button fill="outline" class="ion-borrowing">I Borrow</ion-button>
+        <ion-fab-button class="fab-borrowing" style="padding-bottom:15px" class="fab-button1" color="dark">
+          <ion-icon (click)="IBorrow()"  style="font-size: 25px; color: black;" name="male-outline"></ion-icon>
         </ion-fab-button>
+      
+      </ion-row>
 
+        <ion-row>
+          <ion-button fill="outline" class="ion-lenting">I Lent</ion-button>
+          <ion-fab-button class="fab-lenting" style="padding-bottom:15px;" class="fab-button" color="medium">    
+            <ion-icon (click)="ILent()"  style="font-size: 25px; color: black;" name="male-female-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-row>
 
-        
-        <ion-fab-button class="fab-button1"color="dark">
-          <ion-icon (click)="IBorrow()"  style="font-size: 25px; color: black;" name="male-outline">I Borrowed</ion-icon>
-        </ion-fab-button>
       </ion-fab-list>
 
    
     </ion-fab>
-
+   
 </ion-content>

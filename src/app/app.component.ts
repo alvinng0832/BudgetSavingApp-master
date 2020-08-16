@@ -1,11 +1,12 @@
 import { Component, RendererFactory2, Renderer2 ,OnInit} from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { Storage } from "@ionic/storage";
 import { ThemeService } from './services/theme.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -29,7 +30,9 @@ ngOnInit(){
     private statusBar: StatusBar,
     public router: Router,
     private storage: Storage,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    public alertController: AlertController,
+    private socialSharing: SocialSharing
   ) {
     this.initializeApp();
     this.darkMode = this.themeService.darkMode;
@@ -68,6 +71,14 @@ ngOnInit(){
         this.themeService.enableDark();
       }
     });
+  }
+
+  AlertPresent(){
+    var option = {
+      message:'Ionic Share',
+      url:'http://ionicframework.com/docs/native/social-sharing',
+    };
+    this.socialSharing.shareWithOptions(option);
   }
   
   

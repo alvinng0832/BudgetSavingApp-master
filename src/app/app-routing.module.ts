@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'debts',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -150,7 +150,11 @@ const routes: Routes = [
   {
     path: 'note',
     loadChildren: () => import('./note/note.module').then( m => m.NotePageModule)
-  }
+  },
+  {
+    path: 'otp',
+    loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
+  },
 ];
 
 @NgModule({

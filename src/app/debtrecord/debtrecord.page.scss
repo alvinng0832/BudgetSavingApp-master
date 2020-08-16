@@ -1,0 +1,170 @@
+ion-content {
+    --background: linear-gradient(#d6d6d6, #ffffff);
+  }
+  
+  h1{
+      padding-left: 20px;
+      margin-top: auto;
+      margin-bottom: auto;
+      font-size: 25px;
+  }
+  .ion-amount{
+    margin-left: 11em;
+    margin-top: -1em;
+    margin-bottom: 0em;
+    font-size: 45px;
+  }
+  ion-icon{
+    font-size: 50px;
+    padding-left: 30px;
+    padding-top: 35px;
+  }
+  .ion-label{
+      margin-left: 6em;
+   
+      margin-top: 0em;
+      margin-bottom: 1em;
+  }
+  .ion-icon{
+      font-size: 50px;
+      margin-top: -0.8em;
+      margin-left: auto;
+      margin-right: auto;
+
+    
+
+  }
+  ion-button{
+      height: 70px;
+      border-radius: 50vh;
+      margin-top: 28em;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .example-action-buttons {
+    padding-bottom: 20px;
+    margin-top: 10em;
+  }
+  
+  .example-headers-align, .mat-expansion-panel-header-title,
+  .example-headers-align, .mat-expansion-panel-header-description {
+    flex-basis: 50;
+    font-size: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 50px;
+    background: rgb(245, 211, 100);
+  }
+  .mat-input{
+      box-sizing: 50px;
+      background: rgb(245, 211, 100);
+  }
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+    background: rgb(245, 211, 100);
+  }
+  .mat-expansion-panel-header.mat-expanded {
+    background: rgb(245, 211, 100);
+  }
+  
+  .mat-expansion-indicator::after {
+    transform: rotate(225deg) !important;  
+  }
+  .material-icons{
+    size: 30px;
+  }
+  
+  ::ng-deep .mat-select-content{
+    width: max-content;
+    height: 70px;
+    font-size: 20px;   
+  }
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+  
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  .example-full-width{
+    font-size: 30px;
+  }
+
+  .customSelectMenu .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0 !important;
+    color: rgb(224, 140, 28);
+
+  }
+  
+  button.roundedButton.mat-raised-button {
+    width: 300px;
+    height: 80px;
+    text-align: left;
+    color: rgb(240, 147, 26);
+    border-radius: 50px;
+    box-shadow: none !important;
+  }
+  
+  .selection-icon {
+    position: relative;
+    top: 6px;
+    margin-right: 16px;
+    font-size: 40px;
+  }
+  .selection-viewvalue{
+    font-size: 20px;
+  }
+
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+  .navigateback{
+      margin-bottom: 0.5em;
+  }
+
+  .ellipsis{
+    margin-left: auto;
+  }
+  .example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}

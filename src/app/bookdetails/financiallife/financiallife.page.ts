@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-financiallife',
@@ -13,7 +14,7 @@ export class FinanciallifePage implements OnInit {
     spaceBetween: 30,
    
     };
-  constructor(private router: Router) { }
+  constructor(private socialSharing: SocialSharing,private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +23,11 @@ export class FinanciallifePage implements OnInit {
     this.router.navigateByUrl('/stripe1');
   }
   share(){
-
+    var options = {
+      message:'Ionic Share',
+      url:'http://ionicframework.com/docs/native/social-sharing',
+    };
+    this.socialSharing.shareWithOptions(options);
   }
 
 }
