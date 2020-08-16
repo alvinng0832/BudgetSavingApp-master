@@ -19,12 +19,12 @@ export class WelcomePage implements OnInit {
 
   ngOnInit() {
     //To check if user is in login state.
-     if (this.AuthService.userDetails()) {
-       this.router.navigate(['/home']) 
+    //  if (this.AuthService.userDetails()) {
+    //    this.router.navigate(['/home']) 
 
-     } else {
-       this.router.navigate(['/login'])
-     }
+    //  } else {
+    //    this.router.navigate(['/login'])
+    //  }
   }
   
 

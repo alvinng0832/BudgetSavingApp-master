@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'expenses',
     pathMatch: 'full'
   },
   {
@@ -152,9 +152,20 @@ const routes: Routes = [
     loadChildren: () => import('./note/note.module').then( m => m.NotePageModule)
   },
   {
-    path: 'otp',
-    loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
+    path: 'tabsbudget',
+    loadChildren: () => import('./tabsbudget/tabsbudget.module').then( m => m.TabsbudgetPageModule)
   },
+  {
+    path: 'calculatedbudget',
+    loadChildren: () => import('./calculatedbudget/calculatedbudget.module').then( m => m.CalculatedbudgetPageModule)
+  },
+  {
+    path: 'add-calendar',
+    loadChildren: () => import('./add-calendar/add-calendar.module').then( m => m.AddCalendarPageModule)
+  }
+
+
+
 ];
 
 @NgModule({

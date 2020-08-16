@@ -45,7 +45,6 @@ export class ExpensesPage implements OnInit {
       
       console.log(this.expensesList)
   })
-
 }
  
   Expenses(){

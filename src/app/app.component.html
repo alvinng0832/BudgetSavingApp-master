@@ -6,35 +6,35 @@
     <div class="header-content">
       <img src="./assets/icon/people-customer-unknown-512.png" alt="">
       <ion-label>
-        <h2>User name</h2>
+        <h2 *ngIf="user">{{user.displayName}}</h2>
         <p>Budget Saving</p>
       </ion-label>
     </div>
    <div class="action-button" >
-     <ion-button href="/myprofile">
+     <ion-button (click)="goto('myprofile')">
        <ion-icon slot="start" name="add"></ion-icon>Edit Profile
      </ion-button>
    </div>
    <ion-list lines="">
-     <ion-item href="/home">
+     <ion-item (click)="goto('home')">
        <ion-icon name="home"></ion-icon> Homepage
      </ion-item>
-     <ion-item href="/budgets">
+     <ion-item (click)="goto('budgets')">
       <ion-icon name="cash"></ion-icon> Budgets
     </ion-item>
-    <ion-item href="/expenses">
+    <ion-item (click)="goto('expenses')">
       <ion-icon name="cash-outline"></ion-icon> Expenses
     </ion-item>
-    <ion-item href="/goals">
+    <ion-item (click)="goto('goals')">
       <ion-icon name="locate"></ion-icon> Goals
     </ion-item>
-    <ion-item href="/learn">
+    <ion-item (click)="goto('learn')">
       <ion-icon name="book-outline"></ion-icon> Learn
     </ion-item>
-    <ion-item href="/debts">
+    <ion-item (click)="goto('debts')">
       <ion-icon name="card"></ion-icon> Debts
     </ion-item>
-    <ion-item href="/ourstore">
+    <ion-item (click)="goto('ourstore')">
       <ion-icon name="book"></ion-icon> Our Store
     </ion-item>
     <ion-list>
@@ -44,13 +44,13 @@
         <ion-toggle slot="end" [(ngModel)]="darkMode"></ion-toggle>
       </ion-item>
     </ion-list>
-    <ion-item href="/location-api">
+    <ion-item (click)="goto('location-api')">
       <ion-icon name="location"></ion-icon>Locations
     </ion-item>
-    <ion-item href="/note">
-      <ion-icon name="people-outline"></ion-icon>Invite Friends
+    <ion-item (click)="goto('note')">
+      <ion-icon name="location"></ion-icon>Locations
     </ion-item>
-    <ion-item href="/login">
+    <ion-item (click)="logout()" button>
       <ion-icon name="log-out"></ion-icon> Sign Out
     </ion-item>
 

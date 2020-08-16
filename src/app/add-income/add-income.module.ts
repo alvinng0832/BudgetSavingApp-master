@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddIncomePageRoutingModule } from './add-income-routing.module';
 
 import { AddIncomePage } from './add-income.page';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,6 +18,7 @@ import { AddIncomePage } from './add-income.page';
     IonicModule,
     ReactiveFormsModule,
     AddIncomePageRoutingModule,
+    RouterModule.forChild([{ path: '', component: AddIncomePage }])
   ],
   declarations: [AddIncomePage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

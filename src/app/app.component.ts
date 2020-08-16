@@ -1,12 +1,13 @@
 import { Component, RendererFactory2, Renderer2 ,OnInit} from '@angular/core';
-import { Platform, AlertController } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { Storage } from "@ionic/storage";
 import { ThemeService } from './services/theme.service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { AuthService } from './auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 
@@ -18,6 +19,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 export class AppComponent implements OnInit{
   rootPage: any = HomePage;
   darkMode: any
+  user: any;
 
 
 ngOnInit(){
@@ -30,33 +32,26 @@ ngOnInit(){
     private statusBar: StatusBar,
     public router: Router,
     private storage: Storage,
+    private menu: MenuController,
     private themeService: ThemeService,
-    public alertController: AlertController,
-    private socialSharing: SocialSharing
+    private authSer: AuthService,
+    private afAuth: AngularFireAuth,
   ) {
     this.initializeApp();
     this.darkMode = this.themeService.darkMode;
+
+    
+
+    if (this.afAuth.auth.currentUser) {
+      this.user = this.afAuth.auth.currentUser
+    }
   }
 
 
   
-  gotohome(){
-    this.router.navigateByUrl('/home')
-  }
-  gotobudgets(){
-    this.router.navigateByUrl('/budgets')
-  }
-  gotogoals(){
-    this.router.navigateByUrl('/goals')
-  }
-  gotolocation(){
-    this.router.navigateByUrl('/location')
-  }
-  gotologin(){
-    this.router.navigateByUrl('/loginpage')
-  }
-  gotoregister(){
-    this.router.navigateByUrl('/registerpage')
+  goto(url){
+    this.router.navigateByUrl(`/${url}`)
+    this.menu.close()
   }
 
   initializeApp() {
@@ -73,14 +68,11 @@ ngOnInit(){
     });
   }
 
-  AlertPresent(){
-    var option = {
-      message:'Ionic Share',
-      url:'http://ionicframework.com/docs/native/social-sharing',
-    };
-    this.socialSharing.shareWithOptions(option);
-  }
   
+  logout() {
+    this.authSer.logoutUser()
+    this.menu.close()
+  }
   
 
 }
