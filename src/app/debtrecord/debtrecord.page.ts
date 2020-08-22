@@ -133,7 +133,7 @@ UpdateRecord(debtsrow1) {
   ilent['Name'] = debtsrow1.Name;
   ilent['Description'] = debtsrow1.Description;
   ilent['NewAmount'] = debtsrow1.NewAmount;
-  this.ilentService.updateNote( debtsrow1.id, ilent);
+  // this.ilentService.updateNote( debtsrow1.id, ilent);  
   console.log('Debts are Successfully Added')
   debtsrow1.isEdit = false;
  
