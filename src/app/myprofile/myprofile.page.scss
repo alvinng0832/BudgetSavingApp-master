@@ -1,24 +1,54 @@
 ion-avatar {
-    height: 75px;
-    width: 75px;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;  
-    position: absolute;
-    align-self: center;
-    top: 45px;
+
+
+    margin: auto;
+    height: 80px;
+    width: 80px;
+    // left:0;
+    // right:0;
+    // margin-left:auto;
+    // margin-right:auto;  
+    // position: absolute;
+    // align-self: center;
+    // top: 45px;
 }
 
 #upper {
     width: 100%;
-    height: 7em;
-    background-color: #333333;
+    height: 14em;
+    border-radius: 0 0 50% 50%;
+    background-color: var(--ion-color-primary);
+
+
 
 }
 
+ion-card {
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    
+}
+
+.bottom {
+    margin-top: 6em;
+}
+
 .profile {
-    margin-top: 40px;
+    margin-top: 20px;
+}
+
+ion-button {
+    margin-top: 1em;
+    padding: 0 10px 0 10px;
+    height: 38px;
 }
 
 ion-row {
@@ -38,4 +68,26 @@ ion-row {
     border-width: 0 0.2px 0 0.2px;
     border-style: solid;
     border-color: #cccccc;
+}
+
+#pw-icon {
+    top:27px;
+    position: absolute;
+}
+
+#pw-input {
+    --padding-start: 25px;
+}
+
+.ios {
+    #pw-icon {
+        font-size: 24px;
+        top:39px;
+        position: absolute;
+    }
+    
+    #pw-input {
+        --padding-start: 29px;
+    }
+
 }
