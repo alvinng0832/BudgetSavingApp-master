@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "89844900575",
+    "firebase_url": "https://budgetsavingapp.firebaseio.com",
+    "project_id": "budgetsavingapp",
+    "storage_bucket": "budgetsavingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89844900575:android:69c336be803cf630f53f6a",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89844900575-9nofc2g3eekakpji7guk751lu30jfrbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOBLWRTk8RHpQJGWP1KiU4JNl6dOS9G0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89844900575-9nofc2g3eekakpji7guk751lu30jfrbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

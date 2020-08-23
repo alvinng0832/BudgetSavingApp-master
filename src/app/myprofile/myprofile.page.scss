@@ -45,7 +45,7 @@ ion-card {
     margin-top: 20px;
 }
 
-ion-button {
+#bottom-button {
     margin-top: 1em;
     padding: 0 10px 0 10px;
     height: 38px;
@@ -61,33 +61,21 @@ ion-row {
 .w {
     font-size: 9px;
 }
-
+#edit-photo {
+    position: relative;
+    bottom: 29px !important;
+    right: -27px !important;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    padding:2px;
+    background-color: #cccccc;
+    opacity: 0.7;
+} 
 
 
 #center {
     border-width: 0 0.2px 0 0.2px;
     border-style: solid;
     border-color: #cccccc;
-}
-
-#pw-icon {
-    top:27px;
-    position: absolute;
-}
-
-#pw-input {
-    --padding-start: 25px;
-}
-
-.ios {
-    #pw-icon {
-        font-size: 24px;
-        top:39px;
-        position: absolute;
-    }
-    
-    #pw-input {
-        --padding-start: 29px;
-    }
-
 }
