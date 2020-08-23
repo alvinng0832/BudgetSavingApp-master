@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { GoalsService } from '../services/goals.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 interface GoalsRecord {
   id:string
   Name: string;
@@ -22,21 +23,18 @@ interface GoalsRecord {
 
 
 export class GoaldetailsPage implements OnInit {
-  
+  collectionName= "addGoals"
   today: any;
   percent: number;
   goalsdata: GoalsRecord;
   circularValue: number;
   goalList = [];
   selectedDate: any;
-  data: any
-  id:any
-  sub: any;
   user: any;
   uid: any;
  
   
-  constructor( private afAuth: AngularFireAuth, private route: ActivatedRoute,private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
+  constructor( private firestore: AngularFirestore,private afAuth: AngularFireAuth, private route: ActivatedRoute,private goalsservice: GoalsService , private router: Router, private firebaseService: FirebaseService, public navCtrl: NavController) {
     this.goalsdata = {} as GoalsRecord;
     this.user =JSON.parse(localStorage.getItem('user'))
     this.afAuth.auth.onAuthStateChanged((user) => {
@@ -48,7 +46,7 @@ export class GoaldetailsPage implements OnInit {
    }
 
    ngOnInit() {
-    this.firebaseService.read_students().subscribe(data => {
+    this.firebaseService.Goal_students().subscribe(data => {
       console.log(data)
       this.goalList = data.map(e => {
         const data = e.payload.doc.data();
@@ -108,6 +106,15 @@ export class GoaldetailsPage implements OnInit {
     let selectedDate: any = new Date(this.selectedDate);
 
     let age = Math.round((Math.abs(selectedDate - today) / (24 * 60 * 60 * 1000)) / 365);
+  }
+
+  Reached(reachRecord, goal_id){
+    console.log(reachRecord)
+    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').add(reachRecord).then(resp=> {
+      this.router.navigateByUrl('/goals')
+      this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(goal_id).delete();
+
+    })
   }
 
 

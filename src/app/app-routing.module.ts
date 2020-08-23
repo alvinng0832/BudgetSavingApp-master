@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'expenses',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -162,7 +162,12 @@ const routes: Routes = [
   {
     path: 'add-calendar',
     loadChildren: () => import('./add-calendar/add-calendar.module').then( m => m.AddCalendarPageModule)
-  }
+  },  {
+    path: 'testing',
+    loadChildren: () => import('./testing/testing.module').then( m => m.TestingPageModule)
+  },
+
+
 
 
 

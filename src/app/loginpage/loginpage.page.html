@@ -8,14 +8,14 @@
 <ion-content [fullscreen]="true">
 
   <div class="login">
-      <h3>Welcome to Budget Saving</h3>
+      <h3 style="font-size: 18px; font-weight: lighter;">Welcome to Budget Saving</h3>
       <div class="logo">
       <img src="assets/icon/89ca3035-6392-4966-ac40-934fc4d2adcb_200x200.png">
       </div>
      
 
     
-    <p>Please enter your username and password</p>
+    <p style="color: white;">Please enter your username and password</p>
     <form class="form" [formGroup]="validation_form" (ngSubmit)="loginUser(validation_form.value)">
     
       <ion-item lines="none">
@@ -48,8 +48,19 @@
  
     <label class="error-message">{{errorMessage}}</label>
   </form>
+  <ion-col size="12" class="ion-text-center">
+    <ion-label style="font-size: 25px; font-weight: bold; margin-bottom:-3em ;">Or</ion-label>
+  </ion-col>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        
+        <ion-button expand="full" style="font-size: 18px; width: 300px; margin-left: auto; margin-right: auto;" (click)="fblogin()"color="warning" class="ion-icon"><ion-icon name="logo-facebook"></ion-icon>Login with Facebook</ion-button>
+        <ion-button expand="full" style="font-size: 18px; width: 300px; margin-left: auto; margin-right: auto;" class="ion-icon"><ion-icon name="logo-instagram"></ion-icon>Login with Instagram</ion-button>
+        <ion-button expand="full" style="font-size: 18px; width: 300px; margin-left: auto; margin-right: auto;" color="danger" class="ion-icon"><ion-icon name="logo-google"></ion-icon>Login with Google</ion-button>
+      </ion-col>
+      </ion-row>
 
-    <p class="signup">Do not have an account? <span routerLink="/registerpage">Sign Up</span></p>
+    <p class="signup">Do not have an account? <ion-label style="font-size: 25px;" routerLink="/registerpage">Sign Up</ion-label ></p>
   </div>
 
   <div id="recaptcha-container" style="display: none;"></div>

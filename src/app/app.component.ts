@@ -1,5 +1,5 @@
 import { Component, RendererFactory2, Renderer2 ,OnInit} from '@angular/core';
-import { Platform, MenuController } from '@ionic/angular';
+import { Platform, MenuController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { Storage } from "@ionic/storage";
 import { ThemeService } from './services/theme.service';
 import { AuthService } from './auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -36,6 +37,8 @@ ngOnInit(){
     private themeService: ThemeService,
     private authSer: AuthService,
     private afAuth: AngularFireAuth,
+    public alertController: AlertController,
+    private socialSharing: SocialSharing,
   ) {
     this.initializeApp();
     this.darkMode = this.themeService.darkMode;
@@ -72,6 +75,36 @@ ngOnInit(){
   logout() {
     this.authSer.logoutUser()
     this.menu.close()
+  }
+
+  async share(){
+    const alert = await this.alertController.create({
+      header: 'Tell a friend',
+      message: 'Enjoying Wallet? Invite a friend to use the best finance app!' ,
+      buttons:[{
+        text:'Cancel',
+        role:'Cancel',
+        handler: ()=>{
+          console.log('Invitation are Cancel')
+        }
+      },
+      {
+        text: 'Confirm',
+        cssClass:'secondary',
+        handler: ()=>{
+          this.platform.ready().then(async () => {
+            await this.socialSharing.share('https://budgetbakers.com').then(() => {
+            }).catch((err) => {
+              console.log(err)
+            });
+          });
+        }
+      }
+    
+    
+    ]
+    })
+    await alert.present()
   }
   
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-fearless',
@@ -16,7 +17,7 @@ export class FearlessPage implements OnInit {
    
     };
 
-  constructor( private socialSharing: SocialSharing,
+  constructor( private socialSharing: SocialSharing,public platform: Platform,
     private router: Router) { }
 
   ngOnInit() {
@@ -27,11 +28,12 @@ export class FearlessPage implements OnInit {
     this.router.navigateByUrl('/stripe6');
   }
   share(){
-    var options = {
-      message:'Ionic Share',
-      url:'http://ionicframework.com/docs/native/social-sharing',
-    };
-    this.socialSharing.shareWithOptions(options);
+    this.platform.ready().then(async () => {
+      await this.socialSharing.share('https://www.goodreads.com/book/show/17737028-financially-fearless').then(() => {
+      }).catch((err) => {
+        console.log(err)
+      });
+    });
   }
 
 }

@@ -1,17 +1,23 @@
 .ion-card-save{
     margin-right: 5.5em;
-    font-size: 20px;
+    margin-top: 1em;
+    font-size: 22px;
+
 }
 .ion-card-target{
     margin-left: 5.5em;
     font-size: 20px;
 }
-
+ion-content {
+    --background: linear-gradient(#6d6d6d, #ffffff);
+  }
 .ion-card-title{
-    font-size: 20px;
+    font-size: 26px;
+    font-weight: bold;
 }
 .ion-card-subtitle{
-    font-size: 20px;
+    font-size: 22px;
+
 }
 
 

@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -58,6 +59,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { LearnService } from './services/learn.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Facebook } from '@ionic-native/facebook/ngx';
+
 firebase.initializeApp(environment.firebase);
 @NgModule({
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -115,7 +118,7 @@ firebase.initializeApp(environment.firebase);
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
     ],
   providers: [
     StatusBar,
@@ -129,10 +132,12 @@ firebase.initializeApp(environment.firebase);
     CallNumber,
     LearnService,
     SocialSharing,
+    Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],
   bootstrap: [AppComponent]
+  
   
 })
 export class AppModule {}

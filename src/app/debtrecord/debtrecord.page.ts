@@ -184,6 +184,7 @@ removeborrow(iborrowid){
   this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName2).doc(iborrowid).delete();
 }
 removedebts(closedebts_id){
+  console.log(closedebts_id)
   this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).doc(closedebts_id).delete();
 
 }

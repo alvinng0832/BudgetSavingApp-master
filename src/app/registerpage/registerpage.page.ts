@@ -56,7 +56,7 @@ export class RegisterpagePage implements OnInit {
   verificationId: any;
   recaptchaVerifier: any;
   user: any;
-  uid: string;
+  uid: any;
 
   constructor(
     private navCtrl: NavController,
@@ -69,12 +69,7 @@ export class RegisterpagePage implements OnInit {
     private loading: LoadingController,
 
   ) { 
-    this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
-    console.log(this.user.user.uid)
+
   }
 
   ngOnInit() {
@@ -96,7 +91,7 @@ export class RegisterpagePage implements OnInit {
       ])),
       confirmpassword: new FormControl('', Validators.compose([
         // Validators.minLength(8),
-        Validators.required
+  Validators.required
       ]))
 
     });

@@ -17,7 +17,7 @@ export class NotePage implements OnInit {
   // Share Options
   share() {
     this.platform.ready().then(async () => {
-      await this.socialSharing.share('I love Ionic').then(() => {
+      await this.socialSharing.share('https://budgetbakers.com').then(() => {
       }).catch((err) => {
         console.log(err)
       });

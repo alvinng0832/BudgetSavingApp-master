@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginpagePageRoutingModule } from './loginpage-routing.module';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 import { LoginPage } from './loginpage.page';
 
@@ -16,6 +17,9 @@ import { LoginPage } from './loginpage.page';
     IonicModule,
     LoginpagePageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage],
+  providers: [
+    Facebook
+  ]
 })
 export class LoginpagePageModule {}
