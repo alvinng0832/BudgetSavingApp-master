@@ -127,15 +127,14 @@ export class HomePage implements OnInit {
   
       // Create the chart
       this.valueBarsChart = new Chart(this.valueBarsCanvas.nativeElement, {
-        
+        enable3D: true,
+        type: 'bar',
         data: {
-       
           labels: Object.keys(this.monthsOfGoal).map(a => this.monthsOfGoal[a].name),
           datasets: [
             {
               //targetamoount
               label: "Target Amount",
-              type: 'bar',
               borderColor: '#f53d3d',
               data: chartData,
               backgroundColor: '#f53d3d', 
@@ -145,37 +144,25 @@ export class HomePage implements OnInit {
               //savedamount
               label: "Save Amount",
               borderColor: '#3880ff',
-              type: 'bar',
               data: chartData1,
               backgroundColor: '#69bb7b',
               fill: true,
             }
           ],
-  
         },
-        
         options: {
          
-          legend: {
-            display: true
-          },
-          tooltips: {
-            callbacks: {
-              label: function (tooltipItems, data) {
-                return '$' +  data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]   + 'Target Amount';
-              },
-              label1: function (tooltipItems, data) {
-                return '$' +  data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index]   + 'Save Amount';
-              },
-            },
-          },
-
         
+          title: {
+            display: true,
+            fontSize: 35,
+            text: 'Bar Chart'
+          },
           scales: {
             xAxes: [{
             
               ticks: {
-                beginAtZero: true
+                beginAtZero: false
               },
               
             }],
@@ -190,10 +177,14 @@ export class HomePage implements OnInit {
               }
             }]
           },
+          
         }
       });
      }
 
+
+
+     
   getReportValues() {
     let reportByMonth = {
   
@@ -299,26 +290,41 @@ export class HomePage implements OnInit {
 
     let DonutChartdata = this.getDonutReport();
     this.doughnut =  new Chart(this.valueDonutCanvas.nativeElement,{
+      startAngle: -90, endAngle: 90 ,
       type: 'doughnut',
       options: {
+     
+        cutoutPercentage: 65,
         responsive: true,
+        
+        maintainAspectRatio: true,
         title: {
           display: true,
-          text: 'Doughnut Chart'
+          text: 'Doughnut Chart',
+          fontSize:40
         },legend: {
-					position: 'top',
+					position: 'bottom',
 				},animation: {
 					animateScale: true,
-					animateRotate: true
+          animateRotate: true,
+           
         },
-        
+        onClick: (evt, item) => {
+          
+          this.doughnut.update()
+          
+          item[0]._model.outerRadius += 15
+          
+        },
+       
+      
       },
       data: {
 				datasets: [{
 					data: DonutChartdata,
           backgroundColor: ["#69bb7b","#d65b5b","#26baff","#9cd0fc","#35b468","#6a64ff","#ff0095",
           "#ffd534","#222428","blue","red","orange"],
-					label: 'Dataset 1'
+
 				}],
 				labels: ['Food & Drinks', 'Clothing & Footwear', 'Health & PersonalCare', 'Charity', 'Education', 'Gifts',
         'Home & Utilities', 'Leisure', 'Loans', 'Other', 'Sports', 'Taxes' , 'Transport']

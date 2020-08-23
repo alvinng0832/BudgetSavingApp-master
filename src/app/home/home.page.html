@@ -11,7 +11,7 @@
   <ion-list-header color="light">Overview of Monthly Budgets</ion-list-header>
 
 
-  <ion-card class="Charts"[hidden]="!chartData">
+  <ion-card  class="Charts"[hidden]="!chartData">
     <ion-card-header style="font-size: 30px; font-weight: 700;" class="goalchart" >
       Analytics Goal Chart
     </ion-card-header>
@@ -30,7 +30,7 @@
     </ion-select> 
     </div>
     
-    <ion-button expand=""class="button" (click)="applyDateFilter()">Apply Date Filter</ion-button>
+    <ion-button expand=""color="secondary" (click)="applyDateFilter()">Apply Date Filter</ion-button>
   </ion-card>
 
 
@@ -41,7 +41,7 @@
     <ion-card-content>
       <canvas #valueDonutCanvas></canvas>
     </ion-card-content>
-    <ion-label>From</ion-label>
+    <ion-label >From</ion-label>
     <ion-select [(ngModel)]="from1" style="width: 150px;height: 30px;">
       <ion-select-option *ngFor="let m of monthsOfExpense" [value]='m.value'>{{m.name}}</ion-select-option>
     </ion-select>
@@ -50,7 +50,7 @@
   <ion-select [(ngModel)]="toMonth1" style="width: 150px;height: 30px;">
     <ion-select-option *ngFor="let m1 of monthsOfExpense" [value]='m1.value'>{{m1.name}}</ion-select-option>
   </ion-select> 
-    <ion-button expand=""class="button" (click)="applyDateFilter()">Apply Date Filter</ion-button>
+    <ion-button expand=""color="success" (click)="applyDateFilter()">Apply Date Filter</ion-button>
   </ion-card>
 
   <ion-card class="welcome-card" >
