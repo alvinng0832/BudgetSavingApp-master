@@ -83,7 +83,7 @@ export class RegisterpagePage implements OnInit {
       ])),
       password1: new FormControl('', Validators.compose([
         // Validators.minLength(8),
-        Validators.required
+  Validators.required
       ]))
 
     });

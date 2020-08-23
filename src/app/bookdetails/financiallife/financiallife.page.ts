@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-financiallife',
@@ -14,7 +15,7 @@ export class FinanciallifePage implements OnInit {
     spaceBetween: 30,
    
     };
-  constructor(private socialSharing: SocialSharing,private router: Router) { }
+  constructor(public platform: Platform,private socialSharing: SocialSharing,private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,11 +24,12 @@ export class FinanciallifePage implements OnInit {
     this.router.navigateByUrl('/stripe1');
   }
   share(){
-    var options = {
-      message:'Ionic Share',
-      url:'http://ionicframework.com/docs/native/social-sharing',
-    };
-    this.socialSharing.shareWithOptions(options);
+    this.platform.ready().then(async () => {
+      await this.socialSharing.share('https://bethkobliner.com/books/get-financial-life/').then(() => {
+      }).catch((err) => {
+        console.log(err)
+      });
+    });
   }
 
 }

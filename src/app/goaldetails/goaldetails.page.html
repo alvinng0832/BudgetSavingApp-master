@@ -13,7 +13,7 @@
     <ion-icon  (click)="editAmount(item)" class="ion-icon" color="dark"  name="pencil-outline"></ion-icon>
   </ion-row>
     <ion-row>
-    <ion-card-title class="ion-card-name"> {{item.Name}} </ion-card-title>
+    <ion-card-title class="ion-card-name"> {{item.Name.name}} </ion-card-title>
   </ion-row>
   <ion-row>
 
@@ -56,7 +56,7 @@
           Category List
         </strong>
         </ion-label>
-        <ion-select [(ngModel)]="item.Name">
+        <ion-select [(ngModel)]="item.Name.name">
           <ion-select-option value="New Vehicles">New Vehicles</ion-select-option>
           <ion-select-option value="New Home">New Home</ion-select-option>
           <ion-select-option value="Holiday Trip">Holiday Trip</ion-select-option>
@@ -70,12 +70,12 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label class="font-size1" position="floating"><strong >Saved Amount</strong></ion-label>
-        <ion-input type="text" class="font-size" [(ngModel)]="item.SavedAmount"></ion-input>
-      </ion-item>
-      <ion-item>
         <ion-label  class="font-size1" position="floating"><strong >Target Amount</strong></ion-label>
         <ion-input type="text" class="font-size" [(ngModel)]="item.TargetAmount"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="font-size1" position="floating"><strong >Saved Amount</strong></ion-label>
+        <ion-input type="text" class="font-size" [(ngModel)]="item.SavedAmount"></ion-input>
       </ion-item>
       <ion-item>
         <div class="container">
@@ -87,7 +87,7 @@
     
     </ion-card-content>
   </ng-template>
-      <ion-button  expand="full" color="medium" class="ion-reached">Set Goal As Reached</ion-button>
+      <ion-button  expand="full" color="medium" class="ion-reached" (click)="Reached(item, item.id)">Set Goal As Reached</ion-button>
 
   </ion-card>
 

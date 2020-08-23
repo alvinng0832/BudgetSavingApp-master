@@ -197,15 +197,16 @@
     </div>
 
     <div *ngIf="selectTabs == 'CloseDebts'">
-      <ion-card *ngFor="let item of CloseDebts" color="primary">
+      <ion-card *ngFor="let item of CloseDebts" color="success">
+        <ion-item style="font-size: 25px;">{{item.Name}} OWES ME</ion-item>
           <ion-row >
-            <ion-icon (click)="goToDebtsRecord1(item)" class="ion-icon" name="person-circle-outline"></ion-icon>
-            <ion-card-title class="name" style="color: black; font-size: 30px;">{{item.Name}}</ion-card-title>
-            <ion-card-title class="amount" style="color: rgb(247, 139, 139); font-size: 28px;" >Forgiven</ion-card-title>
-            <ion-card-title class="amount" style="color: black; font-size: 28px;" >SGD: {{item.TotalAmount}}</ion-card-title>
+            <ion-icon (click)="goToDebtsRecord1(item)" class="ion-Debtsicon" name="person-circle-outline"></ion-icon>
+            <ion-card-title class="Debtsname" style="color: black; font-size: 30px;">{{item.Name}}</ion-card-title>
+            <ion-card-title class="forgiven" style="color: rgb(247, 139, 139); font-size: 28px; margin-bottom: 1em;" >Forgiven</ion-card-title>
           </ion-row>
           <ion-row>
-            <ion-card-subtitle class="description" style="color:  rgb(128, 128, 128); font-size: 26px;"> {{item.Description}}</ion-card-subtitle>
+            <ion-card-subtitle class="Debtsdescription" style="color:  rgb(128, 128, 128); font-size: 26px;"> {{item.Description}}</ion-card-subtitle>
+            <ion-card-title class="Debtsamount" style="color: black; font-size: 28px;">SGD: {{item.TotalAmount}}</ion-card-title>
           </ion-row>
       <ion-item style="height: 50px;">
         <ion-row>

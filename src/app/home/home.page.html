@@ -10,23 +10,47 @@
 <ion-content>
   <ion-list-header color="light">Overview of Monthly Budgets</ion-list-header>
 
-  <ion-card class="welcome-card">
-    <ion-card-header>
-      <!-- <ion-card-subtitle>Number of Viewers per season for</ion-card-subtitle> -->
-      <ion-card-title>Overview of Goals</ion-card-title>
+
+  <ion-card class="Charts"[hidden]="!chartData">
+    <ion-card-header style="font-size: 30px; font-weight: 700;" class="goalchart" >
+      Analytics Goal Chart
     </ion-card-header>
     <ion-card-content>
-      <canvas #pieChart></canvas>
+      <canvas #valueBarsCanvas></canvas>
     </ion-card-content>
+    <div style="margin-left: auto">
+      <ion-label>From</ion-label>
+      <ion-select [(ngModel)]="from" style="width: 150px;height: 30px;">
+        <ion-select-option *ngFor="let m of monthsOfGoal" [value]='m.value'>{{m.name}}</ion-select-option>
+      </ion-select>
+    &nbsp;&nbsp;
+    <ion-label>To</ion-label>
+    <ion-select [(ngModel)]="toMonth" style="width: 150px;height: 30px;">
+      <ion-select-option *ngFor="let m1 of monthsOfGoal" [value]='m1.value'>{{m1.name}}</ion-select-option>
+    </ion-select> 
+    </div>
+    
+    <ion-button expand=""class="button" (click)="applyDateFilter()">Apply Date Filter</ion-button>
   </ion-card>
 
+
   <ion-card class="welcome-card">
-    <ion-card-header>
-      <ion-card-title>Overview of Expenses</ion-card-title>
+    <ion-card-header style="font-size: 30px; font-weight: 700;">
+      Analytic Expenses Donut Chart
     </ion-card-header>
     <ion-card-content>
-      <canvas #pie1Chart></canvas>
+      <canvas #valueDonutCanvas></canvas>
     </ion-card-content>
+    <ion-label>From</ion-label>
+    <ion-select [(ngModel)]="from1" style="width: 150px;height: 30px;">
+      <ion-select-option *ngFor="let m of monthsOfExpense" [value]='m.value'>{{m.name}}</ion-select-option>
+    </ion-select>
+  &nbsp;&nbsp;
+  <ion-label>To</ion-label>
+  <ion-select [(ngModel)]="toMonth1" style="width: 150px;height: 30px;">
+    <ion-select-option *ngFor="let m1 of monthsOfExpense" [value]='m1.value'>{{m1.name}}</ion-select-option>
+  </ion-select> 
+    <ion-button expand=""class="button" (click)="applyDateFilter()">Apply Date Filter</ion-button>
   </ion-card>
 
   <ion-card class="welcome-card" >

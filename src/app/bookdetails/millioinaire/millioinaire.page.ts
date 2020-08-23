@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-millioinaire',
@@ -14,7 +15,7 @@ export class MillioinairePage implements OnInit {
     spaceBetween: 30,
    
     };
-  constructor(private socialSharing: SocialSharing,private router: Router) { }
+  constructor(public platform: Platform,private socialSharing: SocialSharing,private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,10 +24,11 @@ export class MillioinairePage implements OnInit {
   }
 
   share(){
-    var options = {
-      message:'Ionic Share',
-      url:'http://ionicframework.com/docs/native/social-sharing',
-    };
-    this.socialSharing.shareWithOptions(options);
+    this.platform.ready().then(async () => {
+      await this.socialSharing.share('https://www.themillionairenextdoor.com/').then(() => {
+      }).catch((err) => {
+        console.log(err)
+      });
+    });
   }
 }

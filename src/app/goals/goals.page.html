@@ -9,11 +9,11 @@
 
 <ion-content [fullscreen]="true">
   <ion-segment [(ngModel)]="selectTabs">
-    <ion-segment-button value="Acitve">
-      <ion-label>Acitve</ion-label>
+    <ion-segment-button style="color: rgb(209, 255, 255);" value="Acitve">
+      <ion-label style="font-size: 25px;">Acitve</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="Reached">
-      <ion-label>Reached</ion-label>
+    <ion-segment-button style="color: rgb(0, 0, 0);" value="Reached">
+      <ion-label style="font-size: 25px;">Reached</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -24,7 +24,7 @@
         <span *ngIf="!item.isEdit; else elseBlock">
           
           <ion-card-header (click)="details(item.id)">
-            <ion-card-title class="ion-card-title">{{item.Name}}  </ion-card-title>
+            <ion-card-title class="ion-card-title">{{item.Name.name}}  </ion-card-title>
             <ion-progress-bar color="secondary" class="ion-progress-bar" value="{{item.progressValue}}" color-degraded ="{'0': '#00cbcb',  '15': '#f9c3d3', '25': '#fd8c8e'}"></ion-progress-bar>
             <ion-row>
             <ion-card-subtitle class="ion-card-save"> Saved: SGD {{item.SavedAmount}}</ion-card-subtitle>
@@ -69,7 +69,7 @@
           <ion-card-content >
             <ion-item>
               <ion-label><strong>Name</strong></ion-label>
-              <ion-input type="text" [(ngModel)]="item.Name"></ion-input>
+              <ion-input type="text" [(ngModel)]="item.Name.name"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label><strong>Target Amount</strong></ion-label>
@@ -88,18 +88,17 @@
       </ion-card>
     </div>
     
-  <ng-template #elseBlock>
+
     <div *ngIf="selectTabs == 'Reached'">
-      <ion-card *ngFor="let item of studentList" color="primary" (click)="Reacheddetails()">
-        <ion-card-header>
-          <ion-card-title class="ion-card-title">{{item.Name}}  </ion-card-title>
-          <ion-card-subtitle class="ion-card-subtitle"> {{item.DesiredDate}} </ion-card-subtitle>
-          <ion-card-subtitle class="ion-card-save"> Saved: SGD {{item.SavedAmount}}</ion-card-subtitle>
-        <ion-progress-bar color="secondary" class="ion-progress-bar" value="{{item.progressValue}}" color-degraded ="{'0': '#00cbcb',  '15': '#f9c3d3', '25': '#fd8c8e'}"></ion-progress-bar>
+      <ion-card *ngFor="let item of ReachedList" color="dark" >
+        <ion-card-header (click)="Reacheddetails(item.id)">
+          <ion-card-title style="color: black;" class="ion-card-title">{{item.Name.name}}  </ion-card-title>
+          <ion-card-subtitle style="color: black;" class="ion-card-subtitle">Reached {{item.DesiredDate}} </ion-card-subtitle>
+          <ion-card-subtitle style="color: black;"  class="ion-card-save">SGD: {{item.SavedAmount}}.00  Out of  {{item.TargetAmount}}.00</ion-card-subtitle>
         </ion-card-header>
      </ion-card>
     </div>
-  </ng-template>
+ 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button>
         <ion-icon (click)="newgoals()" name="add"></ion-icon>

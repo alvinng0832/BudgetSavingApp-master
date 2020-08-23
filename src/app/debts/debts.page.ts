@@ -79,6 +79,7 @@ this.ClosedebtService.getNotes().subscribe(data => {
   console.log(data)
   this.CloseDebts = data.map(e => {
     const data = e.payload.doc.data();
+    const id = e.payload.doc.id;
     const Name = e.payload.doc.data()['Name'];
     const Description = e.payload.doc.data()['Description'];
     const Amount = e.payload.doc.data()['Amount'] ;
@@ -88,7 +89,7 @@ this.ClosedebtService.getNotes().subscribe(data => {
     const TotalAmount = e.payload.doc.data()['Amount'] + e.payload.doc.data()['NewAmount'];
 
 
-    return {TotalAmount, Name, Description, Amount, Date, DueDate,NewAmount, ...data}
+    return {id, TotalAmount, Name, Description, Amount, Date, DueDate,NewAmount, ...data}
   });
 
   console.log(this.CloseDebts)
@@ -186,6 +187,7 @@ goToDebtsRecord1(){
   this.router.navigateByUrl('/debtrecord')
 }
 RemoveClosedebt(closedebts){
-  this.ClosedebtService.deleteNote(this.collectionName1)
+  console.log(closedebts)
+  this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).doc(closedebts).delete()
 }
 }

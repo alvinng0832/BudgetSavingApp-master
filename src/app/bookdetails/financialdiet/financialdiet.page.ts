@@ -26,11 +26,11 @@ export class FinancialdietPage implements OnInit {
     this.router.navigateByUrl('/stripe');
   }
   share() {
-    this.socialSharing.shareViaWhatsApp('Hello WhatsApp', null, 'https://codevampires.com/')
-    .then(() => {
-      console.log('It works');
-    }).catch(() => {
-      alert('WhatsApp not available')
+    this.platform.ready().then(async () => {
+      await this.socialSharing.share('https://us.macmillan.com/books/9781250176172').then(() => {
+      }).catch((err) => {
+        console.log(err)
+      });
     });
   }
 

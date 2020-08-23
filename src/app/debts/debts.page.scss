@@ -60,6 +60,7 @@
   .ion-icon{
     padding-left:20px;
     padding-top: 35px;
+   
     font-size: 75px;
     display: inline-block;
     color: #000000;
@@ -181,9 +182,7 @@
     input.example-right-align {
       -moz-appearance: textfield;
     }
-    ion-icon{
-      font-size: 40px;
-    }
+   
     .ion-lenting{
       margin-left: -8em;
       margin-top: auto;
@@ -199,4 +198,30 @@
     }
   .fab-lenting{
     margin-right: 4.5em;
+  }
+  .Debtsamount{
+    margin-left: 11em;
+    margin-top: -2em;
+  }
+  .forgiven{
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: 1em;
+  }
+  .Debtsname{
+    padding-left: 15px;
+    margin-top: 1em;;
+  }
+  .Debtsdescription{
+    margin-left: 4.2em; 
+    margin-top: -2em;
+  }
+  .ion-Debtsicon{
+    padding-left:20px;
+    padding-top: 35px;
+    font-size: 75px;
+    display: inline-block;
+    color: #000000;
+    vertical-align: middle;
+    padding-bottom: 35px;
   }

@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Reached Goal Details</ion-title>
+  <ion-icon class="back-icon" (click)="back()"
+      name="arrow-back-outline">Reached Goal Detail</ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  
+  <ion-card  class="card-content" color="light" *ngFor="let item of ReachedList">
+    
+      <ion-row>
+    <ion-icon  (click)="removeitem(item.id)"  class="ion-icon" style="color: black; font-size: 50px;"  name="trash-bin-outline"></ion-icon>
+  </ion-row>
+    <ion-row>
+    <ion-card-title class="ion-card-name"> {{item.Name.name}} </ion-card-title>
+  </ion-row>
+  <ion-row>
+
+  
+    <circle-progress class="ion-align-items-center" [radius]="100" [outerStrokeWidth]="16"
+     [innerStrokeWidth]="8" [animationDuration]="1100" [animation]= "true" 
+     [percent]= "formatSubtitle" [percent]= "item.circularValue" > </circle-progress>
+    </ion-row>
+   <ion-row>
+    <ion-card-subtitle class="ion-card-target">{{item.SavedAmount}} / {{item.TargetAmount}} </ion-card-subtitle>
+   
+  </ion-row>
+  <ion-row>
+  <h1 class="h1"><b>SGD</b></h1>
+</ion-row>
+ 
+
+  </ion-card>
 
 </ion-content>

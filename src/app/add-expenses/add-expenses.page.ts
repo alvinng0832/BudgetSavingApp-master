@@ -4,6 +4,10 @@ import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense.service';
 import { Expense } from 'src/models/expense';
+import { AngularFireList } from '@angular/fire/database/interfaces';
+import { Observable } from 'rxjs';
+import { ToastController } from '@ionic/angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 interface Animal {
   name: string;
@@ -25,6 +29,8 @@ interface ExpensesRecord {
   styleUrls: ['./add-expenses.page.scss'],
 })
 export class AddExpensesPage implements OnInit{
+  data: Observable<any[]>;
+  ref: AngularFireList<any>;
   step = 0;
 
   setStep(index: number) {
@@ -39,7 +45,11 @@ export class AddExpensesPage implements OnInit{
     this.step--;
   }
   toppings = new FormControl();
-
+  expenses = {
+    value: '',
+    expense: false,
+    month: ''
+  }
   toppingList: string[] = ['coffee & tea', 'medical services', 'accomodation','cloths', 'gambling', 'shoes',
 'accessories', 'adult fun', 'airplane', 'alcohol', 'apps', 'bicycle', 'birthday','books','building upkeep','bus','car','cosmetics', 'devices','drugs',
 'electricity','quity purchase','events','ferry','fuel','furniture','games','groceries','hairdresser','heating','home improvement','income tax',
@@ -71,16 +81,35 @@ export class AddExpensesPage implements OnInit{
     Date: '',
     userId: null
   };
+  
+ 
+  monthsOfExpense = [
+  {value: 0, name:'Food & Drinks'},
+  {value: 1, name:"Clothing & Footwear"},
+  {value: 2, name:"Health & PersonalCare"},
+  {value: 3, name:"Charity"},
+  {value: 4, name:"Education"},
+  {value: 5, name:"Gifts"},
+  {value: 6, name:"Home & Utilities"},
+  {value: 7, name:"Leisure"},
+  {value: 8, name:"Loans"},
+  {value: 9, name:"Other"},
+  {value: 10, name:"Sports"},
+  {value: 11, name:"Taxes"},
+  {value: 12, name:"Transport"}
+  ];
   uid:any
   hide = true;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   Expensedata: ExpensesRecord;
   expensesForm: FormGroup;
-  constructor(private expensesService:ExpenseService,  private router: Router, private fb: FormBuilder) {
+  constructor(private db: AngularFireDatabase, private toastCtrl: ToastController, private expensesService:ExpenseService,  private router: Router, private fb: FormBuilder) {
    
     this.Expensedata = {} as ExpensesRecord;
    }
-   
+   ionViewDidEnter() {
+    this.ref = this.db.list('ExpensesChart', ref => ref.orderByChild('month'));
+  }
    
 
   ngOnInit() {
@@ -102,10 +131,24 @@ export class AddExpensesPage implements OnInit{
     console.log(this.expensesForm.value);
     this.expensesService.addExpense(this.expensesForm.value).then(resp => {
       this.expensesForm.reset();
-      this.router.navigateByUrl('/expenses')
+      this.router.navigateByUrl('/home')
     })
       .catch(error => {
         console.log(error);
       });
+      this.ref.push(this.expenses).then(async () => {
+      
+        this.expenses = {
+          value: '',
+          month: '',
+          expense: false
+        };
+        
+        let toast = await this.toastCtrl.create({
+          message: 'Charts Updated',
+          duration: 3000
+        });
+        return await toast.present();
+      })
   }
 }

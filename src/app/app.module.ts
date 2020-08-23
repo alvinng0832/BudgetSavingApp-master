@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -65,6 +66,7 @@ import { EditPasswordPageModule } from './modals/edit-password/edit-password.mod
 import { EditPhotoPageModule } from './modals/edit-photo/edit-photo.module';
 import { EditProfilePageModule } from './modals/edit-profile/edit-profile.module';
 
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 firebase.initializeApp(environment.firebase);
 
@@ -132,7 +134,8 @@ firebase.initializeApp(environment.firebase);
     // modals
     EditPasswordPageModule,
     EditPhotoPageModule,
-    EditProfilePageModule
+    EditProfilePageModule,
+    MatTreeModule
     ],
   providers: [
     StatusBar,
@@ -147,10 +150,12 @@ firebase.initializeApp(environment.firebase);
     LearnService,
     SocialSharing,
 
+    Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],
   bootstrap: [AppComponent]
+  
   
 })
 export class AppModule {}

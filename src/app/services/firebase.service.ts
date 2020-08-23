@@ -36,9 +36,11 @@ ngOnInit(){
     return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(record);
   }
 
-  read_students() {
+  Goal_students() {
     return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
   }
+
+ 
 
  update_student(recordID, record) {
  this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(recordID).update(record);
@@ -47,4 +49,16 @@ ngOnInit(){
   delete_student(record_id) {
     this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(record_id).delete()
   }
+
+
+  create_Reached(record) {
+    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').add(record);
+  }
+  Reached_students() {
+    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').snapshotChanges();
+  }
+  delete_Reached(reachgoal_id){
+    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').doc(reachgoal_id).delete();
+  }
+
 }

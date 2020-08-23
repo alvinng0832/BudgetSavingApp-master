@@ -1,4 +1,4 @@
-package com.example.app;
+package com.facebooklogin.example;
 
 import android.os.Bundle;
 

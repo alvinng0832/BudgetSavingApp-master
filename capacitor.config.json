@@ -1,6 +1,6 @@
 {
-  "appId": "com.example.app",
-  "appName": "BudgetSavingApp",
+  "appId": "com.facebooklogin.example",
+  "appName": "facebook-login",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

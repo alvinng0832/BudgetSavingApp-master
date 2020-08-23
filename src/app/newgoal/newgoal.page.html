@@ -1,3 +1,8 @@
+
+
+
+
+
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Set New Goals</ion-title>
@@ -7,62 +12,121 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen={true}>
-  <ion-card class="ion-card">
+<ion-content color="light">
 
- 
-  <form [formGroup]="studentForm" (ngSubmit)="CreateRecord()">
+<form [formGroup]="studentForm">
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header   [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
+      <mat-panel-title>
+        Catagories 
+      </mat-panel-title>
+      <mat-panel-description>
+        Choose your type
+        <ion-icon style="font-size: 30px;" name="list-outline"></ion-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
+    <mat-form-field  appearance="fill" style="width: 550px;">
+      <mat-label  style="font-size: 22px;" style="color: rgb(0, 0, 0); font-size: 18px; width: 400px;">Choose Your Category</mat-label>
+      <mat-select  style="font-size: 22px; height: 50px;" formControlName="Name" class="mat-select-content"  required>
+        <mat-option>--Select An Option--</mat-option>
+        <mat-option style="font-size: 22px;" *ngFor="let animal of animals" [value]="animal">
+          {{animal.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <ion-item lines="full">
-    <ion-label position="floating">
-      Category List
-    </ion-label>
-    <ion-select formControlName="Name">
-      <ion-select-option value="New Vehicles">New Vehicles</ion-select-option>
-      <ion-select-option value="New Home">New Home</ion-select-option>
-      <ion-select-option value="Holiday Trip">Holiday Trip</ion-select-option>
-      <ion-select-option value="Education">Education</ion-select-option>
-      <ion-select-option value="Emergency">Emergency Fund</ion-select-option>
-      <ion-select-option value="HealthCare">Health Care</ion-select-option>
-      <ion-select-option value="Party">Party</ion-select-option>
-      <ion-select-option value="Kid Spoiling">Kids Spoiling</ion-select-option>
-      <ion-select-option value="Charity">Charity</ion-select-option>
-    </ion-select>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label position="floating">Target Amount</ion-label>
-    <ion-input formControlName="TargetAmount"></ion-input>
-  </ion-item>
+    <mat-action-row>
+      <button mat-button color="primary" style="font-size: 25px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
-  <ion-item>
-    <ion-label position="floating">Saved Amount</ion-label>
-    <ion-input formControlName="SavedAmount"></ion-input>
-  </ion-item>
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
+      <mat-panel-title>
+        Target Amount
+      </mat-panel-title>
+      <mat-panel-description>
+        Amount you expected
+        <ion-icon style="font-size: 30px;" name="cash-outline"></ion-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  <ion-item>
-    <div class="container">
-      <ion-label position="floating">Desired Date</ion-label>
-      <ion-datetime formControlName="DesiredDate" (ionChange)="calcAge()" [max]="today">
-      </ion-datetime>
-    </div>
-  </ion-item>
+    <mat-form-field appearance="fill" style="width: 500px;">
+      <mat-label style="font-size: 25px;">Amount</mat-label>
+      <input style="font-size: 25px;" [(ngModel)]="transaction.value1"  formControlName="TargetAmount" matInput type="number" class="example-right-align">
+      <span style="font-size: 25px;"matPrefix>$&nbsp;</span>
+      <span style="font-size: 25px;" matSuffix>.00</span>
+    </mat-form-field>
 
+    <mat-action-row>
+      <button mat-button color="warn"style="font-size: 25px;" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 25px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
+      <mat-panel-title>
+        Amount Saved
+      </mat-panel-title>
+      <mat-panel-description>
+        Amount you have Saved
+        <ion-icon style="font-size: 30px;" name="cash-outline"></ion-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  <ion-item>
-    <ion-button (click)="CreateRecord()" [disabled]="studentForm.invalid">
-      <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
-      &nbsp;Create Record
-    </ion-button>
-  </ion-item>
-  
+    <mat-form-field appearance="fill" style="width: 500px;">
+      <mat-label style="font-size: 25px;">Amount</mat-label>
+      <input style="font-size: 25px;" formControlName="SavedAmount"[(ngModel)]="transaction.value"  matInput type="number" class="example-right-align">
+      <span style="font-size: 25px;"matPrefix>$&nbsp;</span>
+      <span style="font-size: 25px;" matSuffix>.00</span>
+    </mat-form-field>
 
+    <mat-action-row>
+      <button mat-button color="warn" style="font-size: 25px;"(click)="prevStep()">Previous</button>
+      <button mat-button color="primary" style="font-size: 25px;"(click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
+      <mat-panel-title>
+        Desired Date
+      </mat-panel-title>
+      <mat-panel-description>
+        Choose your Date
+        <mat-icon style="font-size: 30px;">date_range</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select formControlName="DesiredDate" [(ngModel)]="transaction.month" [(value)]="selected">
+        <mat-option>None</mat-option>
+        <mat-option [value]="month.value" [value]="month.value1" *ngFor="let month of months">{{month.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+   
+  <mat-action-row>
+    <button mat-button color="warn" style="font-size: 25px;"(click)="prevStep()">Previous</button>
+    <button mat-button color="primary" style="font-size: 25px;"(click)="nextStep()">End</button>
+  </mat-action-row>
+</mat-expansion-panel>
+</mat-accordion>
 </form>
-</ion-card>
-
-
-
+<ion-button expand="full" style="height: 85px;" (click)="CreateRecord()" [disabled]="studentForm.invalid"> <span style="font-size: 65px;" class="material-icons">
+  add_circle_outline
+  </span>
+</ion-button>
 
 </ion-content>
+
+
+
+ 
+
+
+
+
