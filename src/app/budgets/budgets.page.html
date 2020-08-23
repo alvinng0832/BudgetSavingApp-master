@@ -8,33 +8,7 @@
 </ion-header>
 
 <ion-content>
-  ORIGINAL BUDGETS
-  <ion-card>
-    <ion-card-header color="primary">
-      <ion-title class="ion-text-center">
-        Total: $500.00
-      </ion-title>
-    </ion-card-header>
-
-    <ion-footer>
-      <ion-row>
-        <ion-col size="3">
-          <ion-button expand="full" fill="clear">Today</ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button expand="full" fill="clear">Date</ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button expand="full" fill="clear">Category</ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-button expand="full" fill="clear">Amount</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-footer>
-  </ion-card>
-
-  <ion-card>
+  <ion-card (click)="goToExpenses()">
     <ion-toolbar color="primary">
       <ion-buttons slot="end">
         <ion-button>
@@ -44,19 +18,39 @@
           <ion-icon size="large" name="create-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title slot="start">Amount</ion-title>
+      <ion-title slot="start">Budget Calendar</ion-title>
     </ion-toolbar>
     <ion-card-content>
-      Description
+      Start date: 29 August 2020
       <ion-footer>
         <ion-label>
-          Date and Time
-        </ion-label>
-        <ion-label>
-          Type
+          End date: 30 September 2020
         </ion-label>
       </ion-footer>
     </ion-card-content>
+  </ion-card>
+
+  <!--2-->
+  <ion-card>
+    <ion-card-content>
+    Start date: 29 August 2020
+    <ion-footer>
+      <ion-label>
+        End date: 30 September 2020
+      </ion-label>
+    </ion-footer>
+  </ion-card-content>
+  </ion-card>
+  <!--3-->
+  <ion-card>
+    <ion-card-content>>
+    Start date: 29 August 2020
+    <ion-footer>
+      <ion-label>
+        End date: 30 September 2020
+      </ion-label>
+    </ion-footer>
+  </ion-card-content>
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -97,11 +91,11 @@
   </form> -->
 
 
-  <ion-card *ngFor="let i of calendarList" (click)="goToExpenses()">
+  <!-- <ion-card *ngFor="let i of calendarList" (click)="goToExpenses()">
     <h3>{{i.startDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
     <h3>{{i.endDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
 
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>
 
