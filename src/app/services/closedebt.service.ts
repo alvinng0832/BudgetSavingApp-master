@@ -20,18 +20,18 @@ collectionName = "closedebts"
      
       this.uid = user.uid
     })
-    console.log(this.user.user.uid)
+    console.log(this.user.uid)
    }
 
   addCloseDebts(closedebts) {
     console.log(closedebts)
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(closedebts)
+    return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).add(closedebts)
   }
   getNotes() {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).snapshotChanges();
   }
   deleteNote(closedebts) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(closedebts).delete()
+    this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).doc(closedebts).delete()
   }
 ngOnInit(){
   

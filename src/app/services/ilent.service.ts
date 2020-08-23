@@ -5,8 +5,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
-
 export interface LentDebts {
+  id?: string,
   Name: string,
   Amount: string,
   Description: string,
@@ -24,7 +24,7 @@ export class IlentService implements OnInit{
   uid:any
   user:any
   collectionName= "ilented"
-  collectionName1="closedebts"
+
 
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
@@ -57,28 +57,17 @@ export class IlentService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).snapshotChanges();
       }
-      updateNote(ilentID, ilent) {
-       this.firestore.collection('users').doc(this.user.user.uid).collection(this.collectionName).doc(ilentID).update(ilent);    
+      updateNote(ilent) {
+       this.firestore.collection('users').doc(this.user.uid).collection('ilented').add(ilent)    
         }
-      deleteNote(ilent_id) {
-        this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(ilent_id).delete();
+      deleteNote(ilent) {
+        this.LentCollection.doc(ilent.id).delete();
       }
-      addNote(ilent: LentDebts) {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent);
+      addNote(ilent) {
+        return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).add(ilent)
       }
-      addCloseDebts(closedebts) {
-        console.log(closedebts)
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).add(closedebts);
-      }
-      getCloseDebts() {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).snapshotChanges();
-      }
-      deleteCloseDebts(closedebts) {
-        this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName1).doc(closedebts).delete();
-      }
-
      
     
 }

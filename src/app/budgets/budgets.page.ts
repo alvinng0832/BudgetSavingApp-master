@@ -22,7 +22,6 @@ export class BudgetsPage implements OnInit {
 
   calendarList = [];
 
-
   constructor(
     private modalController: ModalController,
     private router: Router,

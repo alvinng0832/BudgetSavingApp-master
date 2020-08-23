@@ -31,7 +31,6 @@ LentList=[];
      
       this.uid = user.uid
     })
-    console.log(this.user.user.uid)
   }
 
 
@@ -138,7 +137,7 @@ this.ClosedebtService.getNotes().subscribe(data => {
     ilent['Name'] = debtsrow.Name;
     ilent['Description'] = debtsrow.Description;
     ilent['NewAmount'] = debtsrow.NewAmount;
-    this.ilentService.updateNote( debtsrow.id, ilent);
+    this.ilentService.updateNote( ilent);  // not sure correct, 
     console.log('Debts are Successfully Added')
     debtsrow.isEdit = false;
    

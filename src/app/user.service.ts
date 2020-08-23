@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
 import { auth } from 'firebase/app';
-
+import {AngularFirestore} from '@angular/fire/firestore';
 interface user {
   username: string;
   uid: string;
@@ -16,7 +16,7 @@ export class UserService {
   user: any;
  
 
-  constructor( private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
+  constructor( private afs: AngularFirestore ,private afAuth: AngularFireAuth, public auth: AngularFireAuth) {
 
   }
 
@@ -59,7 +59,10 @@ export class UserService {
   getUID(): string {
     return this.user.uid
   }
+  updateDatabaseProfile(user:any, id: string){
+    return this.afs.collection("users").doc(id).update(user); 
 
+  }
   
 
 }
