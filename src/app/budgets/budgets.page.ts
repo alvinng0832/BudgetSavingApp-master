@@ -42,8 +42,8 @@ export class BudgetsPage implements OnInit {
       endDate: ['', [Validators.required]]
     })
 
-    this.calendarService.getCalendar()
-      .subscribe(data => {
+    this.calendarService.getCalendar().subscribe(data => {
+      console.log(data)
         this.calendarList = data.map(e => {
           const data = e.payload.doc.data();
           const id = e.payload.doc.id;
@@ -58,12 +58,16 @@ export class BudgetsPage implements OnInit {
 
   addCalendar() {
 
-    // this.expense.amount = this.addExpenseForm.controls.amount.value;
-    // //this.expense.userId = this.userService.getUID();
-    // this.expense.description = this.addExpenseForm.controls.description.value;
-    // this.expense.type = this.addExpenseForm.controls.type.value;
-    // this.expense.id = this.documentRef.id;
-    // this.expenseService.addExpense(this.expense);
+    console.log(this.addCalendarForm.value);
+    this.calendarService.addCalendar(this.addCalendarForm.value).then(resp => {
+      this.addCalendarForm.reset();
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  updateCalendar() {
 
     console.log(this.addCalendarForm.value);
     this.calendarService.addCalendar(this.addCalendarForm.value).then(resp => {
@@ -78,7 +82,8 @@ export class BudgetsPage implements OnInit {
     console.log(val)
   }
 
-
+  
+  
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -87,8 +92,26 @@ export class BudgetsPage implements OnInit {
     return await modal.present();
   }
 
-  goToExpenses() {
-    this.router.navigateByUrl('/tabsbudget');
+  goToExpenses(passC) {
+    // console.log(passC)
+    let navigationExstras = {
+      state: {
+        obj: passC
+      }
+    };
+    this.router.navigate(['/tabsbudget'], navigationExstras)
+  }
+  
+
+  calendarModal(){
+    this.router.navigateByUrl('/add-calendar')
+  }
+
+  editCalendar(calendar){
+    calendar.isEdit = true;
+    calendar.startDate = calendar.startDate;
+    calendar.endDate = calendar.endDate;
+
   }
   
 }

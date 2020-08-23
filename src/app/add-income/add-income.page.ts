@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import {IncomeService} from 'src/app/services/income.service';
+import { IncomeService } from 'src/app/services/income.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 
 @Component({
   selector: 'app-add-income',
@@ -9,38 +11,46 @@ import {IncomeService} from 'src/app/services/income.service';
 })
 export class AddIncomePage implements OnInit {
   addIncomeForm: FormGroup;
+  calID: any;
 
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private incomeService: IncomeService
+    private formBuilder: FormBuilder,
+    private incomeService: IncomeService,
+    private route: ActivatedRoute, private router: Router,
+    private tabs: TabsbudgetPage,
 
-  ) { }
+  ) {
+    this.calID = this.tabs.data.id;
+  }
 
   ngOnInit() {
     this.addIncomeForm = this.formBuilder.group({
       amount: new FormControl(''),
       description: new FormControl(''),
       type: new FormControl('')
-      
+
     })
+
+
+
 
   }
 
-  addIncome(){
+  addIncome() {
 
     console.log(this.addIncomeForm.value);
 
-    this.incomeService.addIncome(this.addIncomeForm.value).then(resp => {
+    this.incomeService.addIncome(this.calID, this.addIncomeForm.value).then(resp => {
       this.addIncomeForm.reset();
     })
       .catch(error => {
         console.log(error);
       });
   }
-  
- call(val){
-   console.log(val)
- }
+
+  call(val) {
+    console.log(val)
+  }
 
 }

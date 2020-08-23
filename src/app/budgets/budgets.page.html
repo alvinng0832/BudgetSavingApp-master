@@ -8,50 +8,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-card (click)="goToExpenses()">
+  
+  <ion-card *ngFor="let i of calendarList">
     <ion-toolbar color="primary">
       <ion-buttons slot="end">
         <ion-button>
-          <ion-icon size="large" name="help-circle-outline"></ion-icon>
+          <ion-icon size="large" name="help-circle-outline" ></ion-icon>
         </ion-button>
-        <ion-button>
+        <ion-button (click)="calendarModal()">
           <ion-icon size="large" name="create-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
       <ion-title slot="start">Budget Calendar</ion-title>
     </ion-toolbar>
-    <ion-card-content>
-      Start date: 29 August 2020
+    
+    
+    <ion-card-content (click)="goToExpenses(i)">
+      <h3>{{i.startDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
       <ion-footer>
         <ion-label>
-          End date: 30 September 2020
+        <h3>{{i.endDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
         </ion-label>
       </ion-footer>
     </ion-card-content>
   </ion-card>
 
-  <!--2-->
-  <ion-card>
-    <ion-card-content>
-    Start date: 29 August 2020
-    <ion-footer>
-      <ion-label>
-        End date: 30 September 2020
-      </ion-label>
-    </ion-footer>
-  </ion-card-content>
-  </ion-card>
-  <!--3-->
-  <ion-card>
-    <ion-card-content>>
-    Start date: 29 August 2020
-    <ion-footer>
-      <ion-label>
-        End date: 30 September 2020
-      </ion-label>
-    </ion-footer>
-  </ion-card-content>
-  </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="presentModal()">
@@ -59,43 +40,22 @@
     </ion-fab-button>
   </ion-fab>
 
+  
 
 
-<!-- CALENDAR INPUTS -->
-<!-- 
-  <form [formGroup]="addCalendarForm" (ngSubmit)="addCalendar()">
-    <ion-item>
-     
-      <input placeholder="Enter Start Date" matInput [matDatepicker]="pickerStartDate" formControlName="startDate">
-      <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
-      <mat-datepicker #pickerStartDate></mat-datepicker>
-    </ion-item>
-    <ion-item>
-      <input matInput placeholder="Enter End Date" [matDatepicker]="pickerEndDate" formControlName="endDate">
-      <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEndDate></mat-datepicker>
-    </ion-item>
 
-    <ion-grid>
-      <ion-row>
+<!-- CALENDAR INPUTS
 
-        <ion-col size="6">
-          <ion-button color="primary" fill="solid" expand="block" type="submit" [disabled]="addCalendarForm.invalid">Add</ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button color="danger" fill="solid" expand="block">Cancel</ion-button>
-        </ion-col>
-
-      </ion-row>
-    </ion-grid>
-  </form> -->
-
-
-  <!-- <ion-card *ngFor="let i of calendarList" (click)="goToExpenses()">
+<ion-card *ngFor="let i of calendarList" (click)="goToExpenses()">
     <h3>{{i.startDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
     <h3>{{i.endDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
 
-  </ion-card> -->
+  </ion-card>
+
+-->
+
+
+
 
 </ion-content>
 

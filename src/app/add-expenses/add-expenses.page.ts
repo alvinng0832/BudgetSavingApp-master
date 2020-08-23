@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense.service';
 import { Expense } from 'src/models/expense';
-import { AngularFireList } from '@angular/fire/database/interfaces';
+import { TabsbudgetPageModule } from '../tabsbudget/tabsbudget.module';
+import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { Observable } from 'rxjs';
+import { AngularFireList } from '@angular/fire/database';
 import { ToastController } from '@ionic/angular';
-import { AngularFireDatabase } from 'angularfire2/database';
 
 interface Animal {
   name: string;
@@ -32,6 +33,8 @@ export class AddExpensesPage implements OnInit{
   data: Observable<any[]>;
   ref: AngularFireList<any>;
   step = 0;
+  db: any;
+
 
   setStep(index: number) {
     this.step = index;
@@ -103,8 +106,15 @@ export class AddExpensesPage implements OnInit{
   @ViewChild(MatAccordion) accordion: MatAccordion;
   Expensedata: ExpensesRecord;
   expensesForm: FormGroup;
-  constructor(private db: AngularFireDatabase, private toastCtrl: ToastController, private expensesService:ExpenseService,  private router: Router, private fb: FormBuilder) {
+  constructor(
+    private expensesService:ExpenseService, 
+     private router: Router, 
+     private fb: FormBuilder,
+     private tabs: TabsbudgetPage,
+     private toastCtrl: ToastController,
+    ) {
    
+    console.log(this.tabs.data)
     this.Expensedata = {} as ExpensesRecord;
    }
    ionViewDidEnter() {

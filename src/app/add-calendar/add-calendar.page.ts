@@ -31,7 +31,6 @@ export class AddCalendarPage implements OnInit {
     }
 
   
-  
   ngOnInit() {
     this.addCalendarForm = this.formBuilder.group({
     startDate: ['', [Validators.required]],
@@ -52,6 +51,58 @@ export class AddCalendarPage implements OnInit {
         console.log(error);
       });
   }
+
+
+  // IBorrow(){
+  //   this.router.navigateByUrl('/add-borrow')
+  // }
+  // ILent(){
+  //   this.router.navigateByUrl('/add-lent')
+  // }
+  // removelentitem(ilent_id){
+  //   this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(ilent_id).delete()
+  // }
+
+  // removeborrowitem(iborrowid){
+  //   this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName2).doc(iborrowid).delete()
+  // }
+  
+  // EditRecord(ilent){
+  //   ilent.isEdit = true;
+  //   ilent.Name = ilent.Name;
+  //   ilent.Description = ilent.Description;
+  //   ilent.NewAmount = ilent.NewAmount;
+
+  // }
+
+  // EditRecord1(iborrow){
+  //   iborrow.isEdit = true;
+  //   iborrow.Name = iborrow.Name;
+  //   iborrow.Description = iborrow.Description;
+  //   iborrow.NewAmount = iborrow.NewAmount;
+
+  // }
+  // UpdateRecord(debtsrow) {
+  //   let ilent = {};
+  //   ilent['Name'] = debtsrow.Name;
+  //   ilent['Description'] = debtsrow.Description;
+  //   ilent['NewAmount'] = debtsrow.NewAmount;
+  //   this.ilentService.updateNote( ilent);  // not sure correct, 
+  //   console.log('Debts are Successfully Added')
+  //   debtsrow.isEdit = false;
+   
+  // }
+
+  // UpdateRecord1(debtsrow) {
+  //   let iborrow = {};
+  //   iborrow['Name'] = debtsrow.Name;
+  //   iborrow['Description'] = debtsrow.Description;
+  //   iborrow['NewAmount'] = debtsrow.NewAmount;
+  //   this.iborrowService.updateNote( debtsrow.id, iborrow);
+  //   console.log('Debts are Successfully Added')
+  //   debtsrow.isEdit = false;
+   
+  // }
   
  call(val){
    console.log(val)
