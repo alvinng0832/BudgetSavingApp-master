@@ -162,7 +162,20 @@ const routes: Routes = [
   {
     path: 'add-calendar',
     loadChildren: () => import('./add-calendar/add-calendar.module').then( m => m.AddCalendarPageModule)
-  },  {
+  },
+  {
+    path: 'edit-photo',
+    loadChildren: () => import('./modals/edit-photo/edit-photo.module').then( m => m.EditPhotoPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./modals/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
+  {
+    path: 'edit-password',
+    loadChildren: () => import('./modals/edit-password/edit-password.module').then( m => m.EditPasswordPageModule)
+  },
+  {
     path: 'testing',
     loadChildren: () => import('./testing/testing.module').then( m => m.TestingPageModule)
   },

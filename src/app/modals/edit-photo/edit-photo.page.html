@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="close(false)">
+      <ion-button>
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>edit-photo</ion-title>
+
+    <ion-buttons *ngIf="imgURL" slot="end"  (click)="upload()">
+      <ion-button>
+        save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <img *ngIf="imgURL" [src]="imgURL">
+
+  <input type="file" (change)="fileChanged($event)" accept="image/*" class="filebtn" #fileButton
+    style="display: none;" />
+
+
+  <ion-fab *ngIf="imgURL" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openFile()">
+      <ion-icon name="image-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

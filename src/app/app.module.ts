@@ -22,6 +22,9 @@ import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+ 
+// ANGULAR DESIGN
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -59,9 +62,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { LearnService } from './services/learn.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { EditPasswordPageModule } from './modals/edit-password/edit-password.module';
+import { EditPhotoPageModule } from './modals/edit-photo/edit-photo.module';
+import { EditProfilePageModule } from './modals/edit-profile/edit-profile.module';
+
 import { Facebook } from '@ionic-native/facebook/ngx';
 
 firebase.initializeApp(environment.firebase);
+
+
+
 @NgModule({
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [AppComponent],
@@ -73,6 +83,7 @@ firebase.initializeApp(environment.firebase);
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     // AngularFirestoreCollection,
     BrowserModule,
     IonicModule.forRoot(),
@@ -118,6 +129,12 @@ firebase.initializeApp(environment.firebase);
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatTreeModule,
+
+    // modals
+    EditPasswordPageModule,
+    EditPhotoPageModule,
+    EditProfilePageModule,
     MatTreeModule
     ],
   providers: [
@@ -132,6 +149,7 @@ firebase.initializeApp(environment.firebase);
     CallNumber,
     LearnService,
     SocialSharing,
+
     Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     

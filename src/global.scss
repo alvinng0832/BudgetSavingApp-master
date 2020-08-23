@@ -26,3 +26,13 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+.prof-pop .popover-wrapper .popover-content {
+    width: 50% !important;
+}
+
+.edit-pw .modal-wrapper {
+    border-radius: 25px 25px 0 0;
+    height: 30%;
+    top:70%;
+    position: absolute;
+}
