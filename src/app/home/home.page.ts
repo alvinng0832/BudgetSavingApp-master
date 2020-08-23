@@ -127,7 +127,7 @@ export class HomePage implements OnInit {
   
       // Create the chart
       this.valueBarsChart = new Chart(this.valueBarsCanvas.nativeElement, {
-        enable3D: true,
+      
         type: 'bar',
         data: {
           labels: Object.keys(this.monthsOfGoal).map(a => this.monthsOfGoal[a].name),
@@ -290,38 +290,47 @@ export class HomePage implements OnInit {
 
     let DonutChartdata = this.getDonutReport();
     this.doughnut =  new Chart(this.valueDonutCanvas.nativeElement,{
+     
       startAngle: -90, endAngle: 90 ,
       type: 'doughnut',
+      centerText: {
+        display: true,
+        text: "280"
+    },
       options: {
+        dataLabels: {
+          enabled: true,
+          formatter: function (val) {
+            return val + "%"
+          },
+      
+        },
      
         cutoutPercentage: 65,
         responsive: true,
         
         maintainAspectRatio: true,
         title: {
+          
           display: true,
           text: 'Doughnut Chart',
           fontSize:40
         },legend: {
-					position: 'bottom',
+          position: 'left',
+          fontSize:30
 				},animation: {
+          
 					animateScale: true,
           animateRotate: true,
            
         },
-        onClick: (evt, item) => {
-          
-          this.doughnut.update()
-          
-          item[0]._model.outerRadius += 15
-          
-        },
        
-      
       },
       data: {
 				datasets: [{
-					data: DonutChartdata,
+          data: DonutChartdata,
+       
+
           backgroundColor: ["#69bb7b","#d65b5b","#26baff","#9cd0fc","#35b468","#6a64ff","#ff0095",
           "#ffd534","#222428","blue","red","orange"],
 
