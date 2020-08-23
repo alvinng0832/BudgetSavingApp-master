@@ -174,7 +174,7 @@ const routes: Routes = [
   {
     path: 'edit-password',
     loadChildren: () => import('./modals/edit-password/edit-password.module').then( m => m.EditPasswordPageModule)
-  }
+  },
   {
     path: 'testing',
     loadChildren: () => import('./testing/testing.module').then( m => m.TestingPageModule)
