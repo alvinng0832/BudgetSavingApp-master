@@ -18,26 +18,26 @@ const routes: Routes = [
           },
         ]
       },
-      // {
-      //   path: 'add-income',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () =>
-      //         import('../add-income/add-income.module').then(m => m.AddIncomePageModule)
-      //     }
-      //   ]
-      // },
       {
-        path: 'tabsincome',
+        path: 'add-income',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tabsincome/tabsincome.module').then(m => m.TabsincomePageModule)
+              import('../add-income/add-income.module').then(m => m.AddIncomePageModule)
           }
         ]
       },
+      // {
+      //   path: 'tabsincome',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: () =>
+      //         import('../tabsincome/tabsincome.module').then(m => m.TabsincomePageModule)
+      //     }
+      //   ]
+      // },
       {
         path: 'calculatedbudget',
         children: [
