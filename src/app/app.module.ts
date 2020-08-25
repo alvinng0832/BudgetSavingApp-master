@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
@@ -67,6 +67,8 @@ import { EditPhotoPageModule } from './modals/edit-photo/edit-photo.module';
 import { EditProfilePageModule } from './modals/edit-profile/edit-profile.module';
 
 import { Facebook } from '@ionic-native/facebook/ngx';
+
+
 
 firebase.initializeApp(environment.firebase);
 
@@ -135,7 +137,15 @@ firebase.initializeApp(environment.firebase);
     EditPasswordPageModule,
     EditPhotoPageModule,
     EditProfilePageModule,
-    MatTreeModule
+    MatTreeModule,
+    AngularFirestoreModule.enablePersistence()
+    
+    
+
+  
+    
+
+
     ],
   providers: [
     StatusBar,
@@ -149,9 +159,13 @@ firebase.initializeApp(environment.firebase);
     CallNumber,
     LearnService,
     SocialSharing,
+    AngularFirestore,
 
     Facebook,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }
+
+    
     
   ],
   bootstrap: [AppComponent]

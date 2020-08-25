@@ -4,13 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddIncomePageRoutingModule } from './add-income-routing.module';
+import { TabsincomePageRoutingModule } from './tabsincome-routing.module';
 
-import { AddIncomePage } from './add-income.page';
+import { TabsincomePage } from './tabsincome.page';
 import { RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-
-
 
 @NgModule({
   imports: [
@@ -18,14 +15,11 @@ import { RouterTestingModule } from '@angular/router/testing';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    AddIncomePageRoutingModule,
-    
-    RouterModule.forChild([{ path: '', component: AddIncomePage }])
+    TabsincomePageRoutingModule,
+    RouterModule.forChild([{ path: '', component: TabsincomePage }])
   ],
-  declarations: [AddIncomePage],
+  declarations: [TabsincomePage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class AddIncomePageModule {}
-
-
+export class TabsincomePageModule {}
 

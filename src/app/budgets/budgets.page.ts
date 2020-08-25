@@ -83,7 +83,6 @@ export class BudgetsPage implements OnInit {
   }
 
   
-  
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -92,11 +91,11 @@ export class BudgetsPage implements OnInit {
     return await modal.present();
   }
 
-  goToExpenses(passC) {
+  goToExpenses(passCalendarID) {
     // console.log(passC)
     let navigationExstras = {
       state: {
-        obj: passC
+        obj: passCalendarID
       }
     };
     this.router.navigate(['/tabsbudget'], navigationExstras)

@@ -18,13 +18,23 @@ const routes: Routes = [
           },
         ]
       },
+      // {
+      //   path: 'add-income',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: () =>
+      //         import('../add-income/add-income.module').then(m => m.AddIncomePageModule)
+      //     }
+      //   ]
+      // },
       {
-        path: 'add-income',
+        path: 'tabsincome',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../add-income/add-income.module').then(m => m.AddIncomePageModule)
+              import('../tabsincome/tabsincome.module').then(m => m.TabsincomePageModule)
           }
         ]
       },

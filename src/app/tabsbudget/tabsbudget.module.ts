@@ -8,12 +8,16 @@ import { TabsbudgetPageRoutingModule } from './tabsbudget-routing.module';
 
 import { TabsbudgetPage } from './tabsbudget.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     TabsbudgetPageRoutingModule,
+   
+    
   ],
   declarations: [TabsbudgetPage]
 })

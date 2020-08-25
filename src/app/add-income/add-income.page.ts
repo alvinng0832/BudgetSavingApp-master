@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { IncomeService } from 'src/app/services/income.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-income',
@@ -19,9 +20,11 @@ export class AddIncomePage implements OnInit {
     private incomeService: IncomeService,
     private route: ActivatedRoute, private router: Router,
     private tabs: TabsbudgetPage,
+    private modalController: ModalController
 
   ) {
     this.calID = this.tabs.data.id;
+    console.log(this.tabs.data)
   }
 
   ngOnInit() {
@@ -31,8 +34,6 @@ export class AddIncomePage implements OnInit {
       type: new FormControl('')
 
     })
-
-
 
 
   }
@@ -51,6 +52,10 @@ export class AddIncomePage implements OnInit {
 
   call(val) {
     console.log(val)
+  }
+
+  async closeModal() {
+    await this.modalController.dismiss();
   }
 
 }

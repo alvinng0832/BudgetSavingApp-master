@@ -179,6 +179,11 @@ const routes: Routes = [
     path: 'testing',
     loadChildren: () => import('./testing/testing.module').then( m => m.TestingPageModule)
   },
+  {
+    path: 'tabsincome',
+    loadChildren: () => import('./tabsincome/tabsincome.module').then( m => m.TabsincomePageModule)
+  },
+
 
 
 

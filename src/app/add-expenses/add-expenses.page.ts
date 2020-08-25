@@ -114,6 +114,7 @@ export class AddExpensesPage implements OnInit{
      private toastCtrl: ToastController,
     ) {
    
+    
     console.log(this.tabs.data)
     this.Expensedata = {} as ExpensesRecord;
    }
