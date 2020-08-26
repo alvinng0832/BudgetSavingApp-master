@@ -10,19 +10,20 @@
 <ion-content>
   
   <ion-card *ngFor="let i of calendarList">
+    <span *ngIf="!i.isEdit; else elseBlock">
     <ion-toolbar color="primary">
       <ion-buttons slot="end">
-        <ion-button>
-          <ion-icon size="large" name="help-circle-outline" ></ion-icon>
-        </ion-button>
-        <ion-button (click)="calendarModal()">
+        <ion-button (click)="editCalendar(i)">
           <ion-icon size="large" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="RemoveRecord(i.id)">
+          <ion-icon size="large" name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>
       <ion-title slot="start">Budget Calendar</ion-title>
     </ion-toolbar>
     
-    
+  
     <ion-card-content (click)="goToExpenses(i)">
       <h3>{{i.startDate.seconds * 1000 | date:'dd-MMM-yyyy'}}</h3>
       <ion-footer>
@@ -31,8 +32,47 @@
         </ion-label>
       </ion-footer>
     </ion-card-content>
+  </span>
+    <ng-template  #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Edit
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" color="medium" size="small" (click)="item.isEdit = false">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="UpdateRecord(i)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content >
+        <ion-item>
+          <!-- <ion-textarea placeholder="Type Start Date" type="text" formControlName="startDate"></ion-textarea> -->
+          <input  [(ngModel)]="i.startDate" placeholder="Enter Start Date" matInput [matDatepicker]="pickerStartDate" >
+          <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerStartDate></mat-datepicker>
+        </ion-item>
+        <ion-item>
+          <!-- <ion-textarea placeholder="Type End Date" type="text" formControlName="endDate"></ion-textarea> -->
+          <input  [(ngModel)]="i.endDate" matInput placeholder="Enter End Date" [matDatepicker]="pickerEndDate" >
+          <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerEndDate></mat-datepicker>
+        </ion-item>
+    
+      </ion-card-content>
+    </ng-template>
   </ion-card>
-
+  
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="presentModal()">
@@ -41,8 +81,6 @@
   </ion-fab>
 
   
-
-
 
 <!-- CALENDAR INPUTS
 

@@ -6,6 +6,8 @@ import { AddCalendarPage } from '../add-calendar/add-calendar.page';
 
 import { AddExpensesPage } from '../add-expenses/add-expenses.page';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 interface budgetRecord {
   endDate: string;
@@ -21,18 +23,24 @@ export class BudgetsPage implements OnInit {
   budgetdata: budgetRecord
 
   calendarList = [];
-
+  user: any;
+  collectionName = "Calendar"
+  uid: string;
   constructor(
     private modalController: ModalController,
     private router: Router,
   
-
+private firestore: AngularFirestore,
     private formBuilder: FormBuilder,
-    private calendarService: CalendarService
-
+    private calendarService: CalendarService,
+    private afAuth: AngularFireAuth,
   ) {
     this.budgetdata = {} as budgetRecord;
-
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.afAuth.auth.onAuthStateChanged((user) => {
+     
+      this.uid = user.uid
+    })
   }
 
 
@@ -110,9 +118,17 @@ export class BudgetsPage implements OnInit {
     calendar.isEdit = true;
     calendar.startDate = calendar.startDate;
     calendar.endDate = calendar.endDate;
-
   }
-  
+  UpdateRecord(calendarRow) {
+    let calendar = {};
+    calendar['startDate'] = calendarRow.startDate;
+    calendar['endDate'] = calendarRow.endDate;
+    this.calendarService.updateCalendar(calendarRow.id, calendar); 
+    calendarRow.isEdit = false;
+  }
+  RemoveRecord (CalendarID) {
+    this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).doc(CalendarID).delete()
+  }
 }
 
 

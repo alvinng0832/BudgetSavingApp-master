@@ -4,6 +4,7 @@ import { IncomeService } from 'src/app/services/income.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { ModalController } from '@ionic/angular';
+import { TabsincomePage } from '../tabsincome/tabsincome.page';
 
 @Component({
   selector: 'app-add-income',
@@ -56,6 +57,13 @@ export class AddIncomePage implements OnInit {
 
   async closeModal() {
     await this.modalController.dismiss();
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: TabsincomePage
+    });
+    return await modal.present();
   }
 
 }

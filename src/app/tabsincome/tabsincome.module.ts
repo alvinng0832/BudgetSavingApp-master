@@ -8,6 +8,7 @@ import { TabsincomePageRoutingModule } from './tabsincome-routing.module';
 
 import { TabsincomePage } from './tabsincome.page';
 import { RouterModule } from '@angular/router';
+import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     ReactiveFormsModule,
     TabsincomePageRoutingModule,
-    RouterModule.forChild([{ path: '', component: TabsincomePage }])
+    RouterModule.forChild([{ path: '', component: TabsincomePage }],
+    )
   ],
   declarations: [TabsincomePage],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

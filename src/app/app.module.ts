@@ -67,6 +67,8 @@ import { EditPhotoPageModule } from './modals/edit-photo/edit-photo.module';
 import { EditProfilePageModule } from './modals/edit-profile/edit-profile.module';
 
 import { Facebook } from '@ionic-native/facebook/ngx';
+import { TabsbudgetPageModule } from './tabsbudget/tabsbudget.module';
+import { TabsincomePageModule } from './tabsincome/tabsincome.module';
 
 
 
@@ -138,7 +140,9 @@ firebase.initializeApp(environment.firebase);
     EditPhotoPageModule,
     EditProfilePageModule,
     MatTreeModule,
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    TabsbudgetPageModule,
+    TabsincomePageModule
     
     
 
