@@ -142,7 +142,8 @@ firebase.initializeApp(environment.firebase);
     MatTreeModule,
     AngularFirestoreModule.enablePersistence(),
     TabsbudgetPageModule,
-    TabsincomePageModule
+    TabsincomePageModule,
+    
     
     
 

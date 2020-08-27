@@ -52,11 +52,11 @@ export class IncomeService  {
     .collection("Income").add(income)
   }
 
-  // getIncome() {
-  //   return this.firestore.collection('users').doc(this.user.uid).collection("Calendar").doc(this.calID)
-  //   .collection("Income").snapshotChanges();
+  getIncome(id) {
+    return this.firestore.collection('users').doc(this.user.uid).collection("Calendar").doc(id)
+    .collection("Income").snapshotChanges();
   
-  // }
+  }
 
 
 }

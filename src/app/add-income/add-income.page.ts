@@ -61,7 +61,10 @@ export class AddIncomePage implements OnInit {
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: TabsincomePage
+      component: TabsincomePage,
+      componentProps: {
+        data: this.tabs.data
+      }
     });
     return await modal.present();
   }

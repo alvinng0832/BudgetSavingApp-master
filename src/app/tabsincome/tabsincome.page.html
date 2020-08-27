@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tabsincome</ion-title>
+    <ion-title>View Income</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -40,8 +45,8 @@
 </ion-fab>
 
 
-<!-- <ion-card *ngFor="let i of incomeList">
-  <ion-toolbar color="primary">
+<ion-card *ngFor="let i of incomeList">
+  <!-- <ion-toolbar color="primary">
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon size="large" name="help-circle-outline" ></ion-icon>
@@ -51,13 +56,13 @@
       </ion-button>
     </ion-buttons>
     <ion-title slot="start">Display Income</ion-title>
-  </ion-toolbar>
+  </ion-toolbar> -->
 
   <ion-card-content>
   <h3>{{i.amount}}</h3>
-  <h3>{{i.type}}</h3>
   <h3>{{i.description}}</h3>
+  <h3>{{i.type}}</h3>
   </ion-card-content>
-</ion-card> -->
+</ion-card>
 
 </ion-content>
