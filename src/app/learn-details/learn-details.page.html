@@ -1,38 +1,41 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>learnDetails</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-    <ion-card-header>
-      <ion-card-title>{{data.title}}</ion-card-title>
-    </ion-card-header>
-    <img [src]="data.image">
-<ion-card-content>{{data.description}}</ion-card-content>
-    <iframe height="200" width="100%" [src]="data.video" frameborder="0" allowfullscreen></iframe>
-    <ion-footer>
-      <ion-row>
-        <ion-col center text-center>
-          <button>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>1.5k Likes</div>
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <button>
-            <ion-icon name="text"></ion-icon>
-            <div>4 Comments</div>
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <button>
-            <ion-icon name="time"></ion-icon>
-            <div>11h ago</div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-footer> 
+  <ion-card-header>
+    <ion-card-title>{{data.title}}</ion-card-title>
+  </ion-card-header>
+  <img [src]="data.image">
+  <ion-card-content>{{data.description}}</ion-card-content>
+  <iframe height="200" width="100%" [src]="data.video" frameborder="0" allowfullscreen></iframe>
+  <ion-footer>
+    <ion-row>
+      <ion-col center text-center>
+        <button>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>1.5k Likes</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <button>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <button>
+          <ion-icon name="time"></ion-icon>
+          <div>11h ago</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>
 
 </ion-content>

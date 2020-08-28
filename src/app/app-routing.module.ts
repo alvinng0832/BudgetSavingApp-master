@@ -182,7 +182,11 @@ const routes: Routes = [
   {
     path: 'tabsincome',
     loadChildren: () => import('./tabsincome/tabsincome.module').then( m => m.TabsincomePageModule)
+  },  {
+    path: 'saved-learn',
+    loadChildren: () => import('./saved-learn/saved-learn.module').then( m => m.SavedLearnPageModule)
   },
+
 
 
 

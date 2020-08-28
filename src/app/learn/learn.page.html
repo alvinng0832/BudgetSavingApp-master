@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Learn</ion-title>
-    <ion-button slot="start">
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -44,20 +44,23 @@
 
   <!--CATEGORIES OF FINANCE-->
   <ion-card *ngFor="let learn of filtered">
-    <!-- <ion-item>
-      <ion-avatar slot="start">
-     <img src="assets/learn/finance.jpg">
-      </ion-avatar>
-      <ion-label>
-        <h3>John Doe</h3>
-        <p>Dec 10, 2019</p>
-      </ion-label>
-    </ion-item> -->
-
+  
     <ion-card-header>
       <ion-card-title>{{learn.title}}</ion-card-title>
     </ion-card-header>
     <img [src]="learn.image" />
-    <ion-button expand="full" (click)="details(learn)">View more</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="details(learn)">View more</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button *ngIf="!learn.saved" color="secondary" expand="full" (click)="save(learn)">Save
+          <ion-icon slot="end" name="bookmark"></ion-icon>
+        </ion-button>
+        <ion-button style="opacity: 0.5;" *ngIf="learn.saved" color="secondary" expand="full" (click)="unsave(learn)">Unsave
+          <ion-icon slot="end" name="bookmark-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>

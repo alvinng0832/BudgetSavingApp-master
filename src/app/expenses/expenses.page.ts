@@ -28,6 +28,7 @@ export class ExpensesPage implements OnInit {
     this.expenseService.read_students().subscribe(data => {
       console.log(data)
       this.expensesList = data.map(e => {
+        
         const data = e.payload.doc.data();
         const id = e.payload.doc.id;
         const FirstName = e.payload.doc.data()['FirstName'];

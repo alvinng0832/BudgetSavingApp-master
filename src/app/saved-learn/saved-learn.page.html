@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Saved</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item *ngFor="let i of dataLearn" button (click)="details(i)">
+    <ion-label>
+      {{i.title}}
+    </ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>
