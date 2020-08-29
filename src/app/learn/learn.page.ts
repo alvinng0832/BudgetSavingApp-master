@@ -39,7 +39,7 @@ export class LearnPage implements OnInit {
     this.segmentModel = "all" // first start as All
     this.learnService.getSaved(this.UID).subscribe(d => {
       let ss: any = d
-      this.saved = ss.saved
+      this.saved = ss.saved ? ss.saved : []
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {
           const id = e.payload.doc.id;
@@ -47,7 +47,7 @@ export class LearnPage implements OnInit {
           const video = this.dom.bypassSecurityTrustResourceUrl(e.payload.doc.data()['video'])
           const category = e.payload.doc.data()['category']
           const description = e.payload.doc.data()['description']
-          const saved = (ss.saved.includes(id))
+          const saved = ss.saved ? ss.saved.includes(id) : false;
           const image = e.payload.doc.data()['image']
         
           return { id, title, video, category, description, saved, image }
