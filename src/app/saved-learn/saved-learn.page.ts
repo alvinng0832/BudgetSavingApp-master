@@ -25,7 +25,7 @@ export class SavedLearnPage implements OnInit {
   ngOnInit() {
     this.learnService.getSaved(this.user.uid).subscribe(d => {
       let ss: any = d
-      this.saved = ss.saved
+      this.saved = ss.saved ? ss.saved : []
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {
             const id = e.payload.doc.id;
@@ -33,7 +33,7 @@ export class SavedLearnPage implements OnInit {
             const video = this.dom.bypassSecurityTrustResourceUrl(e.payload.doc.data()['video'])
             const category = e.payload.doc.data()['category']
             const description = e.payload.doc.data()['description']
-            const saved = (ss.saved.includes(id))
+            const saved = ss.saved ? ss.saved.includes(id) : false;
             const image = e.payload.doc.data()['image']
 
             return { id, title, video, category, description, saved, image }
@@ -48,5 +48,15 @@ export class SavedLearnPage implements OnInit {
   details(val) {
   let navigationExtras: NavigationExtras = { state: { obj: val } }
     this.router.navigate(['learn-details'], navigationExtras);
+  }
+
+  delete(val) {
+    this.dataLearn.map(e => {
+      if (e.id == val.id) {
+        e.saved = false
+      }
+    })
+    this.saved = this.saved.filter((item) => item !== val.id)
+    this.learnService.saveLearn(this.user.uid, this.saved)
   }
 }
