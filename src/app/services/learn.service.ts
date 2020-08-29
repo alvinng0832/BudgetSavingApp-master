@@ -36,7 +36,7 @@ export class LearnService {
 
   saveLearn(id, saved) {
     this.firestore.collection('users').doc(id)
-    .update({saved: saved})
+    .set({saved: saved})
   }
 
   getSaved(id) {
