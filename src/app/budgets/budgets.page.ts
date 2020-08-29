@@ -37,10 +37,7 @@ private firestore: AngularFirestore,
   ) {
     this.budgetdata = {} as budgetRecord;
     this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
+    this.uid = this.afAuth.auth.currentUser.uid
   }
 
 
@@ -50,7 +47,7 @@ private firestore: AngularFirestore,
       endDate: ['', [Validators.required]]
     })
 
-    this.calendarService.getCalendar().subscribe(data => {
+    this.calendarService.getCalendar(this.uid).subscribe(data => {
       console.log(data)
         this.calendarList = data.map(e => {
           const data = e.payload.doc.data();

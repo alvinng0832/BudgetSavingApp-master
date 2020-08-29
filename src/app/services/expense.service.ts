@@ -17,7 +17,7 @@ export class ExpenseService {
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
 
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user = this.afAuth.auth.currentUser
   }
 
   addExpense(expense: Expense){

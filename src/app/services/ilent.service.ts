@@ -31,14 +31,11 @@ export class IlentService implements OnInit{
       private authService: AuthService
     ) {
       this.user =JSON.parse(localStorage.getItem('user'))
-      this.afAuth.auth.onAuthStateChanged((user) => {
-       
-        this.uid = user.uid
-      })
+      this.uid = this.afAuth.auth.currentUser.uid
     }
       
     ngOnInit(){
-      this.LentCollection =  this.firestore.collection('users').doc(this.user).collection<LentDebts>('ilented');
+      this.LentCollection =  this.firestore.collection('users').doc(this.uid).collection<LentDebts>('ilented');
       this.ilented = this.LentCollection.snapshotChanges().pipe(
       map(data => data.map(e => {
       const data = e.payload.doc.data() ;
@@ -57,16 +54,16 @@ export class IlentService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
       }
       updateNote(ilent) {
-       this.firestore.collection('users').doc(this.user.uid).collection('ilented').add(ilent)    
+       this.firestore.collection('users').doc(this.uid).collection('ilented').add(ilent)    
         }
       deleteNote(ilent) {
         this.LentCollection.doc(ilent.id).delete();
       }
       addNote(ilent) {
-        return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).add(ilent)
+        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(ilent)
       }
      
     

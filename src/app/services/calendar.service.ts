@@ -27,7 +27,7 @@ export class CalendarService {
    
     this.user = JSON.parse(localStorage.getItem('user'));
   
-
+  
   }
 
   addCalendar(calendar: Calendar){
@@ -35,8 +35,9 @@ export class CalendarService {
     return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).add(calendar)
   }
 
-  getCalendar() {
-    return this.firestore.collection('users').doc(this.user.uid).collection(this.collectionName).snapshotChanges();
+  getCalendar(uid) {
+    console.log(uid)
+    return this.firestore.collection('users').doc(uid).collection(this.collectionName).snapshotChanges();
   }
 
   updateCalendar(calendarID, calendar) {
