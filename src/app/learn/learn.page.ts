@@ -39,7 +39,10 @@ export class LearnPage implements OnInit {
     this.segmentModel = "all" // first start as All
     this.learnService.getSaved(this.UID).subscribe(d => {
       let ss: any = d
-      this.saved = ss.saved ? ss.saved : []
+      if (ss == undefined) { 
+        this.saved = []
+        ss = []
+      }
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {
           const id = e.payload.doc.id;

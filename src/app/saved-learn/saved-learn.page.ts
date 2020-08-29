@@ -25,7 +25,10 @@ export class SavedLearnPage implements OnInit {
   ngOnInit() {
     this.learnService.getSaved(this.user.uid).subscribe(d => {
       let ss: any = d
-      this.saved = ss.saved ? ss.saved : []
+      if (ss == undefined) { 
+        this.saved = []
+        ss = []
+      }
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {
             const id = e.payload.doc.id;

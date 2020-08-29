@@ -57,7 +57,7 @@ export class MyprofilePage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.user)
+
     this.user = this.afAuth.auth.currentUser;
     this.UID = this.user.uid;
     console.log(this.UID);
