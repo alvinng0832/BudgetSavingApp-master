@@ -24,13 +24,13 @@ export class SavedLearnPage implements OnInit {
 
   ngOnInit() {
     this.learnService.getSaved(this.user.uid).subscribe(d => {
-      let ss: any = d
+      let ss: any = d // create variable ss = d. from getSaved
       
-      if (ss == undefined) { 
-        this.saved = []
+      if (ss == undefined) { // check ss is empty/undefined
+        this.saved = [] // convert both saved & ss into array []
         ss = []
       } else {
-        this.saved = ss.saved
+        this.saved = ss.saved // if ss.saved contains array from getSaved
       }
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {

@@ -29,31 +29,22 @@ export class IncomeService  {
     private firestore: AngularFirestore, 
     private userService: UserService,
     private authService: AuthService
-    
     ) 
-
-    
     {
-   
-    this.afAuth.auth.onAuthStateChanged((user) => {
-      console.log(user)
-      this.uid = user.uid
-      this.email = user.email
-    })
-
+  
     this.user = JSON.parse(localStorage.getItem('user'));
-    //this.calID = this.tabs.data.id;
+    this.uid = this.afAuth.auth.currentUser.uid
     
   }
 
   addIncome(id, income: Income){
     
-    return this.firestore.collection("users").doc(this.user.uid).collection("Calendar").doc(id)
+    return this.firestore.collection("users").doc(this.uid).collection("Calendar").doc(id)
     .collection("Income").add(income)
   }
 
   getIncome(id) {
-    return this.firestore.collection('users').doc(this.user.uid).collection("Calendar").doc(id)
+    return this.firestore.collection('users').doc(this.uid).collection("Calendar").doc(id)
     .collection("Income").snapshotChanges();
   
   }

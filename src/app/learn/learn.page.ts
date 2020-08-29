@@ -37,10 +37,12 @@ export class LearnPage implements OnInit {
   ngOnInit() {
     this.segmentModel = "all" // first start as All
     this.learnService.getSaved(this.UID).subscribe(d => {
-      let ss: any = d
-      if (ss == undefined) { 
-        this.saved = []
+      let ss: any = d // create variable ss = d. from getSaved
+      if (ss == undefined) {  // check ss is empty/undefined
+        this.saved = [] // convert both saved & ss into array []
         ss = []
+      } else {
+        this.saved = ss.saved // if ss.saved contains array from getSaved
       }
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {

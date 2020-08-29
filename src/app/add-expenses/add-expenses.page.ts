@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense.service';
 import { Expense } from 'src/models/expense';
-import { TabsbudgetPageModule } from '../tabsbudget/tabsbudget.module';
-import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { Observable } from 'rxjs';
 import { AngularFireList } from '@angular/fire/database';
 import { ToastController } from '@ionic/angular';
@@ -110,12 +108,11 @@ export class AddExpensesPage implements OnInit{
     private expensesService:ExpenseService, 
      private router: Router, 
      private fb: FormBuilder,
-     private tabs: TabsbudgetPage,
+
      private toastCtrl: ToastController,
     ) {
    
     
-    console.log(this.tabs.data)
     this.Expensedata = {} as ExpensesRecord;
    }
    ionViewDidEnter() {
@@ -147,19 +144,19 @@ export class AddExpensesPage implements OnInit{
       .catch(error => {
         console.log(error);
       });
-      this.ref.push(this.expenses).then(async () => {
+      // this.ref.push(this.expenses).then(async () => {
       
-        this.expenses = {
-          value: '',
-          month: '',
-          expense: false
-        };
+      //   this.expenses = {
+      //     value: '',
+      //     month: '',
+      //     expense: false
+      //   };
         
-        let toast = await this.toastCtrl.create({
-          message: 'Charts Updated',
-          duration: 3000
-        });
-        return await toast.present();
-      })
+      //   let toast = await this.toastCtrl.create({
+      //     message: 'Charts Updated',
+      //     duration: 3000
+      //   });
+      //   return await toast.present();
+      // })
   }
 }

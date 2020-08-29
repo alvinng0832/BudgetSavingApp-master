@@ -13,22 +13,22 @@ export interface Goals {
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService implements OnInit{
+export class FirebaseService implements OnInit {
 
 
- collectionName = "addGoals"
- usercollection = "users"
+  collectionName = "addGoals"
+  usercollection = "users"
   uid: any
-  user:any
+  user: any
   constructor(
     private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
-  ) { 
-    this.user =JSON.parse(localStorage.getItem('user'))
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user'))
     this.uid = this.afAuth.auth.currentUser.uid
   }
-ngOnInit(){
-  
-}
+  ngOnInit() {
+
+  }
   create_student(record) {
     return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(record);
   }
@@ -37,11 +37,11 @@ ngOnInit(){
     return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
   }
 
- 
 
- update_student(recordID, record) {
- this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(recordID).update(record);
-}
+
+  update_student(recordID, record) {
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(recordID).update(record);
+  }
 
   delete_student(record_id) {
     this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(record_id).delete()
@@ -54,7 +54,7 @@ ngOnInit(){
   Reached_students() {
     return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').snapshotChanges();
   }
-  delete_Reached(reachgoal_id){
+  delete_Reached(reachgoal_id) {
     return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').doc(reachgoal_id).delete();
   }
 

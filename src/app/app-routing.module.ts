@@ -186,6 +186,10 @@ const routes: Routes = [
     path: 'saved-learn',
     loadChildren: () => import('./saved-learn/saved-learn.module').then( m => m.SavedLearnPageModule)
   },
+  {
+    path: 'saved-cards',
+    loadChildren: () => import('./saved-cards/saved-cards.module').then( m => m.SavedCardsPageModule)
+  },
 
 
 

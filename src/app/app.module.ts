@@ -153,6 +153,7 @@ firebase.initializeApp(environment.firebase);
 
     ],
   providers: [
+
     StatusBar,
     SplashScreen,
     UserService,
