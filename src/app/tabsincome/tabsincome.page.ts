@@ -1,7 +1,6 @@
-import { Component, OnInit, Type } from '@angular/core';
-import { AddIncomePage } from '../add-income/add-income.page';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-import { Router } from '@angular/router';
+
 import { IncomeService } from '../services/income.service';
 // import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 
@@ -22,7 +21,7 @@ export class TabsincomePage implements OnInit {
   //incomeList = [];
   incomedata: incomeRecord;
   data: any
-
+  test = "tetsing"
   list: any;
   constructor(
     private modalController: ModalController,
@@ -33,31 +32,27 @@ export class TabsincomePage implements OnInit {
   ) {
     // public value = this.navParams.get('value');
     this.data = this.navParams.get('data');
-    //console.log(this.data.id)
+    console.log(this.data)
     // console.log(tabs.data)
     // this.incomedata = {} as incomeRecord
-    this.list = this.incomeService.getIncome(this.data.id).subscribe(data => {
-      console.log(data)
+    this.incomeService.getIncome(this.data.id).subscribe(data => {
+
         this.list = data.map(e => {
+        
           const data = e.payload.doc.data();
           const id = e.payload.doc.id;
           return { id, ...data }
         })
+        console.log(this.list)
+        console.log('tesat')
       })
-    console.log(this.list)
-    console.log('tesat')
+
   }
 
   ngOnInit() {
-
+    this.test = "testungfffffffffffffff"
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: AddIncomePage
-    });
-    return await modal.present();
-  }
 
   async closeModal() {
     await this.modalController.dismiss();

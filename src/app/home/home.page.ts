@@ -3,12 +3,13 @@ import { Chart } from 'chart.js';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireList } from '@angular/fire/database/interfaces';
 import { Observable } from 'rxjs';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController} from '@ionic/angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import { TabsincomePage } from '../tabsincome/tabsincome.page';
 
 
 
@@ -181,8 +182,7 @@ export class HomePage implements OnInit {
         }
       });
      }
-
-
+  
 
      
   getReportValues() {
