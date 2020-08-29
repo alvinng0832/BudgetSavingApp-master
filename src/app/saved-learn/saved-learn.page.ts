@@ -25,9 +25,12 @@ export class SavedLearnPage implements OnInit {
   ngOnInit() {
     this.learnService.getSaved(this.user.uid).subscribe(d => {
       let ss: any = d
+      
       if (ss == undefined) { 
         this.saved = []
         ss = []
+      } else {
+        this.saved = ss.saved
       }
       this.learnService.getLearn().subscribe(data => {
         this.dataLearn = data.map(e => {
@@ -54,12 +57,14 @@ export class SavedLearnPage implements OnInit {
   }
 
   delete(val) {
-    this.dataLearn.map(e => {
-      if (e.id == val.id) {
-        e.saved = false
-      }
-    })
+    let tr = [ ]
+    console.log(val)
+    this.dataLearn = this.dataLearn.filter(re =>  re.id !== val.id  )
+    console.log(this.dataLearn)
+    
     this.saved = this.saved.filter((item) => item !== val.id)
+    console.log(this.saved)
+    // this.saved = this.saved.map((obj) => { return Object.assign({}, obj)})
     this.learnService.saveLearn(this.user.uid, this.saved)
   }
 }

@@ -35,7 +35,6 @@ export class LearnPage implements OnInit {
 
 
   ngOnInit() {
-    let array = []
     this.segmentModel = "all" // first start as All
     this.learnService.getSaved(this.UID).subscribe(d => {
       let ss: any = d

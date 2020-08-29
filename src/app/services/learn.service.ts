@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { LearnInfo } from '../../models/learn';
 import { Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { isEmpty } from 'rxjs/operators';
 
 @Injectable()
 export class LearnService {
@@ -41,7 +42,7 @@ export class LearnService {
 
   getSaved(id) {
     return this.firestore.collection('users').doc(id)
-    .valueChanges()
+      .valueChanges()
   }
 
 }
