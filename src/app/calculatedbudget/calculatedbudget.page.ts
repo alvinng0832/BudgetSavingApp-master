@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import {Chart} from 'chart.js';
+import { TabsincomePage } from '../tabsincome/tabsincome.page';
+import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
  
 
 @Component({
@@ -13,10 +15,16 @@ export class CalculatedbudgetPage implements OnInit {
   greens: number;
   reds: number;
   doughnutChart: any;
+  uid: any;
+  calID: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+    private tabs: TabsbudgetPage) {
     this.greens = 0;
     this.reds = 0;
+
+    this.calID = this.tabs.data.id;
+    console.log(this.tabs.data)
   }
 
   ngOnInit() {

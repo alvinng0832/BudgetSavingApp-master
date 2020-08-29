@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IncomeService } from 'src/app/services/income.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
@@ -14,6 +14,10 @@ import { TabsincomePage } from '../tabsincome/tabsincome.page';
 export class AddIncomePage implements OnInit {
   addIncomeForm: FormGroup;
   calID: any;
+  amount: FormControl;
+  description: FormControl;
+  type: FormControl;
+
 
 
   constructor(
@@ -29,12 +33,28 @@ export class AddIncomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.addIncomeForm = this.formBuilder.group({
-      amount: new FormControl(''),
-      description: new FormControl(''),
-      type: new FormControl('')
+    // this.addIncomeForm = this.formBuilder.group({
+    //   // amount: new FormControl(''),
+    //   // description: new FormControl(''),
+    //   // type: new FormControl(''),
+  
+    //   amount: ['', [Validators.required]],
+    //   description: ['', [Validators.required]],
+    //   type: ['', [Validators.required]]
+   
 
-    })
+    // })
+    {
+      this.amount = new FormControl('', Validators.required);
+      this.description = new FormControl('', Validators.required);
+      this.type = new FormControl('', Validators.required);
+  
+      this.addIncomeForm = new FormGroup({
+        amount: this.amount,
+        description: this.description,
+        type: this.type
+      });
+    }
 
 
   }

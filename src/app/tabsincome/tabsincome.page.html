@@ -11,8 +11,29 @@
 
 <ion-content>
 
+  <p>{{test}}</p>
+<ion-card *ngFor="let i of list">
+  <!-- <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" name="help-circle-outline" ></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon size="large" name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="start">Display Income</ion-title>
+  </ion-toolbar> -->
+
+  <ion-card-content>
+  <h3>{{i.amount}}</h3>
+  <h3>{{i.description}}</h3>
+  <h3>{{i.type}}</h3>
+  </ion-card-content>
+</ion-card>
+
   
-<ion-card>
+<!-- <ion-card>
   <ion-card-content>
   Income #1
   <ion-footer>
@@ -33,36 +54,19 @@
     </ion-label>
   </ion-footer>
 </ion-card-content>
-</ion-card>
+</ion-card> -->
 
 
-<h1>Total Income: </h1>
+
+<!-- <h1>Total Income: </h1>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button (click)="presentModal()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
+ -->
 
 
-<ion-card *ngFor="let i of incomeList">
-  <!-- <ion-toolbar color="primary">
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon size="large" name="help-circle-outline" ></ion-icon>
-      </ion-button>
-      <ion-button>
-        <ion-icon size="large" name="create-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title slot="start">Display Income</ion-title>
-  </ion-toolbar> -->
-
-  <ion-card-content>
-  <h3>{{i.amount}}</h3>
-  <h3>{{i.description}}</h3>
-  <h3>{{i.type}}</h3>
-  </ion-card-content>
-</ion-card>
 
 </ion-content>
