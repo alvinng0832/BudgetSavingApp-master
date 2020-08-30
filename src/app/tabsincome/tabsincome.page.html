@@ -11,8 +11,9 @@
 
 <ion-content>
 
-  <p>{{test}}</p>
-<ion-card *ngFor="let i of list">
+
+
+<ion-card *ngFor="let i of incomeList">
   <!-- <ion-toolbar color="primary">
     <ion-buttons slot="end">
       <ion-button>
@@ -32,41 +33,11 @@
   </ion-card-content>
 </ion-card>
 
-  
-<!-- <ion-card>
+<ion-card class="total" *ngIf="totalIncome > 0">
   <ion-card-content>
-  Income #1
-  <ion-footer>
-    <ion-label>
-      Amount: <br>
-      Type: <br>
-    </ion-label>
-  </ion-footer>
-</ion-card-content>
-
-
-<ion-card-content>
-  Income #2
-  <ion-footer>
-    <ion-label>
-      Amount: <br>
-      Type: <br>
-    </ion-label>
-  </ion-footer>
-</ion-card-content>
-</ion-card> -->
-
-
-
-<!-- <h1>Total Income: </h1>
-
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button (click)="presentModal()">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
- -->
-
-
+    $ {{totalIncome}}
+  </ion-card-content>
+</ion-card>
+  
 
 </ion-content>

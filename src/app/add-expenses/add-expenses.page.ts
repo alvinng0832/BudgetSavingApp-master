@@ -108,11 +108,12 @@ export class AddExpensesPage implements OnInit{
     private expensesService:ExpenseService, 
      private router: Router, 
      private fb: FormBuilder,
-
+     //private tabs: TabsbudgetPage,
      private toastCtrl: ToastController,
     ) {
    
     
+    //console.log(this.tabs.data)
     this.Expensedata = {} as ExpensesRecord;
    }
    ionViewDidEnter() {

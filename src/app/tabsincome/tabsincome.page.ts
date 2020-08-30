@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 
 import { IncomeService } from '../services/income.service';
-// import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 
 
 interface incomeRecord {
@@ -18,16 +17,15 @@ interface incomeRecord {
 })
 export class TabsincomePage implements OnInit {
 
-  //incomeList = [];
+  
   incomedata: incomeRecord;
   data: any
-  test = "tetsing"
-  list: any;
+  totalIncome = 0
+  incomeList = []
   constructor(
     private modalController: ModalController,
     private incomeService: IncomeService,
     private navParams: NavParams
-    //private tabs: TabsbudgetPage,
 
   ) {
     // public value = this.navParams.get('value');
@@ -37,27 +35,29 @@ export class TabsincomePage implements OnInit {
     // this.incomedata = {} as incomeRecord
     this.incomeService.getIncome(this.data.id).subscribe(data => {
 
-        this.list = data.map(e => {
+        this.incomeList = data.map(e => {
         
           const data = e.payload.doc.data();
+          // this.totalIncome =+ e.payload.doc.data()["amount"];
           const id = e.payload.doc.id;
           return { id, ...data }
         })
-        console.log(this.list)
-        console.log('tesat')
+
+        this.incomeList.map(e => this.totalIncome += e.amount)
+        console.log(this.totalIncome)
+        console.log(this.incomeList)
+
       })
 
   }
 
-  ngOnInit() {
-    this.test = "testungfffffffffffffff"
+  ngOnInit() {  
+    
   }
-
 
   async closeModal() {
     await this.modalController.dismiss();
   }
-
 
 
 }
