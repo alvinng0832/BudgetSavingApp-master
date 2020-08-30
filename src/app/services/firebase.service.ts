@@ -22,40 +22,39 @@ export class FirebaseService implements OnInit {
   user: any
   constructor(
     private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
-  ) {
-    this.user = JSON.parse(localStorage.getItem('user'))
-    this.uid = this.afAuth.auth.currentUser.uid
+  ) { 
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.uid = this.afAuth.auth.currentUser
   }
   ngOnInit() {
 
   }
   create_student(record) {
-    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(record);
+    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(record);
   }
 
   Goal_students() {
-    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection("users").doc(this.user).collection(this.collectionName).snapshotChanges();
   }
 
 
-
-  update_student(recordID, record) {
-    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(recordID).update(record);
-  }
+ update_student(recordID, record) {
+ this.firestore.collection("users").doc(this.user).collection(this.collectionName).doc(recordID).update(record);
+}
 
   delete_student(record_id) {
-    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(record_id).delete()
+    this.firestore.collection("users").doc(this.user).collection(this.collectionName).doc(record_id).delete()
   }
 
 
   create_Reached(record) {
-    return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').add(record);
+    return this.firestore.collection("users").doc(this.user).collection('ReachedGoals').add(record);
   }
   Reached_students() {
-    return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').snapshotChanges();
+    return this.firestore.collection("users").doc(this.user).collection('ReachedGoals').snapshotChanges();
   }
-  delete_Reached(reachgoal_id) {
-    return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').doc(reachgoal_id).delete();
+  delete_Reached(reachgoal_id){
+    return this.firestore.collection("users").doc(this.user).collection('ReachedGoals').doc(reachgoal_id).delete();
   }
 
 }

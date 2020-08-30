@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
-
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -69,6 +69,7 @@ import { EditProfilePageModule } from './modals/edit-profile/edit-profile.module
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { TabsbudgetPageModule } from './tabsbudget/tabsbudget.module';
 import { TabsincomePageModule } from './tabsincome/tabsincome.module';
+import { TabsbudgetPage } from './tabsbudget/tabsbudget.page';
 
 
 
@@ -134,7 +135,6 @@ firebase.initializeApp(environment.firebase);
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-
     // modals
     EditPasswordPageModule,
     EditPhotoPageModule,
@@ -143,13 +143,6 @@ firebase.initializeApp(environment.firebase);
     AngularFirestoreModule.enablePersistence(),
     TabsbudgetPageModule,
     TabsincomePageModule,
-    
-    
-    
-
-  
-    
-
 
     ],
   providers: [
@@ -165,14 +158,11 @@ firebase.initializeApp(environment.firebase);
     CallNumber,
     LearnService,
     SocialSharing,
-    AngularFirestore,
-
+    GooglePlus,
     Facebook,
-
+    TabsbudgetPage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }
 
-    
-    
   ],
   bootstrap: [AppComponent]
   

@@ -6,9 +6,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { UserService } from '../user.service';
 import * as firebase from 'firebase';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 
 @Component({
@@ -31,11 +32,12 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
-    public loadingController: LoadingController,
     private router: Router,
     private fb: Facebook,
-    private fireAuth: AngularFireAuth
-
+    private fireAuth: AngularFireAuth,
+    private google:GooglePlus,
+    public loadingController: LoadingController,
+    private platform: Platform,
   ) { 
     this.user =JSON.parse(localStorage.getItem('user'))
     this.afAuth.auth.onAuthStateChanged((user) => {
@@ -104,6 +106,27 @@ export class LoginPage implements OnInit {
     console.log('Loading dismissed!');
   }
 
+  async login() {
+    let params;
+    if (this.platform.is('android')) {
+      params = {
+        'webClientId': '124018728460-sv8cqhnnmnf0jeqbnd0apqbnu6egkhug.apps.googleusercontent.com',
+        'offline': true
+      }
+    }
+    else {
+      params = {}
+    }
+    this.google.login(params)
+      .then((response) => {
+        const { idToken } = response
+        this.onLoginSuccess(idToken);
+      }).catch((error) => {
+        console.log(error)
+        alert('error:' + JSON.stringify(error))
+      });
+  }
+
   fblogin() {
 
     this.fb.login(['email'])
@@ -128,5 +151,7 @@ export class LoginPage implements OnInit {
   onLoginError(err) {
     console.log(err);
   }
+
+ 
 }
 

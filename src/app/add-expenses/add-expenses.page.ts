@@ -3,24 +3,28 @@ import {MatAccordion} from '@angular/material/expansion';
 import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense.service';
-import { Expense } from 'src/models/expense';
+import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { Observable } from 'rxjs';
-import { AngularFireList } from '@angular/fire/database';
-import { ToastController } from '@ionic/angular';
 
+import { ToastController } from '@ionic/angular';
+import { AngularFireList } from '@angular/fire/database/interfaces';
+import { AngularFireDatabase } from '@angular/fire/database';
+ interface Expense {
+  id?: string,
+  FirstName: string,
+  LastName: string,
+  Amount: string,
+  Description: string,
+  Category: string,
+  Tags: string,
+  Date: string
+  userId: string
+}
 interface Animal {
   name: string;
 
 }
-interface ExpensesRecord {
-  FirstName: string;
-  LastName: string;
-  Amount: string;
-  Date: Date;
-  Category: string;
-  Tags: string;
-  Description: string;
-}
+
 
 @Component({
   selector: 'app-add-expenses',
@@ -31,7 +35,7 @@ export class AddExpensesPage implements OnInit{
   data: Observable<any[]>;
   ref: AngularFireList<any>;
   step = 0;
-  db: any;
+
 
 
   setStep(index: number) {
@@ -102,7 +106,7 @@ export class AddExpensesPage implements OnInit{
   uid:any
   hide = true;
   @ViewChild(MatAccordion) accordion: MatAccordion;
-  Expensedata: ExpensesRecord;
+ 
   expensesForm: FormGroup;
   constructor(
     private expensesService:ExpenseService, 
@@ -110,11 +114,11 @@ export class AddExpensesPage implements OnInit{
      private fb: FormBuilder,
      //private tabs: TabsbudgetPage,
      private toastCtrl: ToastController,
+     private db: AngularFireDatabase
     ) {
    
-    
-    //console.log(this.tabs.data)
-    this.Expensedata = {} as ExpensesRecord;
+  
+ 
    }
    ionViewDidEnter() {
     this.ref = this.db.list('ExpensesChart', ref => ref.orderByChild('month'));
@@ -145,19 +149,19 @@ export class AddExpensesPage implements OnInit{
       .catch(error => {
         console.log(error);
       });
-      // this.ref.push(this.expenses).then(async () => {
+      this.ref.push(this.expenses).then(async () => {
       
-      //   this.expenses = {
-      //     value: '',
-      //     month: '',
-      //     expense: false
-      //   };
+        this.expenses = {
+          value: '',
+          month: '',
+          expense: false
+        };
         
-      //   let toast = await this.toastCtrl.create({
-      //     message: 'Charts Updated',
-      //     duration: 3000
-      //   });
-      //   return await toast.present();
-      // })
+        let toast = await this.toastCtrl.create({
+          message: 'Charts Updated',
+          duration: 3000
+        });
+        return await toast.present();
+      })
   }
 }

@@ -176,13 +176,10 @@ const routes: Routes = [
     loadChildren: () => import('./modals/edit-password/edit-password.module').then( m => m.EditPasswordPageModule)
   },
   {
-    path: 'testing',
-    loadChildren: () => import('./testing/testing.module').then( m => m.TestingPageModule)
-  },
-  {
     path: 'tabsincome',
     loadChildren: () => import('./tabsincome/tabsincome.module').then( m => m.TabsincomePageModule)
-  },  {
+  },
+  {
     path: 'saved-learn',
     loadChildren: () => import('./saved-learn/saved-learn.module').then( m => m.SavedLearnPageModule)
   },

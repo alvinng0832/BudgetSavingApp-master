@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   from = '0';
   toMonth = '11';
   from1 = '0';
-  toMonth1 = '11';
+  toMonth1 = '12';
   levelsArr = ['January', 'February', 'March', 'April', 'May', 'June',
    'July', 'August', 'September', 'October', 'November', 'December'];
   monthsOfGoal = [
@@ -290,50 +290,31 @@ export class HomePage implements OnInit {
 
     let DonutChartdata = this.getDonutReport();
     this.doughnut =  new Chart(this.valueDonutCanvas.nativeElement,{
-     
-      startAngle: -90, endAngle: 90 ,
       type: 'doughnut',
-      centerText: {
-        display: true,
-        text: "280"
-    },
       options: {
-        dataLabels: {
-          enabled: true,
-          formatter: function (val) {
-            return val + "%"
-          },
-      
-        },
-     
         cutoutPercentage: 65,
         responsive: true,
         
-        maintainAspectRatio: true,
+       
         title: {
           
           display: true,
           text: 'Doughnut Chart',
           fontSize:40
         },legend: {
-          position: 'left',
+          position: 'top',
           fontSize:30
 				},animation: {
-          
 					animateScale: true,
           animateRotate: true,
-           
+        
         },
-       
       },
       data: {
 				datasets: [{
           data: DonutChartdata,
-       
-
           backgroundColor: ["#69bb7b","#d65b5b","#26baff","#9cd0fc","#35b468","#6a64ff","#ff0095",
           "#ffd534","#222428","blue","red","orange"],
-
 				}],
 				labels: ['Food & Drinks', 'Clothing & Footwear', 'Health & PersonalCare', 'Charity', 'Education', 'Gifts',
         'Home & Utilities', 'Leisure', 'Loans', 'Other', 'Sports', 'Taxes' , 'Transport']

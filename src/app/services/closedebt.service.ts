@@ -16,18 +16,18 @@ uid:any
 collectionName = "closedebts"
   constructor( private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.user =JSON.parse(localStorage.getItem('user'))
-    this.uid = this.afAuth.auth.currentUser.uid
+    this.uid = this.afAuth.auth.currentUser
    }
 
   addCloseDebts(closedebts) {
     console.log(closedebts)
-    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(closedebts)
+    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(closedebts)
   }
   getNotes() {
-    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
   }
   deleteNote(closedebts) {
-    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(closedebts).delete()
+    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(closedebts).delete()
   }
 ngOnInit(){
   

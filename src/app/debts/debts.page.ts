@@ -20,17 +20,15 @@ LentList=[];
   selectTabs = 'recent';
   id: any;
   user: any;
-  uid: any;
+
   collectionName = "ilented"
   collectionName2 = "iborrow"
   collectionName1 = "closedebts"
+  uid: any;
   
   constructor(private afAuth: AngularFireAuth, private ClosedebtService: ClosedebtService, private iborrowService: IborrowService, public alertController: AlertController, private firestore: AngularFirestore, private router: Router, private ilentService: IlentService) { 
     this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
+    this.uid = this.afAuth.auth.currentUser
   }
 
 

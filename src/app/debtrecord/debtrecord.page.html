@@ -3,18 +3,12 @@
     <ion-row>
       <ion-icon  routerLink="/debts" class="navigateback"style="font-size: 50px;" name="arrow-back-circle-outline"></ion-icon>
       <ion-title style="font-size: x-large;">Debts Reccord</ion-title>
-     
     </ion-row>
     
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
- 
 
-
- 
-  
   <ion-card color="medium"*ngFor="let item of LentRecord" style="height: auto;" >
 
  
@@ -43,11 +37,11 @@
     
     <ion-item-options side="end">
       <ion-item-option (click)="removelent(item)" style="font-size: 20px; " color="danger" expandable><ion-icon style="font-size: 35px; margin-right: 0.5em; margin-left: -0.8em; margin-bottom: 1.1em;" name="trash"></ion-icon>
-        Delete
+        Delete Debt
       </ion-item-option>
       <ion-item-option (click)="forgive(item, item.id)" style="font-size: 20px; " color="success" expandable>
         <span  style="font-size: 30px; margin-right: 0.5em; margin-left: 0.4em; margin-bottom: 1.1em;margin-top: 1.1em;"class="material-icons">thumb_up</span>
-        Close 
+        Close Debt
       </ion-item-option>
     </ion-item-options>
 
@@ -162,9 +156,14 @@
   
   <ion-item-options side="end">
     <ion-item-option (click)="removeborrow(item.id)" style="font-size: 20px; " color="danger" expandable><ion-icon style="font-size: 35px; margin-right: 0.5em; margin-left: -0.8em; margin-bottom: 1.1em;" name="trash"></ion-icon>
-      Delete
+      Delete Debt
+    </ion-item-option>
+    <ion-item-option (click)="forgive(item, item.id)" style="font-size: 20px; " color="success" expandable>
+      <span  style="font-size: 30px; margin-right: 0.5em; margin-left: 0.4em; margin-bottom: 1.1em;margin-top: 1.1em;"class="material-icons">thumb_up</span>
+      Close Debt
     </ion-item-option>
   </ion-item-options>
+
 </ion-item-sliding>
 </ion-list>
 </span>

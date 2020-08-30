@@ -365,6 +365,7 @@ export class LocationApiPage implements OnInit{
       }
       this.map = new google.maps.Map(this.mapRef.nativeElement, options);
       this.addMarkersToMap(this.markers);
+      
     }
 
     callUser(){

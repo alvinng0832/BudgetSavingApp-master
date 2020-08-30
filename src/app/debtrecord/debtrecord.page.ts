@@ -17,6 +17,7 @@ import { ClosedebtService } from '../services/closedebt.service';
 export class DebtrecordPage implements OnInit {
  
   step = 0;
+  uid: any;
 
 
   setStep(index: number) {
@@ -38,14 +39,10 @@ collectionName = "ilented"
 collectionName1 = "closedebts"
 collectionName2 = "iborrow"
   user: any;
-  uid: any;
+  
   constructor( private ClosedebtService: ClosedebtService, private afAuth: AngularFireAuth,private toastController: ToastController, private navCtrl: NavController, private iborrowService: IborrowService, private fb : FormBuilder, private firestore: AngularFirestore, public alertController: AlertController, private router: Router, private ilentService: IlentService) {
     this.user =JSON.parse(localStorage.getItem('user'))
-      this.afAuth.auth.onAuthStateChanged((user) => {
-       
-        this.uid = user.uid
-      })
-      console.log(this.user.user.uid)
+    this.uid = this.afAuth.auth.currentUser
    }
   
 
@@ -104,7 +101,7 @@ collectionName2 = "iborrow"
     const TotalAmount = e.payload.doc.data()['Amount'] + e.payload.doc.data()['NewAmount'];
 
 
-    return {TotalAmount, Name, Description, Amount, Date, DueDate,NewAmount, ...data}
+    return {id, TotalAmount, Name, Description, Amount, Date, DueDate,NewAmount, ...data}
   });
 
   console.log(this.CloseDebts)
