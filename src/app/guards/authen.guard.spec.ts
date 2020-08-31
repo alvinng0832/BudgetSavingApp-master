@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthenGuard } from './authen.guard';
 
 describe('AuthenGuard', () => {
