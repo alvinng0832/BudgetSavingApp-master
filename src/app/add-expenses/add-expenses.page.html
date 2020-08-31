@@ -1,4 +1,4 @@
-<ion-content>
+
 <ion-header>
   <ion-toolbar>
     <ion-title>
@@ -10,7 +10,11 @@
   </ion-toolbar>
 </ion-header>
 
-<mat-accordion style="color:red" class="example-headers-align" multi>
+<!-- <ion-content> -->
+  
+<!-- Old Expense UI
+  
+  <mat-accordion style="color:red" class="example-headers-align" multi>
   
   <form [formGroup]="expensesForm" class="create-account-form">
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
@@ -156,5 +160,36 @@
   </ion-button>
 </form>
 
-</mat-accordion>
-</ion-content>
+</mat-accordion> -->
+
+<form [formGroup]="addExpenseForm" (ngSubmit)="addExpense()">
+  <ion-item>
+    <ion-label></ion-label>
+    <ion-input type="number" placeholder="Type Amount" type="text" formControlName="amount"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea placeholder="Type Description" type="text" formControlName="description"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label>Select Type</ion-label>
+    <ion-select value="" okText="Ok" cancelText="Cancel" interface="alert" formControlName="type">
+      <ion-select-option>Food</ion-select-option>
+      <ion-select-option>Electricity</ion-select-option>
+      <ion-select-option>Water</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="6">
+        <ion-button color="primary" fill="solid" expand="block" type="submit" [disabled]="addExpenseForm.invalid">Add</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button color="danger" fill="solid" expand="block" (click)="presentModal()">View</ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</form>
+<!-- 
+</ion-content> -->

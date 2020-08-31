@@ -2,13 +2,16 @@ import {Component, ViewChild, OnInit} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ExpenseService } from '../services/expense.service';
+//import { ExpenseService } from '../services/expense.service';
 import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { Observable } from 'rxjs';
 
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { AngularFireList } from '@angular/fire/database/interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { TabexpenseService } from '../services/tabexpense.service';
+import { TabsincomePage } from '../tabsincome/tabsincome.page';
+import { TabsexpensePage } from '../tabsexpense/tabsexpense.page';
  interface Expense {
   id?: string,
   FirstName: string,
@@ -35,6 +38,14 @@ export class AddExpensesPage implements OnInit{
   data: Observable<any[]>;
   ref: AngularFireList<any>;
   step = 0;
+  // expensesForm: FormGroup;
+
+  //muz code
+  addExpenseForm: FormGroup;
+  calID: any;
+  amount: FormControl;
+  description: FormControl;
+  type: FormControl;
 
 
 
@@ -107,61 +118,106 @@ export class AddExpensesPage implements OnInit{
   hide = true;
   @ViewChild(MatAccordion) accordion: MatAccordion;
  
-  expensesForm: FormGroup;
+
   constructor(
-    private expensesService:ExpenseService, 
+    private expenseService: TabexpenseService,
      private router: Router, 
-     private fb: FormBuilder,
+     //private fb: FormBuilder,
      //private tabs: TabsbudgetPage,
      private toastCtrl: ToastController,
-     private db: AngularFireDatabase
+     private db: AngularFireDatabase,
+
+
+     //muz code 
+    private tabs: TabsbudgetPage,
+    private modalController: ModalController,
+    private formBuilder: FormBuilder
+
     ) {
-   
-  
- 
-   }
+      //muz code
+      this.calID = this.tabs.data.id;
+      console.log(this.tabs.data)
+      }
+
    ionViewDidEnter() {
     this.ref = this.db.list('ExpensesChart', ref => ref.orderByChild('month'));
   }
    
-
   ngOnInit() {
-    this.expensesForm = this.fb.group({
-      FirstName:  ['', [Validators.required]],
-      LastName: ['', [Validators.required]],
-      Amount: ['', [Validators.required]],
-      Date: ['', [Validators.required]],
-      Category: ['', [Validators.required]],
-      Tags: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
-    });
+    // this.expensesForm = this.fb.group({
+    //   FirstName:  ['', [Validators.required]],
+    //   LastName: ['', [Validators.required]],
+    //   Amount: ['', [Validators.required]],
+    //   Date: ['', [Validators.required]],
+    //   Category: ['', [Validators.required]],
+    //   Tags: ['', [Validators.required]],
+    //   Description: ['', [Validators.required]],
+    // });
 
      
+    this.amount = new FormControl('', Validators.required);
+      this.description = new FormControl('', Validators.required);
+      this.type = new FormControl('', Validators.required);
+  
+      this.addExpenseForm = new FormGroup({
+        amount: this.amount,
+        description: this.description,
+        type: this.type
+      });
    
 
   }
-  ExpensesRecord() {
-    console.log(this.expensesForm.value);
-    this.expensesService.addExpense(this.expensesForm.value).then(resp => {
-      this.expensesForm.reset();
-      this.router.navigateByUrl('/home')
+  // ExpensesRecord() {
+  //   console.log(this.expensesForm.value);
+  //   this.expenseService.addExpense(this.expensesForm.value).then(resp => {
+  //     this.expensesForm.reset();
+  //     this.router.navigateByUrl('/home')
+  //   })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  //     this.ref.push(this.expenses).then(async () => {
+      
+  //       this.expenses = {
+  //         value: '',
+  //         month: '',
+  //         expense: false
+  //       };
+        
+  //       let toast = await this.toastCtrl.create({
+  //         message: 'Charts Updated',
+  //         duration: 3000
+  //       });
+  //       return await toast.present();
+  //     })
+  // }
+
+  //starting of Muz codes
+  addExpense() {
+
+    console.log(this.addExpenseForm.value);
+
+    this.expenseService.addExpense(this.calID, this.addExpenseForm.value).then(resp => {
+      this.addExpenseForm.reset();
     })
       .catch(error => {
         console.log(error);
       });
-      this.ref.push(this.expenses).then(async () => {
-      
-        this.expenses = {
-          value: '',
-          month: '',
-          expense: false
-        };
-        
-        let toast = await this.toastCtrl.create({
-          message: 'Charts Updated',
-          duration: 3000
-        });
-        return await toast.present();
-      })
+  }
+
+  call(val) {
+    console.log(val)
+  }
+
+  
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: TabsexpensePage,
+      componentProps: {
+        data: this.tabs.data
+      }
+    });
+    return await modal.present();
   }
 }

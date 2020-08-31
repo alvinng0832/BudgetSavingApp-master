@@ -18,6 +18,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class ExpenseService {
+  [x: string]: any;
   documentRef: any;
   uid: any
   email: string;

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Expense</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card ngFor="let e of expenseList"> 
+  <ion-card-content>
+  <h3>{{e.amount}}</h3>
+  <h3>{{e.description}}</h3>
+  <h3>{{e.description}}</h3>
+</ion-card-content>
+</ion-card>
+ 
+
+<ion-card class="total" ngIf="totalExpense > 0">
+  <ion-card-content>
+    $ {{totalExpense}}
+  </ion-card-content>
+</ion-card> 
+  
+
+</ion-content>

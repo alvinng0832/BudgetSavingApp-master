@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-
 import { IncomeService } from '../services/income.service';
 
-
-interface incomeRecord {
-  amount: string;
-  description: string;
-  type: string;
-}
 
 @Component({
   selector: 'app-tabsincome',
@@ -17,8 +10,6 @@ interface incomeRecord {
 })
 export class TabsincomePage implements OnInit {
 
-  
-  incomedata: incomeRecord;
   data: any
   totalIncome = 0
   incomeList = []

@@ -1,11 +1,12 @@
 export interface Expense {
     id?: string,
-    FirstName: string,
-    LastName: string,
-    Amount: string,
-    Description: string,
-    Category: string,
-    Tags: string,
-    Date: string
-    userId: string
+    amount: number,
+    description: string,
+    type: string,
+    // FirstName: string,
+    // LastName: string,
+    // Category: string,
+    // Tags: string,
+    // Date: string
+    // userId: string
 }
