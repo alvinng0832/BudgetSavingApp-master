@@ -22,15 +22,12 @@ export class IlentService implements OnInit{
   private LentCollection: AngularFirestoreCollection<LentDebts>;
   private ilented: Observable<LentDebts[]>;
   uid:any
-  user:any
   collectionName= "ilented"
-
 
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
       private authService: AuthService
     ) {
-      this.user =JSON.parse(localStorage.getItem('user'))
       this.uid = this.afAuth.auth.currentUser
     }
       
@@ -54,16 +51,16 @@ export class IlentService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
       }
       updateNote(ilent) {
-       this.firestore.collection('users').doc(this.user.user.uid).collection('ilented').add(ilent)    
+       this.firestore.collection('users').doc(this.uid).collection('ilented').add(ilent)    
         }
       deleteNote(ilent) {
         this.LentCollection.doc(ilent.id).delete();
       }
       addNote(ilent) {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent)
+        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(ilent)
       }
      
     

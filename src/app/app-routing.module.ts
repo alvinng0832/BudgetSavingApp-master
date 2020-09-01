@@ -187,6 +187,15 @@ const routes: Routes = [
     path: 'saved-cards',
     loadChildren: () => import('./saved-cards/saved-cards.module').then( m => m.SavedCardsPageModule)
   },
+  {
+    path: 'add-card',
+    loadChildren: () => import('./modals/add-card/add-card.module').then( m => m.AddCardPageModule)
+  },
+  {
+    path: 'select-card',
+    loadChildren: () => import('./modals/select-card/select-card.module').then( m => m.SelectCardPageModule)
+  },
+
 
 
 

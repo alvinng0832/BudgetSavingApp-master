@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="close()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add Card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">Name of cardholder</ion-label>
+    <ion-input (ionChange)="name(cardName)" placeholder="Dick Lee" [(ngModel)]="cardName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Card</ion-label>
+    <ion-input (ionChange)="name(cardNumber)" mask="0000-0000-0000-0000" maxlength="19" minglength="19" required
+      placeholder="0000-0000-0000-0000" [(ngModel)]="cardNumber"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Expiry</ion-label>
+    <ion-input (ionChange)="name(cardExpiry)" mask="00 / 00" placeholder="MM YY" required [(ngModel)]="cardExpiry"
+      [(ngModel)]="cardExpiry"></ion-input>
+  </ion-item>
+
+
+  <div>
+    <ion-button expand="full" [disabled]="!disable" (click)="save()">
+      Save
+    </ion-button>
+  </div>
+
+</ion-content>

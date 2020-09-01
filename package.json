@@ -69,6 +69,7 @@
     "moment": "^2.27.0",
     "ng-circle-progress": "^1.5.1",
     "ng-pick-datetime": "^5.2.6",
+    "ngx-mask-ionic": "^1.1.2",
     "react-gradient-progress": "^1.0.3",
     "rxjs": "~6.5.1",
     "rxjs-compat": "^6.6.2",

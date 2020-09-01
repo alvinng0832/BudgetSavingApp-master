@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+
+    <ion-title>Select Your Card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col size="4" *ngFor="let i of banks">
+      <ion-card class="card" button (click)="presentModal(i)">
+        <ion-avatar>
+          <img [src]="i.img">
+        </ion-avatar>
+        <ion-label>{{i.name}}</ion-label>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

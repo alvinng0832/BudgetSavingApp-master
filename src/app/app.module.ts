@@ -71,7 +71,9 @@ import { TabsbudgetPageModule } from './tabsbudget/tabsbudget.module';
 import { TabsincomePageModule } from './tabsincome/tabsincome.module';
 import { TabsbudgetPage } from './tabsbudget/tabsbudget.page';
 import { CommonModule } from '@angular/common';
+import { AddCardPageModule } from './modals/add-card/add-card.module';
 
+import {NgxMaskIonicModule} from 'ngx-mask-ionic'
 
 
 firebase.initializeApp(environment.firebase);
@@ -80,12 +82,13 @@ firebase.initializeApp(environment.firebase);
 
 @NgModule({
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   entryComponents: [
     
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
+    NgxMaskIonicModule.forRoot(),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
@@ -145,7 +148,7 @@ firebase.initializeApp(environment.firebase);
     TabsbudgetPageModule,
     TabsincomePageModule,
     CommonModule,
-    
+    AddCardPageModule,
     ],
   providers: [
 

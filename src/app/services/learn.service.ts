@@ -18,14 +18,7 @@ export class LearnService {
 
   constructor(
     private firestore: AngularFirestore,
-    private afAuth: AngularFireAuth,
-    private userService: UserService,
-    private dom: DomSanitizer,
-  ) {
-
-    //Returns learn collection as an Observable
-
-  }
+  ) {}
 
 
 
@@ -47,17 +40,3 @@ export class LearnService {
 
 }
 
-
-
-    //   read_students() {
-    //     return this.firestore.collection(this.collectionName).snapshotChanges();
-    //   }
-
-    //   update_student(recordID, record) {
-    //     this.firestore.doc(this.collectionName + '/' + recordID).update(record);
-    //   }
-
-    //   delete_student(record_id) {
-    //     this.firestore.doc(this.collectionName + '/' + record_id).delete();
-    //   }
-    // }

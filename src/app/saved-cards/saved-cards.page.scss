@@ -1,0 +1,38 @@
+.card {
+    height: 14em;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #93e8eb , #333333);
+}
+
+#card-name {
+    position: absolute;
+    bottom: 0;
+    left: 3em;
+    letter-spacing: 3px;
+}
+
+ion-card-content {
+    position: static;
+    color: #ffffff;
+}
+
+#number {
+    position: absolute;
+    bottom: 4em;
+    left: 3em;
+    letter-spacing: 2px;
+}
+
+#logo {
+    position: absolute;
+    width: 7em;
+    top:1em;
+    right: 2em;
+}
+
+#year {
+    position: absolute;
+    bottom: 2.8em;
+    left: 12em;
+    letter-spacing: 2px;
+}

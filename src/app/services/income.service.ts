@@ -27,14 +27,9 @@ export class IncomeService  {
 
   constructor(private afAuth: AngularFireAuth, 
     private firestore: AngularFirestore, 
-    private userService: UserService,
-    private authService: AuthService
     ) 
     {
-  
-    this.user = JSON.parse(localStorage.getItem('user'));
     this.uid = this.afAuth.auth.currentUser.uid
-    
   }
 
   addIncome(id, income: Income){

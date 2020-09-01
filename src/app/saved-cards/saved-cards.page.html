@@ -1,9 +1,29 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>saved-cards</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Saved Cards</ion-title>
+
+    <ion-buttons slot="end" routerLink="/select-card">
+      <ion-button>
+        Add card
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card class="card" button>
+    <ion-card-content>
+      <img id="logo" src="https://logos-download.com/wp-content/uploads/2016/12/DBS_Bank_logo_logotype.png">
+
+
+      <h3 id="number">1111 1111 1111 1111</h3>
+      <h4 id="year">05 / 22</h4>
+      <h4 id="card-name">Fitri Mahdon</h4>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
