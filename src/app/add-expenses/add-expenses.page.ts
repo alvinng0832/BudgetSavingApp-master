@@ -204,4 +204,14 @@ export class AddExpensesPage implements OnInit{
         console.log(error);
       });
   }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: TabsexpensePage,
+      componentProps: {
+        data: this.tabs.data
+      }
+    });
+    return await modal.present();
+  }
 }

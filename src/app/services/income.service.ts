@@ -28,8 +28,10 @@ export class IncomeService  {
   constructor(private afAuth: AngularFireAuth, 
     private firestore: AngularFirestore, 
     ) 
+    
     {
     this.uid = this.afAuth.auth.currentUser.uid
+    
   }
 
   addIncome(id, income: Income){
@@ -41,7 +43,7 @@ export class IncomeService  {
   getIncome(id) {
     return this.firestore.collection('users').doc(this.uid).collection("Calendar").doc(id)
     .collection("Income").snapshotChanges();
-  
+
   }
 
 

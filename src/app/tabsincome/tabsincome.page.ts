@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { IncomeService } from '../services/income.service';
+import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 
 
 @Component({
@@ -13,9 +14,11 @@ export class TabsincomePage implements OnInit {
   data: any
   totalIncome = 0
   incomeList = []
+  calID: any;
   constructor(
     private modalController: ModalController,
     private incomeService: IncomeService,
+    private tabs: TabsbudgetPage,
     private navParams: NavParams
 
   ) {

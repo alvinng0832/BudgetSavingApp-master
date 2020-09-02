@@ -9,12 +9,15 @@ import { CalculatedbudgetPageRoutingModule } from './calculatedbudget-routing.mo
 import { CalculatedbudgetPage } from './calculatedbudget.page';
 import { RouterModule } from '@angular/router';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     CalculatedbudgetPageRoutingModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([{ path: '', component: CalculatedbudgetPageModule }])
   ],
   declarations: [CalculatedbudgetPage]

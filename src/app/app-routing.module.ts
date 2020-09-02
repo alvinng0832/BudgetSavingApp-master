@@ -194,7 +194,11 @@ const routes: Routes = [
   {
     path: 'select-card',
     loadChildren: () => import('./modals/select-card/select-card.module').then( m => m.SelectCardPageModule)
+  },  {
+    path: 'news',
+    loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
   },
+
 
 
 

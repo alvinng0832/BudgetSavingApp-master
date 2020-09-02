@@ -1,11 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Budget</ion-title>
-    <ion-button slot="start">
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+
+
+
 
 <ion-content>
   
@@ -42,7 +46,7 @@
                 Edit
               </ion-col>
               <ion-col>
-                <ion-button fill="solid" color="medium" size="small" (click)="item.isEdit = false">
+                <ion-button fill="solid" color="medium" size="small" (click)="i.isEdit = false">
                   Cancel
                 </ion-button>
               </ion-col>

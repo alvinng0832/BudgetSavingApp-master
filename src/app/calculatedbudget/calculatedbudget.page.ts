@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, NavParams } from '@ionic/angular';
 import {Chart} from 'chart.js';
-import { TabsincomePage } from '../tabsincome/tabsincome.page';
-import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
- 
+import { IncomeService } from '../services/income.service';
+import { TabexpenseService } from '../services/tabexpense.service';
+
 
 @Component({
   selector: 'app-calculatedbudget',
@@ -15,16 +15,62 @@ export class CalculatedbudgetPage implements OnInit {
   greens: number;
   reds: number;
   doughnutChart: any;
-  uid: any;
-  calID: any;
+ 
+  data: any
+  totalIncome = 0
+  totalExpense = 0
+  incomeList = []
+  expenseList = []
 
   constructor(public navCtrl: NavController,
-    private tabs: TabsbudgetPage) {
+    //private incomeService: IncomeService,
+    //private expenseService: TabexpenseService,
+    //private navParams: NavParams
+    ) 
+    
+    {
     this.greens = 0;
     this.reds = 0;
+  
+    // public value = this.navParams.get('value');
+    //this.data = this.navParams.get('data');
+    console.log(this.data)
+    // console.log(tabs.data)
+    // this.incomedata = {} as incomeRecord\
 
-    this.calID = this.tabs.data.id;
-    console.log(this.tabs.data)
+    //income
+    // this.incomeService.getIncome(this.data.id).subscribe(data => {
+
+    //     this.incomeList = data.map(e => {
+        
+    //       const data = e.payload.doc.data();
+    //       // this.totalIncome =+ e.payload.doc.data()["amount"];
+    //       const id = e.payload.doc.id;
+    //       return { id, ...data }
+    //     })
+
+    //     this.incomeList.map(e => this.totalIncome += e.amount)
+    //     console.log(this.totalIncome)
+    //     console.log(this.incomeList)
+
+    //   })
+
+
+      //expense
+    // this.expenseService.getExpense(this.data.id).subscribe(data => {
+
+    //     this.expenseList = data.map(e => {
+        
+    //       const data = e.payload.doc.data();
+    //       const id = e.payload.doc.id;
+    //       return { id, ...data }
+    //     })
+
+    //     this.expenseList.map(e => this.totalExpense += e.amount)
+    //     console.log(this.totalExpense)
+    //     console.log(this.expenseList)
+
+    //   })
   }
 
   ngOnInit() {
@@ -69,5 +115,6 @@ export class CalculatedbudgetPage implements OnInit {
  
     });
   }
+
 
 }
