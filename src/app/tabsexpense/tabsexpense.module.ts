@@ -10,8 +10,8 @@ import { TabsexpensePage } from './tabsexpense.page';
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
+    CommonModule,
     IonicModule,
     TabsexpensePageRoutingModule
   ],

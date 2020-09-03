@@ -11,20 +11,20 @@
 
 <ion-content>
 
-<ion-card *ngFor="let e of expenseList"> 
+<ion-card *ngFor="let expense of expenseList"> 
   <ion-card-content>
-  <h3>{{e.amount}}</h3>
-  <h3>{{e.description}}</h3>
-  <h3>{{e.description}}</h3>
+  <h3>{{expense.amount}}</h3>
+  <h3>{{expense.description}}</h3>
+  <h3>{{expense.description}}</h3>
 </ion-card-content>
 </ion-card>
- 
 
-<ion-card class="total" *ngIf="totalExpense > 0">
-  <ion-card-content>
+<!--  
+<ion-card>
+  <ion-card-content class="total" *ngIf="totalExpense > 0">
     $ {{totalExpense}}
   </ion-card-content>
-</ion-card> 
+</ion-card>  -->
   
 
 </ion-content>

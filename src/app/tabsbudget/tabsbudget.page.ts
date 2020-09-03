@@ -11,7 +11,8 @@ export class TabsbudgetPage implements OnInit {
   data: any;
  
   constructor(private route: ActivatedRoute, private router: Router,
-    ) {
+    ) 
+    {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.data = this.router.getCurrentNavigation().extras.state.obj;
@@ -19,6 +20,8 @@ export class TabsbudgetPage implements OnInit {
       }
     });
   }
+
+  
   
   ngOnInit() {
   }
