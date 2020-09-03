@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  //api news
+  apiUrl: 'https://newsapi.org/v2',
+  apiKey: 'ef16671a4fb143d59dffebb10667b1e6',
+
   firebase: {
     apiKey: "AIzaSyD3OIoy6RybaCheyVkcto4NU9iqcF_EqSA",
     authDomain: "budgetsavingapp.firebaseapp.com",
@@ -14,6 +18,8 @@ export const environment = {
     appId: "1:89844900575:web:5b7e3db0648d7061f53f6a",
     measurementId: "G-CHXWTP7TN6"
   }
+
+  
 };
 
 /*

@@ -202,6 +202,10 @@ const routes: Routes = [
     path: 'tabsexpense',
     loadChildren: () => import('./tabsexpense/tabsexpense.module').then( m => m.TabsexpensePageModule)
   },
+  {
+    path: 'news-single',
+    loadChildren: () => import('./news-single/news-single.module').then( m => m.NewsSinglePageModule)
+  },
 
 
 
