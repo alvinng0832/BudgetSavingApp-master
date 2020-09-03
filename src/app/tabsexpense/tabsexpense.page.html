@@ -11,20 +11,33 @@
 
 <ion-content>
 
-<ion-card *ngFor="let expense of expenseList"> 
-  <ion-card-content>
-  <h3>{{expense.amount}}</h3>
-  <h3>{{expense.description}}</h3>
-  <h3>{{expense.description}}</h3>
-</ion-card-content>
-</ion-card>
 
-<!--  
-<ion-card>
-  <ion-card-content class="total" *ngIf="totalExpense > 0">
-    $ {{totalExpense}}
-  </ion-card-content>
-</ion-card>  -->
+  <ion-card *ngFor="let i of expenseList">
+    <!-- <ion-toolbar color="primary">
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon size="large" name="help-circle-outline" ></ion-icon>
+        </ion-button>
+        <ion-button>
+          <ion-icon size="large" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title slot="start">Display Income</ion-title>
+    </ion-toolbar> -->
   
+    <ion-card-content>
+    <h3>{{i.amount}}</h3>
+    <h3>{{i.description}}</h3>
+    <h3>{{i.type}}</h3>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card class="total" *ngIf="totalExpense > 0">
+    <ion-card-content>
+    Total expense -  $ {{totalExpense}}
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

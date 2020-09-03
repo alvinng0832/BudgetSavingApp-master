@@ -198,6 +198,10 @@ const routes: Routes = [
     path: 'news',
     loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
   },
+  {
+    path: 'tabsexpense',
+    loadChildren: () => import('./tabsexpense/tabsexpense.module').then( m => m.TabsexpensePageModule)
+  },
 
 
 
