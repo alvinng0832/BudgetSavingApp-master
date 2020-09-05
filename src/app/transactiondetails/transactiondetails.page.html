@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Transaction Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let item of expensesList" color="light">
+    <span *ngIf="!item.isEdit; else elseBlock">
+    <ion-row>
+      <ion-icon (click)="Back()" class="ion-back" name="arrow-back-outline"></ion-icon>
+      <ion-icon (click)="Remove(item.id)" class="ion-trash" name="trash-outline"></ion-icon>
+      <ion-icon (click)="EditExpenses(item)" class="ion-create" name="create-outline"></ion-icon>
+  </ion-row>
+ 
+    
+     
+    <ion-row>
+    <ion-card-title style="color: rgb(204, 58, 89); font-size: 65px;"  class="ion-card-save">S${{item.Amount}}</ion-card-title>
+    <mat-divider></mat-divider>
+    <circle-progress class="ion-align-items-center" [radius]="100" [outerStrokeWidth]="16"
+    [innerStrokeWidth]="8" [animationDuration]="1100" [animation]= "true" 
+    [percent]= "formatSubtitle" [percent]= "item.circularValue" > </circle-progress>
+  </ion-row>
+  <ion-row>
+    <ion-icon class="ion-list" name="list" style="color: rgb(150, 150, 150); font-size: 24px;"></ion-icon>
+      <button mat-button color="primary" style="font-size: 22px;" 
+      class="ion-card-name"> {{item.Category.name}}</button>
+    </ion-row>
+    <mat-divider></mat-divider>
+    <ion-row>
+
+ 
+    <ion-icon class="ion-pricetag" name="pricetag"  style="color: rgb(148, 148, 148); font-size: 24px;"></ion-icon>
+    <button  mat-button color="primary" style="font-size: 22px;" 
+    class="ion-card-tag"> {{item.Tags}}</button>
+  </ion-row>
+</span>
+    <mat-divider></mat-divider>
+
+     
+      
+      <ng-template color="medium" #elseBlock>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  Edit
+                </ion-col>
+                <ion-col>
+                  <ion-button fill="solid" color="medium" size="small" (click)="item.isEdit = false">
+                    Cancel
+                  </ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button fill="solid" color="success" size="small" (click)="UpdateRecord(item)">
+                    Update
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content color="medium">
+          <ion-item>
+            <ion-label><strong>First Name</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.FirstName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Last Name</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.LastName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Amount</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Amount"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Desired Date</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Date"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Tags</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Tags"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Description</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Description"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Categories</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="item.Category.name"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ng-template>
+  </ion-card>
+</ion-content>

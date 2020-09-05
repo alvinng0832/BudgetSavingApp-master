@@ -2,20 +2,11 @@ import {Component, ViewChild, OnInit} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-
-//import { ExpenseService } from '../services/expense.service';
-import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { Observable } from 'rxjs';
-
-import { ToastController, ModalController } from '@ionic/angular';
-import { AngularFireList } from '@angular/fire/database/interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { TabexpenseService } from '../services/tabexpense.service';
-import { TabsincomePage } from '../tabsincome/tabsincome.page';
-import { TabsexpensePage } from '../tabsexpense/tabsexpense.page';
-import { ExpenseService } from '../services/expense.service';
-
-
+import { ToastController } from '@ionic/angular';
+import { AngularFireList } from '@angular/fire/database/interfaces';
+import { TransactionService } from '../services/transaction.service';
 
  interface Expense {
   id?: string,
@@ -35,11 +26,11 @@ interface Animal {
 
 
 @Component({
-  selector: 'app-add-expenses',
-  templateUrl: './add-expenses.page.html',
-  styleUrls: ['./add-expenses.page.scss'],
+  selector: 'app-add-transaction',
+  templateUrl: './add-transaction.page.html',
+  styleUrls: ['./add-transaction.page.scss'],
 })
-export class AddExpensesPage implements OnInit{
+export class AddTransactionPage implements OnInit{
   data: Observable<any[]>;
   ref: AngularFireList<any>;
   step = 0;
@@ -47,8 +38,7 @@ export class AddExpensesPage implements OnInit{
   // expensesForm: FormGroup;
 
   //muz code
-  addExpenseForm: FormGroup;
-  calID: any;
+  transactionForm: FormGroup;
   amount: FormControl;
   description: FormControl;
   type: FormControl;
@@ -129,69 +119,63 @@ export class AddExpensesPage implements OnInit{
   expensesForm: FormGroup;
 
   constructor(
-    private expenseService: TabexpenseService,
+    private transactionService: TransactionService,
      private router: Router, 
-     //private fb: FormBuilder,
-     //private tabs: TabsbudgetPage,
      private toastCtrl: ToastController,
-
      private db: AngularFireDatabase,
-
-
-     //muz code 
-    private tabs: TabsbudgetPage,
-    private modalController: ModalController,
-    private formBuilder: FormBuilder,
+     private formBuilder: FormBuilder
     ) {
-      //muz code
-      this.calID = this.tabs.data.id;
-      console.log(this.tabs.data)
+    
       }
 
 
-     
+    
 
+   
+  
+ 
+   
    ionViewDidEnter() {
-    this.ref = this.db.list('ExpensesChart', ref => ref.orderByChild('month'));
+    this.ref = this.db.list('TransactionChart', ref => ref.orderByChild('month'));
   }
    
   ngOnInit() {
- 
-
-     
-    this.amount = new FormControl('', Validators.required);
-      this.description = new FormControl('', Validators.required);
-      this.type = new FormControl('', Validators.required);
-  
-      this.addExpenseForm = new FormGroup({
-        amount: this.amount,
-        description: this.description,
-        type: this.type
-      });
-   
-
+    this.transactionForm = this.formBuilder.group({
+      FirstName:  ['', [Validators.required]],
+      LastName: ['', [Validators.required]],
+      Amount: ['', [Validators.required]],
+      Date: ['', [Validators.required]],
+      Category: ['', [Validators.required]],
+      Tags: ['', [Validators.required]],
+      Description: ['', [Validators.required]],
+    });
   }
- 
-  addExpense() {
 
-    console.log(this.addExpenseForm.value);
-
-    this.expenseService.addExpense(this.calID, this.addExpenseForm.value).then(resp => {
-      this.addExpenseForm.reset();
+  ExpensesRecord() {
+    console.log(this.transactionForm.value);
+    this.transactionService.addTransaction(this.transactionForm.value).then(resp => {
+      this.transactionForm.reset();
+      this.router.navigateByUrl('/transaction')
     })
       .catch(error => {
         console.log(error);
       });
-
+      this.ref.push(this.expenses).then(async () => {
+      
+        this.expenses = {
+          value: '',
+          month: '',
+          expense: false
+        };
+        
+        let toast = await this.toastCtrl.create({
+          message: 'Charts Updated',
+          duration: 3000
+        });
+        return await toast.present();
+      })
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: TabsexpensePage,
-      componentProps: {
-        data: this.tabs.data
-      }
-    });
-    return await modal.present();
-  }
+
+
 }

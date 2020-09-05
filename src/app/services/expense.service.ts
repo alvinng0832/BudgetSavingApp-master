@@ -26,6 +26,7 @@ export class ExpenseService {
   user: any;
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
+
     this.uid = this.afAuth.auth.currentUser.uid
   }
 
@@ -41,8 +42,12 @@ export class ExpenseService {
 
   delete_student(expense_id) {
     this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(expense_id).delete()
+
+    this.user =JSON.parse(localStorage.getItem('user'))
+    this.uid = this.afAuth.auth.currentUser
   }
 
+ 
 
   userEmail() {
     return this.afAuth.auth.onAuthStateChanged(ds => {

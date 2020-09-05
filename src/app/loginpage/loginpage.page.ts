@@ -126,7 +126,6 @@ export class LoginPage implements OnInit {
         alert('error:' + JSON.stringify(error))
       });
   }
-
   fblogin() {
 
     this.fb.login(['email'])
@@ -154,4 +153,6 @@ export class LoginPage implements OnInit {
 
  
 }
+
+
 

@@ -21,6 +21,10 @@ export class IborrowService implements OnInit{
 
   private BorrowCollection: AngularFirestoreCollection<BorrowDebts>;
 
+
+  user:any
+ 
+
   uid:any
   collectionName = 'iborrow'
  
@@ -28,8 +32,14 @@ export class IborrowService implements OnInit{
       private afAuth: AngularFireAuth,
       private authService: AuthService
     ) {
-      this.uid = this.afAuth.auth.currentUser.uid
+
     
+
+
+      this.user =JSON.parse(localStorage.getItem('user'))
+      this.uid = this.afAuth.auth.currentUser
+      
+
     }
       
      
@@ -41,17 +51,17 @@ export class IborrowService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
       }
       updateNote(iborrowID, iborrow) {
-         this.firestore.collection("users" ).doc(this.uid).collection(this.collectionName).doc(iborrowID).update(iborrow)
+         this.firestore.collection("users" ).doc(this.user.user.uid).collection(this.collectionName).doc(iborrowID).update(iborrow)
       }
       deleteNote(iborrowid) {
-        this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(iborrowid).delete();
+        this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(iborrowid).delete();
       }
       addNote(iborrow : BorrowDebts) {
         console.log(iborrow)
-        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(iborrow)
+        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(iborrow)
       }
      
 }

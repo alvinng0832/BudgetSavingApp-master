@@ -106,7 +106,7 @@ export class HomePage implements OnInit {
         }
       })
 
-      this.ref = this.db.list('ExpensesChart', ref => ref.orderByChild('month'));
+      this.ref = this.db.list('TransactionChart', ref => ref.orderByChild('month'));
  
       // Catch any update to draw the Chart
       this.ref.valueChanges().subscribe(result => {
