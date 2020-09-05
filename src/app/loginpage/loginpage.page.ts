@@ -119,13 +119,28 @@ export class LoginPage implements OnInit {
     }
     this.google.login(params)
       .then((response) => {
-        const { idToken } = response
-        this.onLoginSuccess(idToken);
+        const { idToken, accessToken } = response
+        this.onLoginSuccess1(idToken, accessToken);
       }).catch((error) => {
         console.log(error)
         alert('error:' + JSON.stringify(error))
       });
   }
+  onLoginSuccess1(accessToken, accessSecret) {
+    const credential = accessSecret ? firebase.auth.GoogleAuthProvider
+        .credential(accessToken, accessSecret) : firebase.auth.GoogleAuthProvider
+            .credential(accessToken);
+    this.fireAuth.auth.signInWithCredential(credential)
+      .then((response) => {
+        this.router.navigate(["/profile"]);
+        this.loading.dismiss();
+      })
+  
+  }
+  onLoginError1(err) {
+    console.log(err);
+  }
+  
   fblogin() {
 
     this.fb.login(['email'])
