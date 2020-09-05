@@ -1,7 +1,7 @@
 .card {
     height: 14em;
     border-radius: 10px;
-    background-image: linear-gradient(to right, #93e8eb , #333333);
+    
 }
 
 #card-name {
@@ -35,4 +35,22 @@ ion-card-content {
     bottom: 2.8em;
     left: 12em;
     letter-spacing: 2px;
+}
+
+
+
+
+.dbs {
+    // color: #ffffff; add color in case the color match the bg color
+    // play ard with bg gradient
+    background-image: linear-gradient(to right, #93e8eb , #333333);
+}
+
+.ocbc {
+    
+    background-image: linear-gradient(to right, #648f91 , #cc8585);
+}
+
+.uob {
+    background-image: linear-gradient(to right, #93e8eb , #333333);
 }

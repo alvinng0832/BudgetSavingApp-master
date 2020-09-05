@@ -7,38 +7,38 @@ import { AddCardPage } from '../add-card/add-card.page';
   templateUrl: './select-card.page.html',
   styleUrls: ['./select-card.page.scss'],
 })
-export class SelectCardPage implements OnInit {
+export class SelectCardPage {
 
-
+  
+  // Currently the picture is both same for display and cardLogo
+  // Continue to add more pics or banks/cards
   banks = [
     {
+      
       id: "dbs",
       name: "DBS",
-      img: "https://www.pngfind.com/pngs/m/328-3284878_dbs-bank-logo-transparent-hd-png-download.png"
+      display: "https://i.dlpng.com/static/png/421317_preview.png",
+      cardLogo: "https://i.dlpng.com/static/png/421317_preview.png",
     },
     {
       id: "ocbc",
       name: "OCBC",
-      img: "https://e7.pngegg.com/pngimages/434/245/png-clipart-ocbc-bank-singapore-mobile-banking-online-banking-bank-logo-insurance.png"
+      display: "https://e7.pngegg.com/pngimages/434/245/png-clipart-ocbc-bank-singapore-mobile-banking-online-banking-bank-logo-insurance.png",
+      cardLogo: "https://e7.pngegg.com/pngimages/434/245/png-clipart-ocbc-bank-singapore-mobile-banking-online-banking-bank-logo-insurance.png"
     },
     {
       id: "uob",
       name: "UOB",
-      img: "https://rec-data.kalibrr.com/www.kalibrr.com/logos/JFDBUP328CKMGLP3GU86NEHGYU688YJZH4BBVJ4W-5e1c47ba.jpg"
+      display: "https://rec-data.kalibrr.com/www.kalibrr.com/logos/JFDBUP328CKMGLP3GU86NEHGYU688YJZH4BBVJ4W-5e1c47ba.jpg",
+      cardLogo: "https://rec-data.kalibrr.com/www.kalibrr.com/logos/JFDBUP328CKMGLP3GU86NEHGYU688YJZH4BBVJ4W-5e1c47ba.jpg"
     }
   ]
 
 
   constructor(
-    public modalController: ModalController
+    public modalController: ModalController,
+    
   ) { }
-
-
-  
-
-  ngOnInit() {
-  }
-
 
   async presentModal(data) {
     const modal = await this.modalController.create({
