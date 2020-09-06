@@ -200,8 +200,6 @@ const routes: Routes = [
     loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
   },
   {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     path: 'tabsexpense',
     loadChildren: () => import('./tabsexpense/tabsexpense.module').then( m => m.TabsexpensePageModule)
   },
@@ -209,9 +207,7 @@ const routes: Routes = [
     path: 'news-single',
     loadChildren: () => import('./news-single/news-single.module').then( m => m.NewsSinglePageModule)
   },
-=======
-=======
->>>>>>> Stashed changes
+  {
     path: 'add-transaction',
     loadChildren: () => import('./add-transaction/add-transaction.module').then( m => m.AddTransactionPageModule)
   },
@@ -243,9 +239,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 

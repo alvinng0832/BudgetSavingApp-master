@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, NavController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-=======
+
 import {NgxMaskIonicModule} from 'ngx-mask-ionic'
->>>>>>> Stashed changes
-=======
-import {NgxMaskIonicModule} from 'ngx-mask-ionic'
->>>>>>> Stashed changes
+
 
 @Component({
   selector: 'app-add-card',

@@ -1,11 +1,9 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>learnDetails</ion-title>
-
-    
+    <ion-title>Learn Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,8 +14,8 @@
   </ion-card-header>
   <img [src]="data.image">
   <ion-card-content>{{data.description}}</ion-card-content>
-  <iframe height="200" width="100%" [src]="data.video" frameborder="0" allowfullscreen></iframe>
-  <ion-footer>
+  <iframe height="250" width="100%" [src]="data.video" frameborder="0" allowfullscreen></iframe>
+  <!-- <ion-footer>
     <ion-row>
       <ion-col center text-center>
         <button>
@@ -38,6 +36,6 @@
         </button>
       </ion-col>
     </ion-row>
-  </ion-footer>
+  </ion-footer> -->
 
 </ion-content>
