@@ -24,7 +24,6 @@ export class FirebaseService implements OnInit {
     private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
   ) { 
 
-    this.user =JSON.parse(localStorage.getItem('user'))
 
     this.uid = this.afAuth.auth.currentUser
   }

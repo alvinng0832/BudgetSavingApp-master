@@ -17,8 +17,7 @@ collectionName = "closedebts"
   constructor( private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
 
 
-    this.user =JSON.parse(localStorage.getItem('user'))
-    this.uid = this.afAuth.auth.currentUser
+    this.uid = this.afAuth.auth.currentUser // this one
 
    }
 

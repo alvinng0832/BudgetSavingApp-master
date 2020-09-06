@@ -36,7 +36,6 @@ export class IborrowService implements OnInit{
     
 
 
-      this.user =JSON.parse(localStorage.getItem('user'))
       this.uid = this.afAuth.auth.currentUser
       
 
