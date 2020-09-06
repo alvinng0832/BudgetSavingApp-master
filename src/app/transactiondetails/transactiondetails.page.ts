@@ -16,11 +16,10 @@ export class TransactiondetailsPage implements OnInit {
   uid: any;
   collectionName = "Transaction"
     constructor(  private firestore: AngularFirestore, private afAuth: AngularFireAuth, private router:Router, private transactionService: TransactionService) {
-    this.user =JSON.parse(localStorage.getItem('user'))
-    this.afAuth.auth.onAuthStateChanged((user) => {
-     
-      this.uid = user.uid
-    })
+    this.uid = this.afAuth.auth.currentUser.uid
+
+
+
    }
 
   ngOnInit() {
@@ -60,7 +59,7 @@ this.router.navigateByUrl('/transaction')
   }
 
    Remove(expense_id) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(expense_id).delete()
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(expense_id).delete()
   }
 
   UpdateRecord(expenseRow) {

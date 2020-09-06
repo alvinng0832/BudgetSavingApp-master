@@ -25,7 +25,7 @@ export class CalendarService {
     private userService: UserService,
     private authService: AuthService) {
    
-      this.user = JSON.parse(localStorage.getItem('user'));
+      this.uid = this.afAuth.auth.currentUser 
       
   }
 

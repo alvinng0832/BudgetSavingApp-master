@@ -23,25 +23,25 @@ export class TransactionService {
   uid: any
   email: string;
   collectionName = "Transaction"
-  user: any;
+
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private userService: UserService) {
    
 
-    this.uid = this.afAuth.auth.currentUser
+    this.uid = this.afAuth.auth.currentUser.uid // put this inside the doc
   }
 
   addTransaction(transaction: Transaction){
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(transaction)
+    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(transaction)
   }
   getTransaction() {
-    return this.firestore.collection('users').doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection('users').doc(this.uid).collection(this.collectionName).snapshotChanges();
   }
   updateTransaction(transactionID, transaction) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(transactionID).update(transaction);
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(transactionID).update(transaction);
   }
 
   deleteTransaction(transaction_ID) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(transaction_ID).delete()
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(transaction_ID).delete()
   }
 
 
