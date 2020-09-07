@@ -30,18 +30,18 @@ export class IncomeService  {
     ) 
     
     {
-    this.uid = this.afAuth.auth.currentUser
+      this.uid = this.afAuth.auth.currentUser.uid
     
   }
 
   addIncome(id, income: Income){
     
-    return this.firestore.collection("users").doc(this.user.user.uid).collection("Calendar").doc(id)
+    return this.firestore.collection("users").doc(this.uid).collection("Calendar").doc(id)
     .collection("Income").add(income)
   }
 
   getIncome(id) {
-    return this.firestore.collection('users').doc(this.user.user.uid).collection("Calendar").doc(id)
+    return this.firestore.collection('users').doc(this.uid).collection("Calendar").doc(id)
     .collection("Income").snapshotChanges();
 
   }

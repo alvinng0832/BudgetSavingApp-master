@@ -25,38 +25,38 @@ export class FirebaseService implements OnInit {
   ) { 
 
 
-    this.uid = this.afAuth.auth.currentUser
+    this.uid = this.afAuth.auth.currentUser.uid
   }
   ngOnInit() {
 
   }
   create_student(record) {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(record);
+    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(record);
   }
 
   Goal_students() {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
   }
 
 
  update_student(recordID, record) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(recordID).update(record);
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(recordID).update(record);
 }
 
   delete_student(record_id) {
-    this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).doc(record_id).delete()
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(record_id).delete()
   }
 
 
   create_Reached(record) {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').add(record);
+    return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').add(record);
   }
   Reached_students() {
-    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').snapshotChanges();
+    return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').snapshotChanges();
   }
   delete_Reached(reachgoal_id){
 
-    return this.firestore.collection("users").doc(this.user.user.uid).collection('ReachedGoals').doc(reachgoal_id).delete();
+    return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').doc(reachgoal_id).delete();
   }
 
 }

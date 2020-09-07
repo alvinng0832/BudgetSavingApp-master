@@ -31,18 +31,18 @@ export class TabexpenseService {
     ) 
     {
   
-    this.uid = this.afAuth.auth.currentUser
+      this.uid = this.afAuth.auth.currentUser.uid
     
   }
 
   addExpense(id, expense: Expense){
     
-    return this.firestore.collection("users").doc(this.user.user.uid).collection("Calendar").doc(id)
+    return this.firestore.collection("users").doc(this.uid).collection("Calendar").doc(id)
     .collection("Expense").add(expense)
   }
 
   getExpense(id) {
-    return this.firestore.collection('users').doc(this.user.user.uid).collection("Calendar").doc(id)
+    return this.firestore.collection('users').doc(this.uid).collection("Calendar").doc(id)
     .collection("Expense").snapshotChanges();
   
   }

@@ -24,14 +24,15 @@ export class CalendarService {
     private firestore: AngularFirestore, 
     private userService: UserService,
     private authService: AuthService) {
-   
-      this.uid = this.afAuth.auth.currentUser 
+
+
+      this.uid = this.afAuth.auth.currentUser.uid
       
   }
 
   addCalendar(calendar: Calendar){
     
-    return this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).add(calendar)
+    return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(calendar)
   }
 
   getCalendar(uid) {
@@ -40,7 +41,7 @@ export class CalendarService {
   }
 
   updateCalendar(calendarID, calendar) {
-    this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).doc(calendarID).update(calendar);
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(calendarID).update(calendar);
   }
 
   deleteCalendar(CalendarID) {

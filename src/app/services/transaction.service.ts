@@ -21,6 +21,7 @@ export class TransactionService {
   
   documentRef: any;
   uid: any
+  user: any
   email: string;
   collectionName = "Transaction"
 

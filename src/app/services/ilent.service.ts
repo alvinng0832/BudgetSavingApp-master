@@ -31,8 +31,7 @@ export class IlentService implements OnInit{
       private authService: AuthService
     ) {
 
-
-      this.uid = this.afAuth.auth.currentUser
+      this.uid = this.afAuth.auth.currentUser.uid
     }
       
     ngOnInit(){
@@ -55,16 +54,16 @@ export class IlentService implements OnInit{
 
       
       getNotes() {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).snapshotChanges();
+        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).snapshotChanges();
       }
       updateNote(ilent) {
-       this.firestore.collection('users').doc(this.user.user.uid).collection('ilented').add(ilent)    
+       this.firestore.collection('users').doc(this.uid).collection('ilented').add(ilent)    
         }
       deleteNote(ilent) {
         this.LentCollection.doc(ilent.id).delete();
       }
       addNote(ilent) {
-        return this.firestore.collection("users").doc(this.user.user.uid).collection(this.collectionName).add(ilent)
+        return this.firestore.collection("users").doc(this.uid).collection(this.collectionName).add(ilent)
       }
      
     
