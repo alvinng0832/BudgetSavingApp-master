@@ -6,21 +6,40 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<!-- 
-<ion-content> -->
+
+<ion-content>
+  
   <form [formGroup]="addIncomeForm" (ngSubmit)="addIncome()">
+    <ion-list class="background-input">
     <ion-item>
       <ion-label></ion-label>
-      <ion-input type="number" placeholder="Type Amount" type="text" formControlName="amount"></ion-input>
+      <ion-input type="number" placeholder="Type Amount" type="text" formControlName="amount">$</ion-input>
     </ion-item>
+  </ion-list>
+
+    <ng-container *ngFor="let validation of validation_messages.amount">
+      <div class="error-message"
+        *ngIf="addIncomeForm.get('amount').hasError(validation.type) && (addIncomeForm.get('amount').dirty || addIncomeForm.get('amount').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+
+    <ion-card>
     <ion-item>
-      <ion-textarea placeholder="Type Description" type="text" formControlName="description"></ion-textarea>
+      <ion-textarea placeholder="Type Description" type="text" formControlName="description">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </ion-textarea>
     </ion-item>
+  </ion-card>
+
     <ion-item>
       <ion-label>Select Type</ion-label>
       <ion-select value="" okText="Ok" cancelText="Cancel" interface="alert" formControlName="type">
         <ion-select-option>Salary</ion-select-option>
-        <ion-select-option>Interet</ion-select-option>
+        <ion-select-option>Interest</ion-select-option>
+        <ion-select-option>Rent</ion-select-option>
+        <ion-select-option>Investment</ion-select-option>
+        <ion-select-option>Shares</ion-select-option>
         <ion-select-option>Others</ion-select-option>
       </ion-select>
     </ion-item>
@@ -37,8 +56,5 @@
       </ion-row>
     </ion-grid>
   </form>
-
-
-
-<!--   
-</ion-content> -->
+ 
+</ion-content>

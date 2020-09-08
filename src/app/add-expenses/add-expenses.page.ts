@@ -16,7 +16,7 @@ import { TabsexpensePage } from '../tabsexpense/tabsexpense.page';
   id?: string,
   FirstName: string,
   LastName: string,
-  Amount: string,
+  Amount: number,
   Description: string,
   Category: string,
   Tags: string,
@@ -86,17 +86,7 @@ export class AddExpensesPage implements OnInit{
     {name:"Taxes"},
     {name:"Transport"}
   ];
-  expense: Expense = {
-    id: null,
-    FirstName: '',
-    LastName: '',
-    Amount: '',
-    Description: '',
-    Category: '',
-    Tags:'',
-    Date: '',
-    userId: null
-  };
+ 
   
  
   monthsOfExpense = [
@@ -114,8 +104,25 @@ export class AddExpensesPage implements OnInit{
   {value: 11, name:"Taxes"},
   {value: 12, name:"Transport"}
   ];
+
   uid:any
   hide = true;
+
+  validation_messages = {
+    'amount': [
+      { type: 'required', message: 'Enter a valid amount.' },
+      { type: 'pattern', message: 'Enter a valid amount.' }
+    ],
+    // 'description': [
+    //   { type: 'required', message: 'Description is required.' },
+    //   { type: 'pattern', message: 'Description a valid email.' }
+    // ],
+    // 'type': [
+    //   { type: 'required', message: 'Type is required.' },
+    //   { type: 'pattern', message: 'Type must be at least 8 characters long.' }
+    // ]
+  };
+
   @ViewChild(MatAccordion) accordion: MatAccordion;
  
 
@@ -132,6 +139,7 @@ export class AddExpensesPage implements OnInit{
     private tabs: TabsbudgetPage,
     private modalController: ModalController,
     private formBuilder: FormBuilder
+  ,
 
     ) {
       //muz code
@@ -155,7 +163,11 @@ export class AddExpensesPage implements OnInit{
     // });
 
      
-    this.amount = new FormControl('', Validators.required);
+    this.amount = new FormControl('', 
+    [Validators.required,
+      Validators.pattern("^[0-9]*$"),
+      Validators.minLength(8)]);
+
       this.description = new FormControl('', Validators.required);
       this.type = new FormControl('', Validators.required);
   
@@ -167,6 +179,46 @@ export class AddExpensesPage implements OnInit{
    
 
   }
+
+  // tryRegister(value) {
+  //   if (value.password != value.password1) {
+  //     this.presentToast("Password does not match")
+  //   } else {
+
+  //   this.authService.registerUser(value)
+  //     .then(res => {
+
+  //       this.errorMessage = "";
+
+  //       // AFTER REGISTER IT STRAIGHT AWAY GO IN LOGIN STATE, IN OTHER WORDS, NO NEED GO LOGIN PAGE 
+  //       // MANDATORY UPDATE PHONE NUMBER 
+  //       this.authService.loginUser(value).then(suc => {
+
+  //         this.afAuth.auth.onAuthStateChanged((user) => {
+      
+  //           if (user) {
+
+  //             user.updateProfile({
+  //               displayName: value.username
+  //             })
+  //             this.presentToast("Your account has been created successfully.")
+
+  //             // UPDATE PHONE WHILE IN LOGIN STATE BEFORE ENTERING TO MAIN PAGE
+  //             this.next() // < GO TO NEXT SLIDE WHICH IS THE PHONE NUMBER
+  //           }
+  //         })
+  //       })
+
+  //     }, err => {
+
+  //       // RETURN ERROR DURING REGISTER 
+  //       console.log(err);
+    
+  //       this.errorMessage = err.message;
+  //       this.successMessage = "";
+  //     })
+  //   }
+  // }
   // ExpensesRecord() {
   //   console.log(this.expensesForm.value);
   //   this.expenseService.addExpense(this.expensesForm.value).then(resp => {
@@ -205,6 +257,7 @@ export class AddExpensesPage implements OnInit{
       });
   }
 
+
   async presentModal() {
     const modal = await this.modalController.create({
       component: TabsexpensePage,
@@ -214,4 +267,6 @@ export class AddExpensesPage implements OnInit{
     });
     return await modal.present();
   }
+
+ 
 }

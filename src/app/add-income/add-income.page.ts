@@ -18,6 +18,12 @@ export class AddIncomePage implements OnInit {
   description: FormControl;
   type: FormControl;
 
+  validation_messages = {
+    'amount': [
+      { type: 'required', message: 'Enter a valid amount.' },
+    ]
+  };
+
 
 
   constructor(
@@ -45,7 +51,11 @@ export class AddIncomePage implements OnInit {
 
     // })
     {
-      this.amount = new FormControl('', Validators.required);
+      this.amount = new FormControl('', 
+      [Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(8)]);
+        
       this.description = new FormControl('', Validators.required);
       this.type = new FormControl('', Validators.required);
   

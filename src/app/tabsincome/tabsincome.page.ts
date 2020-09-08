@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { IncomeService } from '../services/income.service';
 import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class TabsincomePage implements OnInit {
     private modalController: ModalController,
     private incomeService: IncomeService,
     private tabs: TabsbudgetPage,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private router: Router
 
   ) {
     // public value = this.navParams.get('value');
@@ -52,6 +54,8 @@ export class TabsincomePage implements OnInit {
   async closeModal() {
     await this.modalController.dismiss();
   }
+
+ 
 
 
 }
