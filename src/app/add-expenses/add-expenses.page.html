@@ -7,26 +7,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content> 
+  
+<form [formGroup]="addExpenseForm" (ngSubmit)="addExpense()">
   
 
+  <ion-list class="background-input">
+    <ion-item>
+      <ion-input type="number" placeholder="Type Amount" type="text" formControlName="amount">$</ion-input>
+    </ion-item>
+  </ion-list>
+  <ng-container *ngFor="let validation of validation_messages.amount">
+    <div class="error-message"
+      *ngIf="addExpenseForm.get('amount').hasError(validation.type) && (addExpenseForm.get('amount').dirty || addExpenseForm.get('amount').touched)">
+      {{ validation.message }}
+    </div>
+  </ng-container>
 
-<form [formGroup]="addExpenseForm" (ngSubmit)="addExpense()">
+  
+  <ion-card>
   <ion-item>
-    <ion-label></ion-label>
-    <ion-input type="number" placeholder="Type Amount" type="text" formControlName="amount"></ion-input>
+    <ion-textarea placeholder="Type Description" type="text" formControlName="description">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </ion-textarea>
   </ion-item>
-  <ion-item>
-    <ion-textarea placeholder="Type Description" type="text" formControlName="description"></ion-textarea>
-  </ion-item>
+</ion-card>
+
   <ion-item>
     <ion-label>Select Type</ion-label>
     <ion-select value="" okText="Ok" cancelText="Cancel" interface="alert" formControlName="type">
       <ion-select-option>Food</ion-select-option>
       <ion-select-option>Electricity</ion-select-option>
       <ion-select-option>Water</ion-select-option>
+      <ion-select-option>Internet</ion-select-option>
+      <ion-select-option>Rent</ion-select-option>
+      <ion-select-option>Phone</ion-select-option>
+      <ion-select-option>Transport</ion-select-option>
+      <ion-select-option>Others</ion-select-option>
     </ion-select>
   </ion-item>
+
+
   <ion-grid>
     <ion-row>
 
@@ -39,6 +60,13 @@
 
     </ion-row>
   </ion-grid>
+
+
+
 </form>
-<!-- 
-</ion-content> -->
+
+
+
+
+
+</ion-content> 

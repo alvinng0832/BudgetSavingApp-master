@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Modal Page</ion-title>
+    <ion-title>Add Calendar Page</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -34,7 +34,7 @@
           <ion-button color="primary" fill="solid" expand="block" type="submit" [disabled]="addCalendarForm.invalid">Add</ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button color="danger" fill="solid" expand="block">Cancel</ion-button>
+          <ion-button color="danger" fill="solid" expand="block" (click)="closeModal()">Cancel</ion-button>
         </ion-col>
 
       </ion-row>

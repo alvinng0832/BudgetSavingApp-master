@@ -8,21 +8,36 @@
 </ion-header>
 
 <ion-content>
-
+<!-- 
   <canvas #doughnutCanvas> </canvas>
+  <br> -->
   <br>
 
-  <h2 style="display: flex; justify-content: center;">(Total Income - Total Expense) = Remaining</h2>
-  
+  <mat-spinner style="margin:0 auto;" *ngIf="showSpinner" diameter="160"></mat-spinner>
+  <mat-spinner style="margin:0 auto;" mode="determinate" value="100" diameter="180" strokeWidth="20" color="accent" class="custom-spinner" *ngIf="greenSpinner" ></mat-spinner>
+  <mat-spinner style="margin:0 auto;" mode="determinate" value="100" diameter="180" strokeWidth="20" color="warn"  *ngIf="redSpinner" ></mat-spinner>
+  <br>
+
+<ng-container *ngIf="showcbudget">
+ <h1  style="display: flex; justify-content: center;"> ${{calculatedBudget}}</h1>
+
+ <ion-card *ngIf="totalIncome > 0">
+  <ion-card-content>
+  Total Income = ${{totalIncome}}
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="totalExpense > 0">
+  <ion-card-content>
+    Total Expense = ${{totalExpense}}
+  </ion-card-content>
+</ion-card>
+</ng-container>
     <div style="display: flex; justify-content: center;">
-        <ion-button style="float: right; margin-top: 30px;" (click)="addGreens()">
-          Calculate Budget
-          </ion-button>
+      <ion-button (click)="loadData()" style="float: right; margin-top: 30px;">
+        Calculate Budget
+      </ion-button>
     </div>
-
-
-    <mat-progress-spinner style="margin:0 auto;" mode="indeterminate">
-    </mat-progress-spinner>
-      
- 
+   
+    
 </ion-content>

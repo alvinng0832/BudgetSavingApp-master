@@ -16,14 +16,12 @@
             <ion-input type="text" placeholder="Enter Username" formControlName="username"></ion-input>
           </ion-item>
 
-          <div class="validation-errors">
-            <ng-container *ngFor="let validation of validation_messages.username">
-              <div class="error-message"
-                *ngIf="validation_form.get('username').hasError(validation.type) && (validation_form.get('username').dirty || validation_form.get('username').touched)">
-                {{ validation.message }}
-              </div>
-            </ng-container>
-          </div>
+          <ng-container *ngFor="let validation of validation_messages.username">
+            <div class="error-message"
+              *ngIf="validation_form.get('username').hasError(validation.type) && (validation_form.get('username').dirty || validation_form.get('username').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
 
 
           <ion-item lines="none">

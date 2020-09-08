@@ -26,6 +26,5 @@ export class TabsbudgetPage implements OnInit {
   ngOnInit() {
   }
 
-  
 
 }

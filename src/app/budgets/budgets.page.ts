@@ -52,6 +52,7 @@ private firestore: AngularFirestore,
         this.calendarList = data.map(e => {
           const data = e.payload.doc.data();
           const id = e.payload.doc.id;
+
           return { id, ...data }
         })
        
@@ -126,6 +127,11 @@ private firestore: AngularFirestore,
   RemoveRecord (CalendarID) {
     this.firestore.collection("users").doc(this.user.uid).collection(this.collectionName).doc(CalendarID).delete()
   }
+
+
+  counter(i: number) {
+    return new Array(i);
+}
 }
 
 

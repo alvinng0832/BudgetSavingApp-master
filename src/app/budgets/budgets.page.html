@@ -8,14 +8,19 @@
 </ion-header>
 
 
-
-
+<div style="position: relative; height: 100%; width:100%" *ngIf="calendarList.length === 0">
+  <div class="center">
+    <div style="display: block; text-align: center;">
+      <h2 style="color: #000000;">Add a calendar!</h2>
+    </div>
+  </div>
+</div>
 
 <ion-content>
   
-  <ion-card *ngFor="let i of calendarList">
+  <ion-card *ngFor="let i of calendarList, let counter = index;">
     <span *ngIf="!i.isEdit; else elseBlock">
-    <ion-toolbar color="primary">
+    <ion-toolbar >
       <ion-buttons slot="end">
         <ion-button (click)="editCalendar(i)">
           <ion-icon size="large" name="create-outline"></ion-icon>
@@ -24,7 +29,7 @@
           <ion-icon size="large" name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title slot="start">Budget Calendar</ion-title>
+      <ion-title slot="start">Calendar #{{counter+1}}</ion-title>
     </ion-toolbar>
     
   
