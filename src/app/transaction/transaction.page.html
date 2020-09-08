@@ -1,5 +1,5 @@
-<ion-header color="secondary">
-  <ion-toolbar style="color: rgb(226, 122, 122);">
+<ion-header >
+  <ion-toolbar color="primary">
     <ion-title style="font-size: 25px;">Transaction</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -32,22 +32,22 @@
         <ion-row>
           <ion-card-title
             style="color: rgb(0, 0, 0); font-size: 25px;"class="ion-card-title">
-            {{item.Category.name}} </ion-card-title>
+            {{item.Category}} </ion-card-title>
           </ion-row>
-          <ion-row>
+        
+          <!-- <ion-row>
           <ion-card-title style="color: rgb(134, 134, 134); font-size: 22px;">{{item.Tags}}</ion-card-title>
-        </ion-row>
+        </ion-row> -->
 
           <ion-row>
-
+            <ion-card-title
+            style="color: rgb(0, 0, 0); font-size: 25px; margin-right: 5em;" class="ion-card-title">
+            {{item.Date.seconds * 1000 | date:'dd-MMM-yyyy'}} </ion-card-title>
             <ion-card-title style="color: tomato; font-size: 25px;" class="ion-card-subtitle">
               S${{item.Amount}}
             </ion-card-title>
           </ion-row>
 
-  
-        
-    
       </ion-card-header>
     </ion-card>
   </div>

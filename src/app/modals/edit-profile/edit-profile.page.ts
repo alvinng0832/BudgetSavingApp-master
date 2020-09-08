@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class EditProfilePage implements OnInit {
 
   username:any;
+  email: any;
   constructor(
     public modalController: ModalController,
     private afAuth: AngularFireAuth,
@@ -33,6 +34,7 @@ export class EditProfilePage implements OnInit {
       if (user) {
         user.updateProfile({
           displayName: this.username
+
         }).then(suc => {
           this.presentToast("Updated successfully");
           this.loadingController.dismiss();

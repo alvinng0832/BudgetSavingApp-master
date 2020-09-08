@@ -29,11 +29,11 @@ export class TransactiondetailsPage implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          FirstName: e.payload.doc.data()['FirstName'],
-          LastName: e.payload.doc.data()['LastName'],
+          // FirstName: e.payload.doc.data()['FirstName'],
+          // LastName: e.payload.doc.data()['LastName'],
           Amount: e.payload.doc.data()['Amount'],
           Date: e.payload.doc.data()['Date'],
-          Tags: e.payload.doc.data()['Tags'],
+          // Tags: e.payload.doc.data()['Tags'],
           Description: e.payload.doc.data()['Description'],
           Category: e.payload.doc.data()['Category'],
         };
@@ -49,11 +49,11 @@ this.router.navigateByUrl('/transaction')
  
   EditExpenses(expense) {
     expense.isEdit = true;
-    expense.FirstName = expense.FirstName;
-    expense.LastName = expense.LastName;
+    // expense.FirstName = expense.FirstName;
+    // expense.LastName = expense.LastName;
     expense.Amount = expense.Amount;
     expense.Date = expense.Date;
-    expense.Tags = expense.Tags;
+    // expense.Tags = expense.Tags;
     expense.Description = expense.Description;
     expense.Category = expense.Category;
   }
@@ -64,11 +64,11 @@ this.router.navigateByUrl('/transaction')
 
   UpdateRecord(expenseRow) {
     let expense = {};
-    expense['FirstName'] = expenseRow.FirstName;
-    expense['LastName'] = expenseRow.LastName;
+    // expense['FirstName'] = expenseRow.FirstName;
+    // expense['LastName'] = expenseRow.LastName;
     expense['Amount'] = expenseRow.Amount;
     expense['Date'] = expenseRow.Date;
-    expense['Tags'] = expenseRow.Tags;
+    // expense['Tags'] = expenseRow.Tags;
     expense['Description'] = expenseRow.Description;
     expense['Category'] = expenseRow.Category;
     this.transactionService.updateTransaction( expenseRow.id, expense);

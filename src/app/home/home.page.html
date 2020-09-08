@@ -36,7 +36,7 @@
 
   <ion-card class="welcome-card">
     <ion-card-header style="font-size: 30px; font-weight: 700;">
-      Analytic Expenses Donut Chart
+      Transations Donut Chart
     </ion-card-header>
     <ion-card-content>
       <canvas #valueDonutCanvas></canvas>
@@ -52,17 +52,10 @@
     <ion-select-option *ngFor="let m1 of monthsOfExpense" [value]='m1.value'>{{m1.name}}</ion-select-option>
   </ion-select> 
 </div>
-    <ion-button expand=""color="success" (click)="applyDateFilter()">Apply Date Filter</ion-button>
+    <ion-button expand=""color="success" (click)="applyDateFilter()">Apply Category Filter</ion-button>
   </ion-card>
 
-  <ion-card class="welcome-card" >
-    <ion-card-header>
-      <ion-card-title>Overview of Income</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #pie2Chart></canvas>
-    </ion-card-content>
-  </ion-card>
+  
 
  
 </ion-content>

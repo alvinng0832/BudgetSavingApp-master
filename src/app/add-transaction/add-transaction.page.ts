@@ -10,12 +10,12 @@ import { TransactionService } from '../services/transaction.service';
 
  interface Expense {
   id?: string,
-  FirstName: string,
-  LastName: string,
+  // FirstName: string,
+  // LastName: string,
   Amount: string,
   Description: string,
   Category: string,
-  Tags: string,
+  // Tags: string,
   Date: string
   userId: string
 }
@@ -57,16 +57,16 @@ export class AddTransactionPage implements OnInit{
   prevStep() {
     this.step--;
   }
-  toppings = new FormControl();
+  // toppings = new FormControl();
   expenses = {
     value: '',
     expense: false,
     month: ''
   }
-  toppingList: string[] = ['coffee & tea', 'medical services', 'accomodation','cloths', 'gambling', 'shoes',
-'accessories', 'adult fun', 'airplane', 'alcohol', 'apps', 'bicycle', 'birthday','books','building upkeep','bus','car','cosmetics', 'devices','drugs',
-'electricity','quity purchase','events','ferry','fuel','furniture','games','groceries','hairdresser','heating','home improvement','income tax',
-'insurance', 'internet','landline phone','lending'];
+//   toppingList: string[] = ['coffee & tea', 'medical services', 'accomodation','cloths', 'gambling', 'shoes',
+// 'accessories', 'adult fun', 'airplane', 'alcohol', 'apps', 'bicycle', 'birthday','books','building upkeep','bus','car','cosmetics', 'devices','drugs',
+// 'electricity','quity purchase','events','ferry','fuel','furniture','games','groceries','hairdresser','heating','home improvement','income tax',
+// 'insurance', 'internet','landline phone','lending'];
   startDate = new Date(1990, 0, 1);
   animals: Animal[] = [
     {name:"Food & Drinks"},
@@ -85,12 +85,12 @@ export class AddTransactionPage implements OnInit{
   ];
   expense: Expense = {
     id: null,
-    FirstName: '',
-    LastName: '',
+    // FirstName: '',
+    // LastName: '',
     Amount: '',
     Description: '',
     Category: '',
-    Tags:'',
+    // Tags:'',
     Date: '',
     userId: null
   };
@@ -129,10 +129,6 @@ export class AddTransactionPage implements OnInit{
       }
 
 
-    
-
-   
-  
  
    
    ionViewDidEnter() {
@@ -141,12 +137,11 @@ export class AddTransactionPage implements OnInit{
    
   ngOnInit() {
     this.transactionForm = this.formBuilder.group({
-      FirstName:  ['', [Validators.required]],
-      LastName: ['', [Validators.required]],
+      // FirstName:  ['', [Validators.required]],
+      // LastName: ['', [Validators.required]],
       Amount: ['', [Validators.required]],
       Date: ['', [Validators.required]],
       Category: ['', [Validators.required]],
-      Tags: ['', [Validators.required]],
       Description: ['', [Validators.required]],
     });
   }

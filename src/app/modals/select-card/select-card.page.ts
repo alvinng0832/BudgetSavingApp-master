@@ -17,14 +17,14 @@ export class SelectCardPage {
       
       id: "dbs",
       name: "DBS",
-      display: "https://i.dlpng.com/static/png/421317_preview.png",
-      cardLogo: "https://i.dlpng.com/static/png/421317_preview.png",
+      display: "https://mk0bfsieletsonlt96u6.kinstacdn.com/wp-content/uploads/2016/07/DBS_Bank_Logo.svg_.png",
+      cardLogo: "https://mk0bfsieletsonlt96u6.kinstacdn.com/wp-content/uploads/2016/07/DBS_Bank_Logo.svg_.png",
     },
     {
       id: "ocbc",
       name: "OCBC",
-      display: "https://e7.pngegg.com/pngimages/434/245/png-clipart-ocbc-bank-singapore-mobile-banking-online-banking-bank-logo-insurance.png",
-      cardLogo: "https://e7.pngegg.com/pngimages/434/245/png-clipart-ocbc-bank-singapore-mobile-banking-online-banking-bank-logo-insurance.png"
+      display: "https://www.waterwaypoint.com.sg/images/OCBC.jpg",
+      cardLogo: "https://www.waterwaypoint.com.sg/images/OCBC.jpg"
     },
     {
       id: "uob",

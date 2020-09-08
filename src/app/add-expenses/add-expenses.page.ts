@@ -19,8 +19,8 @@ import { ExpenseService } from '../services/expense.service';
 
  interface Expense {
   id?: string,
-  FirstName: string,
-  LastName: string,
+  // FirstName: string,
+  // LastName: string,
   Amount: string,
   Description: string,
   Category: string,
@@ -95,8 +95,8 @@ export class AddExpensesPage implements OnInit{
   ];
   expense: Expense = {
     id: null,
-    FirstName: '',
-    LastName: '',
+    // FirstName: '',
+    // LastName: '',
     Amount: '',
     Description: '',
     Category: '',

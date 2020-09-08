@@ -94,7 +94,6 @@ export class HomePage implements OnInit {
 
  
     ionViewDidEnter() {
-      this.createPie2Chart();
       this.ref = this.db.list('GoalCharts', ref => ref.orderByChild('month'));
  
       // Catch any update to draw the Chart
@@ -377,32 +376,6 @@ export class HomePage implements OnInit {
     return Object.keys(reportByMonth).map(a => reportByMonth[a]);
   }
 
-
-// Chart for Income 
-createPie2Chart() {
-  this.pie = new Chart(this.pie2Chart.nativeElement, {
-    type: 'pie',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-      datasets: [{
-        label: 'Viewers in millions',
-        data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17, 18 , 19, 20, 22],
-        backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-        borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
-}
 
 
 }

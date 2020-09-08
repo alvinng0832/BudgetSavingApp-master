@@ -3,7 +3,7 @@ export interface transaction {
     LastName: number;
     Amount: number;
     Date: Date;
-    Tags:string;
+    // Tags:string;
     Category: string;
     Description: string;
 }

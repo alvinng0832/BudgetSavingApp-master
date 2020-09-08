@@ -220,7 +220,7 @@ export class RegisterpagePage implements OnInit {
   }
 
   goLoginPage() {
-    this.navCtrl.navigateBack('/authlogin');
+    this.navCtrl.navigateBack('/loginpage');
   }
 
   async presentToast(msg) {

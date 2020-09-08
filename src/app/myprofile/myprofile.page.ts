@@ -170,31 +170,3 @@ export class MyprofilePage implements OnInit {
   }
 }
 
-// addTodo(){
-//   this.itemsRef.add({
-//     title: this.newTodo
-//   })
-//   .then(async resp => {
-
-//     const imageUrl = await this.uploadFile(resp.id, this.selectedFile)
-
-//     this.itemsRef.doc(resp.id).update({
-//       id: resp.id,
-//       imageUrl: imageUrl || null
-//     })
-
-//   }).catch(error => {
-//     console.log(error);
-//   })
-// }
-
-// async uploadFile(id, files):Promise {
-//   if (files && files.length) {
-//     try {
-//       const task = await this.storage.ref('/images').child(id).put(files[0])
-//       return this.fireStorage.ref(`images/${id}`).getDownloadURL().toPromise()
-//     } catch (error) {
-//       console.log(error);
-//     } 
-//   }
-// }
