@@ -21,6 +21,10 @@ export class IborrowService implements OnInit{
 
   private BorrowCollection: AngularFirestoreCollection<BorrowDebts>;
 
+
+  user:any
+ 
+
   uid:any
   collectionName = 'iborrow'
  
@@ -28,8 +32,11 @@ export class IborrowService implements OnInit{
       private afAuth: AngularFireAuth,
       private authService: AuthService
     ) {
-      this.uid = this.afAuth.auth.currentUser.uid
+
     
+
+      this.uid = this.afAuth.auth.currentUser.uid
+
     }
       
      

@@ -38,7 +38,8 @@ export class LearnPage implements OnInit {
     this.segmentModel = "all" // first start as All
     this.learnService.getSaved(this.UID).subscribe(d => {
       let ss: any = d // create variable ss = d. from getSaved
-      if (ss == undefined) {  // check ss is empty/undefined
+      console.log(ss.saved)
+      if (ss.saved == undefined) {  // check ss is empty/undefined
         this.saved = [] // convert both saved & ss into array []
         ss = []
       } else {
@@ -116,4 +117,3 @@ export class LearnPage implements OnInit {
     }
   }
 }
-

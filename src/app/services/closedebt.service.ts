@@ -16,7 +16,9 @@ uid:any
 collectionName = "closedebts"
   constructor( private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
 
-    this.uid = this.afAuth.auth.currentUser.uid
+
+    this.uid = this.afAuth.auth.currentUser.uid // this one
+
    }
 
   addCloseDebts(closedebts) {

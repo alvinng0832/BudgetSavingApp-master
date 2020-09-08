@@ -15,14 +15,14 @@
 
 <ion-content>
 
-  <ion-card class="card" button>
+  <ion-card class="card" button *ngFor="let c of data" [ngClass]="c.id">
     <ion-card-content>
-      <img id="logo" src="https://logos-download.com/wp-content/uploads/2016/12/DBS_Bank_logo_logotype.png">
+      <img id="logo" [src]="c.cardImg">
 
 
-      <h3 id="number">1111 1111 1111 1111</h3>
-      <h4 id="year">05 / 22</h4>
-      <h4 id="card-name">Fitri Mahdon</h4>
+      <h3 id="number">{{c.cardNumber}}</h3>
+      <h4 id="year">{{c.cardExpiry}}</h4>
+      <h4 id="card-name">{{c.cardName}}</h4>
     </ion-card-content>
   </ion-card>
 

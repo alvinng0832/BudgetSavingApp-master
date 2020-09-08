@@ -1,0 +1,68 @@
+.example-action-buttons {
+    padding-bottom: 20px;
+    margin-top: 10em;
+  }
+  
+  .example-headers-align, .mat-expansion-panel-header-title,
+  .example-headers-align, .mat-expansion-panel-header-description {
+    flex-basis: 50;
+    font-size: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 50px;
+  }
+  .mat-input{
+      box-sizing: 50px;
+  }
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  .mat-expansion-panel-header.mat-expanded {
+    background: rgb(243, 57, 187);
+  }
+  
+  .mat-expansion-indicator::after {
+    transform: rotate(225deg) !important;  
+  }
+  .material-icons{
+    size: 30px;
+  }
+  .ion-icon{
+    font-size: 30px;
+  }
+  ion-content {
+    --background: linear-gradient(#9b9b9b, #e6e6e6);
+  }
+  ::ng-deep .mat-select-content{
+    width: max-content;
+    height: 70px;
+    font-size: 20px;   
+  }
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+  
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  .example-full-width{
+    font-size: 30px;
+  }
+  

@@ -1,6 +1,8 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Select Your Card</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +13,7 @@
     <ion-col size="4" *ngFor="let i of banks">
       <ion-card class="card" button (click)="presentModal(i)">
         <ion-avatar>
-          <img [src]="i.img">
+          <img [src]="i.display">
         </ion-avatar>
         <ion-label>{{i.name}}</ion-label>
       </ion-card>

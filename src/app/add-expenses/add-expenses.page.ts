@@ -2,6 +2,7 @@ import {Component, ViewChild, OnInit} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import { FormBuilder, FormGroup , FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+
 //import { ExpenseService } from '../services/expense.service';
 import { TabsbudgetPage } from '../tabsbudget/tabsbudget.page';
 import { Observable } from 'rxjs';
@@ -12,6 +13,10 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { TabexpenseService } from '../services/tabexpense.service';
 import { TabsincomePage } from '../tabsincome/tabsincome.page';
 import { TabsexpensePage } from '../tabsexpense/tabsexpense.page';
+import { ExpenseService } from '../services/expense.service';
+
+
+
  interface Expense {
   id?: string,
   FirstName: string,
@@ -38,6 +43,7 @@ export class AddExpensesPage implements OnInit{
   data: Observable<any[]>;
   ref: AngularFireList<any>;
   step = 0;
+
   // expensesForm: FormGroup;
 
   //muz code
@@ -46,6 +52,7 @@ export class AddExpensesPage implements OnInit{
   amount: FormControl;
   description: FormControl;
   type: FormControl;
+
 
 
 
@@ -126,12 +133,15 @@ export class AddExpensesPage implements OnInit{
   @ViewChild(MatAccordion) accordion: MatAccordion;
  
 
+  expensesForm: FormGroup;
+
   constructor(
     private expenseService: TabexpenseService,
      private router: Router, 
      //private fb: FormBuilder,
      //private tabs: TabsbudgetPage,
      private toastCtrl: ToastController,
+
      private db: AngularFireDatabase,
 
 
@@ -147,20 +157,15 @@ export class AddExpensesPage implements OnInit{
       console.log(this.tabs.data)
       }
 
+
+     
+
    ionViewDidEnter() {
     this.ref = this.db.list('ExpensesChart', ref => ref.orderByChild('month'));
   }
    
   ngOnInit() {
-    // this.expensesForm = this.fb.group({
-    //   FirstName:  ['', [Validators.required]],
-    //   LastName: ['', [Validators.required]],
-    //   Amount: ['', [Validators.required]],
-    //   Date: ['', [Validators.required]],
-    //   Category: ['', [Validators.required]],
-    //   Tags: ['', [Validators.required]],
-    //   Description: ['', [Validators.required]],
-    // });
+ 
 
      
     this.amount = new FormControl('', 
@@ -255,6 +260,7 @@ export class AddExpensesPage implements OnInit{
       .catch(error => {
         console.log(error);
       });
+
   }
 
 

@@ -194,7 +194,8 @@ const routes: Routes = [
   {
     path: 'select-card',
     loadChildren: () => import('./modals/select-card/select-card.module').then( m => m.SelectCardPageModule)
-  },  {
+  },
+  {
     path: 'news',
     loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
   },
@@ -206,14 +207,26 @@ const routes: Routes = [
     path: 'news-single',
     loadChildren: () => import('./news-single/news-single.module').then( m => m.NewsSinglePageModule)
   },
-
-
-
-
-
-
-
-
+  {
+    path: 'add-transaction',
+    loadChildren: () => import('./add-transaction/add-transaction.module').then( m => m.AddTransactionPageModule)
+  },
+  {
+    path: 'transactiondetails',
+    loadChildren: () => import('./transactiondetails/transactiondetails.module').then( m => m.TransactiondetailsPageModule)
+  },
+  {
+    path: 'transaction',
+    loadChildren: () => import('./transaction/transaction.module').then( m => m.TransactionPageModule)
+  },
+  {
+    path: 'faq',
+    loadChildren: () => import('./faq/faq.module').then( m => m.FaqPageModule)
+  },
+  {
+    path: 'add-faq',
+    loadChildren: () => import('./add-faq/add-faq.module').then( m => m.AddFaqPageModule)
+  },
 
 ];
 
@@ -226,3 +239,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

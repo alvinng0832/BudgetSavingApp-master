@@ -31,8 +31,7 @@ export class TabexpenseService {
     ) 
     {
   
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.uid = this.afAuth.auth.currentUser.uid
+      this.uid = this.afAuth.auth.currentUser.uid
     
   }
 

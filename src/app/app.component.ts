@@ -74,6 +74,7 @@ ngOnInit(){
   
   logout() {
     this.authSer.logoutUser()
+    this.router.navigateByUrl('/login')
     this.menu.close()
   }
 

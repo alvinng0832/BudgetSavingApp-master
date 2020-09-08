@@ -41,8 +41,11 @@ export class ExpenseService {
 
   delete_student(expense_id) {
     this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(expense_id).delete()
+
+
   }
 
+ 
 
   userEmail() {
     return this.afAuth.auth.onAuthStateChanged(ds => {

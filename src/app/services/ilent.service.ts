@@ -22,13 +22,16 @@ export class IlentService implements OnInit{
   private LentCollection: AngularFirestoreCollection<LentDebts>;
   private ilented: Observable<LentDebts[]>;
   uid:any
+  user:any
+
   collectionName= "ilented"
 
     constructor(private firestore: AngularFirestore,
       private afAuth: AngularFireAuth,
       private authService: AuthService
     ) {
-      this.uid = this.afAuth.auth.currentUser
+
+      this.uid = this.afAuth.auth.currentUser.uid
     }
       
     ngOnInit(){

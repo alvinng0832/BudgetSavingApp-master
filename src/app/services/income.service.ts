@@ -30,7 +30,7 @@ export class IncomeService  {
     ) 
     
     {
-    this.uid = this.afAuth.auth.currentUser.uid
+      this.uid = this.afAuth.auth.currentUser.uid
     
   }
 

@@ -1,4 +1,16 @@
+
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
+
+const twilio = require('twilio')
+const accountSid = functions.confiq().twilio.sid
+const authToken = functions.confiq().twilio.token
+
+const client = new twilio(accountSid, authToken);
+
+const twilioNumber = '+14432965106'
+
 const stripe = require('stripe')('sk_test_51H4gUlKdrQ4uHH7LsthM4aMEqMESsq6yx3Hu89YZsDhRJBVjYsxaaJtXqWwCplFvw6Pd6gDiQeuOzgDhlbnMTWvz00DXu3L1Gi');
 
 exports.payWithStripe = functions.https.onRequest((request, response) => {
@@ -19,3 +31,5 @@ exports.payWithStripe = functions.https.onRequest((request, response) => {
         });
 
 });
+
+

@@ -23,7 +23,9 @@ export class FirebaseService implements OnInit {
   constructor(
     private firestore: AngularFirestore, private afAuth: AngularFireAuth, private userService: UserService
   ) { 
-    this.uid = this.afAuth.auth.currentUser
+
+
+    this.uid = this.afAuth.auth.currentUser.uid
   }
   ngOnInit() {
 
@@ -38,7 +40,7 @@ export class FirebaseService implements OnInit {
 
 
  update_student(recordID, record) {
- this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(recordID).update(record);
+    this.firestore.collection("users").doc(this.uid).collection(this.collectionName).doc(recordID).update(record);
 }
 
   delete_student(record_id) {
@@ -53,6 +55,7 @@ export class FirebaseService implements OnInit {
     return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').snapshotChanges();
   }
   delete_Reached(reachgoal_id){
+
     return this.firestore.collection("users").doc(this.uid).collection('ReachedGoals').doc(reachgoal_id).delete();
   }
 

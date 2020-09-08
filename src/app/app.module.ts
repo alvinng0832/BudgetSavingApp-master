@@ -70,8 +70,10 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { TabsbudgetPageModule } from './tabsbudget/tabsbudget.module';
 import { TabsincomePageModule } from './tabsincome/tabsincome.module';
 import { TabsbudgetPage } from './tabsbudget/tabsbudget.page';
+
 import { CommonModule } from '@angular/common';
 import { AddCardPageModule } from './modals/add-card/add-card.module';
+
 
 import {NgxMaskIonicModule} from 'ngx-mask-ionic'
 
@@ -147,8 +149,10 @@ firebase.initializeApp(environment.firebase);
     AngularFirestoreModule.enablePersistence(),
     TabsbudgetPageModule,
     TabsincomePageModule,
+
     CommonModule,
     AddCardPageModule,
+
     ],
   providers: [
 
