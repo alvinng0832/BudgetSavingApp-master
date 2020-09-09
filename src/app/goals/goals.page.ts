@@ -38,45 +38,45 @@ collectionName= "addGoals"
   }
 
   ngOnInit() {
-//     this.firebaseService.Goal_students().subscribe(data => {
-//       console.log(data)
-//       this.studentList = data.map(e => {
-//         const data = e.payload.doc.data();
-//         const id = e.payload.doc.id;
-//         const Name = e.payload.doc.data()['Name'];
-//         const TargetAmount = e.payload.doc.data()['TargetAmount'];
-//         const SavedAmount = e.payload.doc.data()['SavedAmount'];
-//         const DesiredDate = e.payload.doc.data()['DesiredDate'];
-//         const progressValue =  e.payload.doc.data()['SavedAmount'] / e.payload.doc.data()['TargetAmount'] ;
+    this.firebaseService.Goal_students().subscribe(data => {
+      console.log(data)
+      this.studentList = data.map(e => {
+        const data = e.payload.doc.data();
+        const id = e.payload.doc.id;
+        const Name = e.payload.doc.data()['Name'];
+        const TargetAmount = e.payload.doc.data()['TargetAmount'];
+        const SavedAmount = e.payload.doc.data()['SavedAmount'];
+        const DesiredDate = e.payload.doc.data()['DesiredDate'];
+        const progressValue =  e.payload.doc.data()['SavedAmount'] / e.payload.doc.data()['TargetAmount'] ;
 
 
-//         return {id, Name, TargetAmount, SavedAmount, DesiredDate, progressValue, ...data}
+        return {id, Name, TargetAmount, SavedAmount, DesiredDate, progressValue, ...data}
           
-//       });
+      });
       
-//       console.log(this.studentList)
-//   })
+      console.log(this.studentList)
+  })
 
 
-//   this.firebaseService.Reached_students().subscribe(data => {
-//     console.log(data)
-//     this.ReachedList = data.map(e => {
-//       const data = e.payload.doc.data();
-//       const id = e.payload.doc.id;
-//       const Name = e.payload.doc.data()['Name'];
-//         const TargetAmount = e.payload.doc.data()['TargetAmount'];
-//         const SavedAmount = e.payload.doc.data()['SavedAmount'];
-//         const DesiredDate = e.payload.doc.data()['DesiredDate'];
-//         const progressValue =  e.payload.doc.data()['SavedAmount'] / e.payload.doc.data()['TargetAmount'] ;
+  this.firebaseService.Reached_students().subscribe(data => {
+    console.log(data)
+    this.ReachedList = data.map(e => {
+      const data = e.payload.doc.data();
+      const id = e.payload.doc.id;
+      const Name = e.payload.doc.data()['Name'];
+        const TargetAmount = e.payload.doc.data()['TargetAmount'];
+        const SavedAmount = e.payload.doc.data()['SavedAmount'];
+        const DesiredDate = e.payload.doc.data()['DesiredDate'];
+        const progressValue =  e.payload.doc.data()['SavedAmount'] / e.payload.doc.data()['TargetAmount'] ;
    
 
 
-//       return {id, Name, TargetAmount, SavedAmount, DesiredDate, progressValue, ...data}
+      return {id, Name, TargetAmount, SavedAmount, DesiredDate, progressValue, ...data}
         
-//     });
+    });
     
-//     console.log(this.ReachedList)
-// })
+    console.log(this.ReachedList)
+})
 }
   newgoals(){
   this.router.navigateByUrl('/newgoal')
