@@ -27,6 +27,8 @@ import { ExpenseService } from '../services/expense.service';
   Tags: string,
   Date: string
   userId: string
+
+  
 }
 interface Animal {
   name: string;
@@ -53,6 +55,11 @@ export class AddExpensesPage implements OnInit{
   description: FormControl;
   type: FormControl;
 
+  validation_messages = {
+    'amount': [
+      { type: 'required', message: 'Enter a valid amount.' },
+    ]
+  };
 
 
 
